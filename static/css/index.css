@@ -1,0 +1,175 @@
+/* Base resets */
+html, body {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  height: auto !important;
+}
+
+/* Video block and card styling */
+.video-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.video-card {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+.video-card video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  max-height: 500px;
+}
+
+.video-caption {
+  position: static;
+  margin-top: 0.75rem;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  color: #333;
+  background: none;
+  border: none;
+  padding: 0;
+  pointer-events: none;
+}
+
+/* Glide.js arrow and bullets */
+.glide__arrow {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+.glide__arrow--left { left: -20px; }
+.glide__arrow--right { right: -20px; }
+
+.glide__bullets {
+  position: static;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.glide__bullet {
+  background: #ccc;
+  border: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.glide__bullet--active {
+  background: #333;
+}
+
+/* Method caption styling */
+.method-caption {
+  max-width: 960px;
+  margin: 1.5rem auto 0;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+figure figcaption {
+  font-size: 1rem;
+  color: #444;
+  text-align: center;
+  margin-top: 0.75rem;
+}
+
+/* Task panel toggling */
+.task-panel {
+  display: none;
+}
+.task-panel.active {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Grid for retrieval visualization */
+.video-grid {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;    /* increased vertical spacing between rows */
+  margin: 1rem auto; /* center horizontally */
+  width: 75%;       /* occupy 3/4 of container */
+}
+
+.video-row {
+  display: flex;
+  gap: 1.5rem;      /* space between ref-video and results container */
+  align-items: center;
+  overflow-x: hidden; /* remove scroll bar */
+}
+
+.ref-video {
+  flex: 0 0 calc((100% - 1.5rem) / 4);
+  min-width: 0;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border: 6px solid #ebff38;
+  border-radius: 6px;
+}
+
+.dino-video {
+  flex: 0 0 calc((100% - 1.5rem) / 4);
+  min-width: 0;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border: 6px solid #A87763;
+  border-radius: 6px;
+}
+
+.flow-video {
+  min-width: 0;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border: 6px solid #E05A4F;
+  border-radius: 6px;
+}
+
+.pointnet-video {
+  flex: 0 0 calc((100% - 1.5rem) / 4);
+  min-width: 0;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border: 6px solid #B087C0;
+  border-radius: 6px;
+}
+
+.result-videos {
+  flex: 0 0 calc((100% - 1.5rem) * 3/4);
+  display: flex;
+  gap: 0.5rem;      /* tight spacing between each result video */
+}
+
+.result-videos video {
+  flex: 1 1 0;
+  min-width: 0;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 6px;
+}s

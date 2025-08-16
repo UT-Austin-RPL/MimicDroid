@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="COLLAGE introduces adaptive multi-modal data retrieval and fusion to enhance few-shot imitation learning from large-scale datasets." />
+  <title>COLLAGE</title>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet" />
+  <link rel="stylesheet" href="./static/css/bulma.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.6.0/dist/css/glide.core.min.css" />
+  <link rel="stylesheet" href="./static/css/index.css" />
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            
+            <h1 class="title is-1 publication-title">MIMICDROID: </h1>
+            <h2 class="subtitle is-2 publication-subtitle">In-Context Learning for Humanoid Manipulation by Watching Humans</h2>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://shahrutav.github.io/" target="_blank">Rutav Shah</a>,</span>
+                <span class="author-block">
+                  <a href="https://www.linkedin.com/in/harry-wang-16470a211/" target="_blank">Qi Wang</a><sup>*</sup>,</span>
+                  <span class="author-block">
+                    <a href="https://zhenyujiang.me/" target="_blank">Zhenyu Jiang</a><sup>*</sup>,</span>
+                    <span class="author-block">
+                    <a href="https://shuijing725.github.io/" target="_blank">Shuijing Liu</a><sup>*</sup>,</span>
+                    <span class="author-block">
+                  <a href="https://sateeshkumar21.github.io/" target="_blank">Sateesh Kumar</a>,</span>
+                  <span class="author-block">
+                    <a href="https://mingyoseo.com/" target="_blank"> Mingyo Seo</a>,
+                  </span>
+                  <span class="author-block">
+                    <a href="https://robertomartinmartin.com/" target="_blank">Roberto Martín-Martín</a>,
+                  </span>
+                  <span class="author-block">
+                    <a href="https://yukezhu.me/" target="_blank">Yuke Zhu</a>
+                  </span>
+                  </div>
+                  <div class="is-size-5 publication-authors">
+
+                    <span class="author-block">The University of Texas at Austin
+                      <!-- <br>Conferance name and year -->
+                    </span>
+                    <span class="eql-cntrb"><small><br><sup>*</sup>Equal Contribution</small></span>
+                  </div>
+                  <br>
+                    <div class="column has-text-centered">
+                      <div class="publication-links">
+                        <!-- PDF Link. -->
+                        <span class="link-block">
+                          <a href="."
+                             class="external-link button is-normal is-rounded is-dark">
+                            <span class="icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </span>
+                            <span>Paper</span>
+                          </a>
+                        </span>
+                        <!--arXiv Link.-->
+                        <span class="link-block">
+                          <a
+                            href="."
+                            class="external-link button is-normal is-rounded is-dark"
+                          >
+                            <span class="icon">
+                              <i class="ai ai-arxiv"></i>
+                            </span>
+                            <span>arXiv</span>
+                          </a>
+                        </span>
+                        <!-- Video Link. -->
+                        <!-- <span class="link-block">
+                          <a href="https://www.youtube.com/watch?v=ts0e2HHp3Lk"
+                             class="external-link button is-normal is-rounded is-dark">
+                            <span class="icon">
+                                <i class="fab fa-youtube"></i>
+                            </span>
+                            <span>Video</span>
+                          </a>
+                        </span> -->
+                        <!-- Code Link. -->
+                        <span class="link-block">
+                          <a href="."
+                             class="external-link button is-normal is-rounded is-dark">
+                            <span class="icon">
+                                <i class="fab fa-github"></i>
+                            </span>
+                            <span>Code (Coming Soon)</span>
+                            </a>
+                        </span>
+                        <!-- Dataset Link. -->
+                        <!-- <span class="link-block">
+                          <a href="https://drive.google.com/drive/folders/1mNJmnyzIoCudRcTdRVrN3WAiuWIM8355"
+                             class="external-link button is-normal is-rounded is-dark">
+                            <span class="icon">
+                                <i class="far fa-images"></i>
+                            </span>
+                            <span>Dataset</span>
+                            </a> -->
+                      </div>
+                    </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Rollout Carousel -->
+  <!-- <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Policy Rollouts with COLLAGE</h2>
+      <figure>
+      <div class="glide" style="position: relative;">
+        <div class="glide__track" data-glide-el="track">
+          <ul class="glide__slides">
+            <li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay muted loop playsinline controls><source src="./static/videos/demo_pen_in_cup.mp4" type="video/mp4" /></video></div><p class="video-caption">Pen-Cup</p></div></li>
+            <li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay muted loop playsinline controls><source src="./static/videos/demo_chips_real.mp4" type="video/mp4" /></video></div><p class="video-caption">Chips-Box</p></div></li>
+            <li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay muted loop playsinline controls><source src="./static/videos/demo_umbrella.mp4" type="video/mp4" /></video></div><p class="video-caption">Pick-Umbrella</p></div></li>
+            <li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay muted loop playsinline controls><source src="./static/videos/demo_spatula.mp4" type="video/mp4" /></video></div><p class="video-caption">Stir-Spatula</p></div></li>
+            <li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay muted loop playsinline controls><source src="./static/videos/demo_lego.mp4" type="video/mp4" /></video></div><p class="video-caption">Stack-Lego</p></div></li>
+            <li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay muted loop playsinline controls><source src="./static/videos/demo_scrub.mp4" type="video/mp4" /></video></div><p class="video-caption">Scrub-Plate</p></div></li>
+          </ul>
+        </div>
+        <div class="glide__arrows" data-glide-el="controls">
+          <button class="glide__arrow glide__arrow--left" data-glide-dir="<">‹</button>
+          <button class="glide__arrow glide__arrow--right" data-glide-dir=">">›</button>
+        </div>
+        <div class="glide__bullets" data-glide-el="controls[nav]">
+          <button class="glide__bullet" data-glide-dir="=0"></button>
+          <button class="glide__bullet" data-glide-dir="=1"></button>
+          <button class="glide__bullet" data-glide-dir="=2"></button>
+          <button class="glide__bullet" data-glide-dir="=3"></button>
+          <button class="glide__bullet" data-glide-dir="=4"></button>
+          <button class="glide__bullet" data-glide-dir="=5"></button>
+        </div>
+      </div>
+      <figcaption class="has-text-centered" style="margin-top: 1rem;">Each Policy is trained with <strong>5 target demonstrations</strong> and data retrieved using COLLAGE.</figcaption>
+        
+    </figure>
+    </div>
+  </section> -->
+  <!-- Abstract 
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">    
+    <div class="column is-four-fifths">
+  <!-- <div class="content " style="background:#f0f0f0; padding:20px 24px; border:1px solid #ccc; border-radius:6px;">
+  <p style="margin:0;">
+     <strong>TL;DR:</strong> We present <strong>COLLAGE</strong>, a few-shot imitation learning method that fuses data subsets retrieved from large-scale datasets using multiple measures of similarity to the target task. It scores each subset by training an imitation learning policy on it, measuring how likely it is to produce the target actions, and uses these scores to prioritize the most effective data during training.
+  </p>
+</div>
+    </div>
+    </div>
+    </div>
+    </div>
+  </div>-->
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+     
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">  
+            <p>
+              We envision humanoids that can efficiently adapt to new tasks, achieving few-shot manipulation in ever-changing environments. In-context learning (ICL) is a promising framework to achieve this goal, but existing ICL approaches typically rely on costly teleoperated datasets or limited expressivity of simulations for training. In this work, we propose using human play videos—continuous, unlabeled videos of people interacting freely with their environment by their curiosity—as a scalable and diverse data source. Learning from human play videos poses two key challenges: (i) the absence of labeled data to train policies to learn in-context; (ii) the embodiment gap between humans and humanoids. We introduce MIMICDROID, a method that enables humanoids to perform ICL by using only human play videos as training data. To overcome the lack of supervision, MIMICDROID extracts trajectory pairs exhibiting similar manipulation behaviors in a self-supervised manner, e.g., “placing the bread on the oven tray,” and “placing a bagel on the oven tray.” The policy is trained to predict actions of one trajectory, conditioned on others with similar manipulation behaviors. This trains the model to learn in-context from the provided examples. To address the embodiment gap, first, MIMICDROID retargets human wrist poses estimated from RGB videos to the humanoid, leveraging their kinematic similarity. Second, to handle the visual gap, it applies random patch masking during training to prevent overfitting to humanspecific cues. To systematically evaluate few-shot learning for humanoids, we introduce an open-source simulation benchmark with three levels of increasing generalization difficulty from seen to unseen objects and environments. In both simulation and the real world, MIMICDROID outperforms state-of-the-art methods, achieving nearly twofold better generalization to novel objects in the real world. 
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- <section class="section">
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title is-3">Video</h2>
+      <p class="subtitle is-6">
+        Click ▶ to watch a narrated walkthrough of the entire paper.
+      </p> 
+    
+      <video
+        controls
+        preload="metadata"
+        style="max-width:100%; border-radius:8px;"
+      >
+        <source src="./static/videos/COLLAGE_public.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </section> -->
+
+  <!-- Method Overview -->
+  <!-- <section class="section">
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title is-3">Method Overview</h2>
+      <figure class="image">
+  <video controls autoplay loop muted playsinline style="max-width: 100%; border-radius: 8px;">
+    <source src="./static/images/method_overview_v2.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <figcaption class="method-caption has-text-justified">
+  <strong>Overview of COLLAGE.</strong>
+  <strong>1:</strong> Given a set of target demonstrations, each modality (e.g., visual, motion, shape, or language) retrieves a set of similar (sub-)trajectories from a prior dataset of diverse demonstrations. <strong>2:</strong> We use the retrieved (sub-)trajectories for each modality to train a reference policy. For each reference policy, we compute the log-likelihood of the target trajectories — that is, how well the policy predicts the target actions at each target state. These log-likelihoods are used to assign importance weights to the modalities. 
+   <strong>3:</strong> We train the final policy using all retrieved data, sampling more frequently from modalities with higher weights.
+  </figcaption>
+</figure>
+    </div>
+  </section> -->
+
+  
+
+  <!-- Experiments -->
+  <!-- <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full">
+          <h2 class="title is-3">Experiments</h2>
+          <div class="content">
+            <h3 class="title is-4">Simulated Experiments</h3>
+            <figure class="image">
+              <img src="./static/images/sim_results_1.png" alt="Simulated experiment results" />
+              <img src="./static/images/sim_results_2.png" alt="Simulated experiment results" />
+              <figcaption>
+                We evaluate COLLAGE on all tasks from the LIBERO-10 benchmark using 5 target demonstrations per task and 4500 demonstrations from LIBERO-90 as the prior dataset. COLLAGE achieves a <strong>10.75% relative performance improvement over the prior state-of-the-art retrieval method STRAP (ICLR ’25) </strong>. It also outperforms other single-modality retrievals, including <strong>POINTNET (Shape) by 14.25% </strong> and <strong>LANG (Language) by 25.31%</strong>. Note: All methods achieve 0% performance on the Moka-Moka task.
+              </figcaption>
+            </figure>
+
+            <h3 class="title is-4" style="margin-top: 1.5em;">Real-World Experiments</h3>
+            <figure class="image">
+              <img src="./static/images/real_world_results.png" alt="Real-world experiment results" />
+              <figcaption>
+                Real-world evaluation on six manipulation tasks using the DROID dataset. For each task, we use only <strong>5 target demonstrations</strong> and retrieve from a pool of 30k successful episodes. COLLAGE achieves an average success rate of 6.83/15, representing a <strong>58% relative performance improvement over STRAP (4.33/15) </strong> and a <strong> 64% improvement over LANG (4.16/15)</strong>. Policies trained solely on the 5 in-domain demonstrations (no retrieval) achieve only 1.00/15 success on average. In contrast, COLLAGE effectively leverages relevant demonstrations from DROID to significantly boost policy performance.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ -->
+    <!-- Weights Predicted by COLLAGE -->
+<!-- <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Importance Weights Predicted by COLLAGE</h2>
+      <div class="has-text-centered">
+        <figure class="image" style="max-width: 950px; width: 100%; margin: 0 auto;">
+          <img src="./static/images/modality_weights_pie_chart.png" alt="Modality Weights Pie Chart" style="width: 100%; height: auto; border-radius: 8px;">
+          <figcaption style="margin-top: 0.75rem; font-size: 1rem; color: #444;">
+            <figcaption style="margin-top: 0.75rem;">
+                Importance weights assigned by <strong>COLLAGE</strong> to different modalities used in our framework (Visual, Motion, Shape, Language).              
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- SCRIPTS -->
+  <script>
+    const panels = Array.from(document.querySelectorAll('.task-panel'));
+    let current = 0;
+    function showPanel(i) {
+      panels[current].style.display = 'none';
+      current = (i + panels.length) % panels.length;
+      panels[current].style.display = 'block';
+    }
+    document.querySelectorAll('#prev-btn').forEach(btn => btn.onclick = () => showPanel(current - 1));
+    document.querySelectorAll('#next-btn').forEach(btn => btn.onclick = () => showPanel(current + 1));
+
+    // Initialize
+    panels.forEach((p, i) => p.style.display = i === 0 ? 'block' : 'none');
+  </script>
+
+
+<!-- <section class="section">
+  <div class="container is-max-desktop has-text-centered">
+    <h2 class="title is-3">Why use multiple feature modalities for retrieval?</h2>
+    <p class="subtitle is-6">
+      Below, we illustrate the benefits of leveraging on multiple modalities for data retrieval and using COLLAGE to fuse them.
+    </p> 
+
+    <!-- Book Place task -->
+<!--    <p class="subtitle is-6">
+      Retrieved data for the task of <strong>Place the Book in the Back Compartment of the Caddy</strong>.
+    </p>
+    <figure class="image" style="margin-bottom: 2rem;">
+      <img
+        src="./static/images/book_caddy_4feats.png"
+        alt="Retrieved data for Book Place task"
+        style="max-width:100%;"
+      />
+      <figcaption>
+        <!-- Although the instruction <strong>“Place the Book in the Back Compartment of the Caddy”</strong> matches exactly, visual-only retrieval from the prior dataset misses these segments due to appearance differences.
+        For this task, the target demonstration involves placing the book in the back compartment of a caddy. The prior dataset contains two helpful types of segments: (1) those with the same scene but a different end-pose, where the book is placed in the front compartment—these are reliably retrieved using visual similarity; and (2) those with the same task but different scene appearance, where the book is correctly placed in the back compartment but the visual context differs—these are primarily retrieved using motion and language cues. Since each modality recovers complementary subsets of relevant data, fusing them in COLLAGE raises accuracy from 66.00 % (visual only) to 89.33 %, yielding an absolute gain of 23.33 percentage points.
+    </figcaption>
+    </figure> 
+
+    <!-- Cheese Butter task 
+    <p class="subtitle is-6">
+      Retrieved data for the task of <strong>Put Both the Cream Cheese Box and the Butter in the Basket</strong>.
+    </p>
+    <figure class="image">
+      <img
+        src="./static/images/cheese_butter_4feats.png"
+        alt="Retrieved data for Cheese Butter task"
+        style="max-width:100%;"
+      />
+      <figcaption>
+        In the Cheese Butter task, shape-based retrieval from the prior dataset retrieves far more examples from “Pick up Butter..” and “Pick up Tomato Sauce..” than visual- or motion-based retrieval. These segments provide direct, task-relevant demonstrations of placing similarly shaped objects into the basket. Consequently, the shape modality outperforms both visual and motion, and COLLAGE assigns it the highest weight—yielding performance on par with shape-only retrieval.
+      </figcaption>
+    </figure>
+  </div>
+</section> -->
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <p>
+          This website is based on the <a href="https://nerfies.github.io/">Nerfies</a> website template,
+          licensed under a <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Glide JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.6.0/dist/glide.min.js"></script>
+  <script>
+    window.addEventListener('load', function () {
+      new Glide('.glide', {
+        type: 'carousel',
+        rewind: false,
+        perView: 3,
+        focusAt: 'center',
+        gap: 24,
+        breakpoints: {
+          1024: { perView: 2 },
+          768: { perView: 1 }
+        }
+      }).mount();
+    });
+  </script>
+</body>
+</html>
