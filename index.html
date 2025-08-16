@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="COLLAGE introduces adaptive multi-modal data retrieval and fusion to enhance few-shot imitation learning from large-scale datasets." />
-  <title>COLLAGE</title>
+  <meta name="description" content="" />
+  <title>MIMICDROID</title>
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
   rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet" />
@@ -202,42 +202,44 @@
   </section> -->
 
   <!-- Method Overview -->
-  <!-- <section class="section">
-    <div class="container is-max-desktop has-text-centered">
-      <h2 class="title is-3">Method Overview</h2>
-      <figure class="image">
-  <video controls autoplay loop muted playsinline style="max-width: 100%; border-radius: 8px;">
-    <source src="./static/images/method_overview_v2.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
-  <figcaption class="method-caption has-text-justified">
-  <strong>Overview of COLLAGE.</strong>
-  <strong>1:</strong> Given a set of target demonstrations, each modality (e.g., visual, motion, shape, or language) retrieves a set of similar (sub-)trajectories from a prior dataset of diverse demonstrations. <strong>2:</strong> We use the retrieved (sub-)trajectories for each modality to train a reference policy. For each reference policy, we compute the log-likelihood of the target trajectories — that is, how well the policy predicts the target actions at each target state. These log-likelihoods are used to assign importance weights to the modalities. 
-   <strong>3:</strong> We train the final policy using all retrieved data, sampling more frequently from modalities with higher weights.
-  </figcaption>
-</figure>
-    </div>
-  </section> -->
+  <section class="section">
+  <div class="container is-max-desktop has-text-centered">
+    <h2 class="title is-3">Method Overview</h2>
+    <figure class="image">
+      <img src="./static/images/mew_pull_figure_cropped-1.png" 
+           alt="Overview of MIMICDROID" />
+          
+      <figcaption class="method-caption has-text-justified">
+        <strong>Overview of MIMICDROID.</strong> MIMICDROID enables few-shot humanoid manipulation by training solely on human play videos—a
+cheaper and easier-to-collect data source. At test time, it observes human videos of novel tasks and uses in-context learning
+to perform it under different object placements.
+      </figcaption>
+    </figure>
+  </div>
+</section>
 
   
 
   <!-- Experiments -->
-  <!-- <section class="section">
+   <section class="section">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-full">
           <h2 class="title is-3">Experiments</h2>
           <div class="content">
-            <h3 class="title is-4">Simulated Experiments</h3>
             <figure class="image">
-              <img src="./static/images/sim_results_1.png" alt="Simulated experiment results" />
-              <img src="./static/images/sim_results_2.png" alt="Simulated experiment results" />
+              <img src="./static/images/results.png" alt="experiment results" />
               <figcaption>
-                We evaluate COLLAGE on all tasks from the LIBERO-10 benchmark using 5 target demonstrations per task and 4500 demonstrations from LIBERO-90 as the prior dataset. COLLAGE achieves a <strong>10.75% relative performance improvement over the prior state-of-the-art retrieval method STRAP (ICLR ’25) </strong>. It also outperforms other single-modality retrievals, including <strong>POINTNET (Shape) by 14.25% </strong> and <strong>LANG (Language) by 25.31%</strong>. Note: All methods achieve 0% performance on the Moka-Moka task.
+               <p>Success rates in Abstract and GR1 embodiments in the simulation benchmark</p>
               </figcaption>
             </figure>
+        </div>
+      </div>
+      </div>
+    </div>
+    </section>
 
-            <h3 class="title is-4" style="margin-top: 1.5em;">Real-World Experiments</h3>
+            <!-- <h3 class="title is-4" style="margin-top: 1.5em;">GR1 Embodiment</h3>
             <figure class="image">
               <img src="./static/images/real_world_results.png" alt="Real-world experiment results" />
               <figcaption>
@@ -247,9 +249,8 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </section>
- -->
     <!-- Weights Predicted by COLLAGE -->
 <!-- <section class="section">
     <div class="container is-max-desktop">
@@ -265,7 +266,20 @@
       </div>
     </div>
   </section> -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>
 
+       @article{shah2025mimicdroid,
+        title={MIMICDROID: In-Context Learning for Humanoid Manipulation by Watching Humans},
+        author={Shah, Rutav and Wang, Qi and Jiang, Zhenyu and Liu, Shuijing and Kumar, Sateesh and Seo, Mingyo and Mart{\'\i}n-Mart{\'\i}n, Roberto and Zhu, Yuke},
+        journal={arXiv preprint arXiv:},
+        year={2025}
+  }
+      </code></pre>
+    </div>
+</section>
   <!-- SCRIPTS -->
   <script>
     const panels = Array.from(document.querySelectorAll('.task-panel'));
