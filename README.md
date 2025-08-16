@@ -1,2 +1,2 @@
-# COLLAGE
-Website for COLLAGE
+# MIMICDROID
+Website for MIMICDROID
