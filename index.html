@@ -25,7 +25,7 @@
         <div class="columns is-centered">
           <div class="column has-text-centered">
             
-            <h1 class="title is-1 publication-title">MIMICDROID: </h1>
+            <h1 class="title is-1 publication-title">MimicDroid: </h1>
             <h2 class="subtitle is-2 publication-subtitle">In-Context Learning for Humanoid Manipulation by Watching Humans</h2>
             <div class="is-size-5 publication-authors">
               <span class="author-block">
@@ -174,7 +174,7 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">  
             <p>
-              We envision humanoids that can efficiently adapt to new tasks, achieving few-shot manipulation in ever-changing environments. In-context learning (ICL) is a promising framework to achieve this goal, but existing ICL approaches typically rely on costly teleoperated datasets or limited expressivity of simulations for training. In this work, we propose using human play videos—continuous, unlabeled videos of people interacting freely with their environment by their curiosity—as a scalable and diverse data source. Learning from human play videos poses two key challenges: (i) the absence of labeled data to train policies to learn in-context; (ii) the embodiment gap between humans and humanoids. We introduce MIMICDROID, a method that enables humanoids to perform ICL by using only human play videos as training data. To overcome the lack of supervision, MIMICDROID extracts trajectory pairs exhibiting similar manipulation behaviors in a self-supervised manner, e.g., “placing the bread on the oven tray,” and “placing a bagel on the oven tray.” The policy is trained to predict actions of one trajectory, conditioned on others with similar manipulation behaviors. This trains the model to learn in-context from the provided examples. To address the embodiment gap, first, MIMICDROID retargets human wrist poses estimated from RGB videos to the humanoid, leveraging their kinematic similarity. Second, to handle the visual gap, it applies random patch masking during training to prevent overfitting to humanspecific cues. To systematically evaluate few-shot learning for humanoids, we introduce an open-source simulation benchmark with three levels of increasing generalization difficulty from seen to unseen objects and environments. In both simulation and the real world, MIMICDROID outperforms state-of-the-art methods, achieving nearly twofold better generalization to novel objects in the real world. 
+              We envision humanoids that can efficiently adapt to new tasks, achieving few-shot manipulation in ever-changing environments. In-context learning (ICL) is a promising framework to achieve this goal, but existing ICL approaches typically rely on costly teleoperated datasets or limited expressivity of simulations for training. In this work, we propose using human play videos—continuous, unlabeled videos of people interacting freely with their environment by their curiosity—as a scalable and diverse data source. Learning from human play videos poses two key challenges: (i) the absence of labeled data to train policies to learn in-context; (ii) the embodiment gap between humans and humanoids. We introduce MimicDroid, a method that enables humanoids to perform ICL by using only human play videos as training data. To overcome the lack of supervision, MimicDroid extracts trajectory pairs exhibiting similar manipulation behaviors in a self-supervised manner, e.g., “placing the bread on the oven tray,” and “placing a bagel on the oven tray.” The policy is trained to predict actions of one trajectory, conditioned on others with similar manipulation behaviors. This trains the model to learn in-context from the provided examples. To address the embodiment gap, first, MimicDroid retargets human wrist poses estimated from RGB videos to the humanoid, leveraging their kinematic similarity. Second, to handle the visual gap, it applies random patch masking during training to prevent overfitting to human-specific cues. To systematically evaluate few-shot learning for humanoids, we introduce an open-source simulation benchmark with three levels of increasing generalization difficulty from seen to unseen objects and environments. In both simulation and the real world, MimicDroid outperforms state-of-the-art methods, achieving nearly twofold better generalization to novel objects in the real world.
             </p>
           </div>
         </div>
@@ -183,23 +183,23 @@
   </section>
 
 
-  <!-- <section class="section">
+  <section class="section">
     <div class="container is-max-desktop has-text-centered">
       <h2 class="title is-3">Video</h2>
       <p class="subtitle is-6">
-        Click ▶ to watch a narrated walkthrough of the entire paper.
-      </p> 
-    
+        Watch the video to see MimicDroid in action!
+      </p>
+
       <video
         controls
         preload="metadata"
         style="max-width:100%; border-radius:8px;"
       >
-        <source src="./static/videos/COLLAGE_public.mp4" type="video/mp4" />
+        <source src="./static/images/summary_video.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
     </div>
-  </section> -->
+  </section>
 
   <!-- Method Overview -->
   <section class="section">
@@ -210,7 +210,7 @@
            alt="Overview of MIMICDROID" />
           
       <figcaption class="method-caption has-text-justified">
-        <strong>Overview of MIMICDROID.</strong> MIMICDROID enables few-shot humanoid manipulation by training solely on human play videos—a
+        <strong>Overview of MimicDroid.</strong> MimicDroid enables few-shot humanoid manipulation by training solely on human play videos—a
 cheaper and easier-to-collect data source. At test time, it observes human videos of novel tasks and uses in-context learning
 to perform it under different object placements.
       </figcaption>
@@ -272,7 +272,7 @@ to perform it under different object placements.
       <pre><code>
 
        @article{shah2025mimicdroid,
-        title={MIMICDROID: In-Context Learning for Humanoid Manipulation by Watching Humans},
+        title={MimicDroid: In-Context Learning for Humanoid Manipulation by Watching Humans},
         author={Shah, Rutav and Wang, Qi and Jiang, Zhenyu and Liu, Shuijing and Kumar, Sateesh and Seo, Mingyo and Mart{\'\i}n-Mart{\'\i}n, Roberto and Zhu, Yuke},
         journal={arXiv preprint arXiv:},
         year={2025}
