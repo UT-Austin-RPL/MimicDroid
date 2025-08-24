@@ -233,36 +233,32 @@
             <figure class="image">
               <img src="./static/images/results.png" alt="experiment results" />
               <figcaption>
-               <p>Success rates in Abstract and GR1 embodiments in the simulation benchmark</p>
+               <p>Success rates of MimicDroid in the simulation benchmark, comparing both the Abstract and GR1 embodiments across levels of generalization difficulty (L1–L3). MimicDroid consistently outperforms prior approaches and ablations, demonstrating strong transfer from human play videos to humanoid control.</p>
               </figcaption>
             </figure>
             <h3 class="title is-4" style="margin-top: 1.5em;">Quantitative Results</h3>
             
             <div class="columns is-multiline is-centered">
-              <div class="column is-one-third">
-                <figure class="image">
-                  <img src="./static/images/n_prompts-1.png" alt="Number of Prompts Results" />
-                  <figcaption>Effect of number of prompts on performance.</figcaption>
-                </figure>
-              </div>
-              <div class="column is-one-third">
-                <figure class="image">
-                  <img src="./static/images/n_topk-1.png" alt="Top-K Results" />
-                  <figcaption>Effect of top-K retrieval on performance.</figcaption>
-                </figure>
-              </div>
-              <div class="column is-one-third">
-                <figure class="image">
-                  <img src="./static/images/success_vs_frames-1.png" alt="Success vs Frames" />
-                  <figcaption>Success rate as a function of frames.</figcaption>
-                </figure>
-              </div>
+              <figure class="image">
+                <div class="columns is-multiline is-centered">
+                  <div class="column is-one-third">
+                    <img src="./static/images/n_prompts-1.png" alt="Number of Prompts Results" />
+                  </div>
+                  <div class="column is-one-third">
+                    <img src="./static/images/n_topk-1.png" alt="Top-K Results" />
+                  </div>
+                  <div class="column is-one-third">
+                    <img src="./static/images/success_vs_frames-1.png" alt="Success vs Frames" />
+                  </div>
+                </div>
+                <figcaption>Quantitative ablations of MimicDroid. Left: Performance as a function of the number of test-time in-context demonstrations (Fig. 5). Middle: Effect of the number of retrieved top-k context segments used during training (Fig. 6). Right: Scaling behavior as the amount of training video data (frames) increases (Fig. 7). These results highlight that MimicDroid benefits from more context at test time, an appropriate retrieval budget at training time, and larger play video datasets.</figcaption>
+              </figure>
             </div>
 
             <h3 class="title is-4" style="margin-top: 1.5em;">Qualitative Analysis</h3>
             <figure class="image">
               <img src="./static/images/mew_rw_figure-1.png" alt="Qualitative Method Overview" />
-              <figcaption>Qualitative overview of MimicDroid method.</figcaption>
+              <figcaption>Real-world qualitative rollouts of MimicDroid. The humanoid GR1 successfully adapts to novel objects and environments using only a few human video demonstrations at test time. Examples include placing food items on trays, transferring them into containers, and interacting with household appliances. These case studies illustrate the method’s ability to generalize across tasks and embodiments from purely video-based training.</figcaption>
             </figure>
 
         </div>
