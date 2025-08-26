@@ -24,9 +24,9 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            
-            <h1 class="title is-1 publication-title">MimicDroid: </h1>
-            <h2 class="subtitle is-2 publication-subtitle">In-Context Learning for Humanoid Manipulation by Watching Humans</h2>
+
+            <h2 class="title is-1 publication-title">MimicDroid: In-Context Learning <br/>for Humanoid Manipulation<br/> by Watching Humans </h2>
+            <h2 class="subtitle is-2 publication-subtitle"></h2>
             <div class="is-size-5 publication-authors">
               <span class="author-block">
                 <a href="https://shahrutav.github.io/" target="_blank">Rutav Shah</a>,</span>
@@ -118,23 +118,9 @@
     </div>
   </section>
 
-  <!-- Abstract 
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">    
-    <div class="column is-four-fifths">
-  <!-- <div class="content " style="background:#f0f0f0; padding:20px 24px; border:1px solid #ccc; border-radius:6px;">
-  <p style="margin:0;">
-     <strong>TL;DR:</strong> We present <strong>COLLAGE</strong>, a few-shot imitation learning method that fuses data subsets retrieved from large-scale datasets using multiple measures of similarity to the target task. It scores each subset by training an imitation learning policy on it, measuring how likely it is to produce the target actions, and uses these scores to prioritize the most effective data during training.
-  </p>
-</div>
-    </div>
-    </div>
-    </div>
-    </div>
-  </div>-->
 
   <section class="section">
-    <div class="container is-max-desktop">
+    <div class="container is-max-desktop grey-bg">
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
      
@@ -150,10 +136,145 @@
   </section>
 
 
+
+
+  <section class="section">
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title is-3">Video</h2>
+      <p class="subtitle is-6">
+        Watch the video to see MimicDroid in action!
+      </p>
+
+      <video
+        controls
+        preload="metadata"
+        style="max-width:100%; border-radius:8px;"
+      >
+        <source src="./static/images/summary_video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </section>
+
+
+
+  <!-- Method Overview -->
+  <section class="section">
+  <div class="container is-max-desktop has-text-centered grey-bg">
+    <h2 class="title is-3">Method Overview</h2>
+    <figure class="image">
+      <img src="./static/images/mew_method_figurev2-1.png" 
+           alt="Overview of MIMICDROID" />
+          
+      <figcaption class="method-caption has-text-justified">
+        <strong>Overview of MimicDroid.</strong> MimicDroid performs meta-training for in-context learning (Meta-ICL) by constructing context-target pairs from human play videos.
+    For a target segment, we retrieve the top-k most similar trajectory segments (top-left) based on observation-action similarity (top-right) to serve as context.
+    These context-target pairs are used to teach the policy in-context learning (bottom-left). To overcome the human-robot visual gap and avoid overfitting to human-specific visual cues, we apply visual masking to input images (bottom-right), improving transferability.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+  
+
+  <!-- Experiments -->
+   <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full">
+          <h2 class="title is-3">Quantitative Analaysis</h2>
+          <div class="content">
+            <h3 class="title is-4" style="margin-top: 1.5em;">Simulation Benchmark Results</h3>
+            <figure class="image">
+              <img src="./static/images/results.png" alt="experiment results" />
+              <figcaption>
+               <p>Success rates of MimicDroid in the simulation benchmark, comparing both the Abstract and GR1 embodiments across levels of generalization difficulty (L1–L3). MimicDroid consistently outperforms prior approaches and ablations, demonstrating strong transfer from human play videos to humanoid control.</p>
+              </figcaption>
+            </figure>
+            </div>
+            <h3 class="title is-4" style="margin-top: 1.5em;">How well MimicDroid's performance scales with the number of in-context examples?</h3>
+            
+            <div class="columns is-vcentered grey-bg">
+              <div class="column is-half">
+                <img src="./static/images/n_prompts-1.png" alt="Number of Prompts Results" style="max-width: 600px; width: 100%;" />
+              </div>
+              <div class="column is-half">
+                <div class="content has-text-justified ">
+                  <p><strong></strong> We evaluate how MIMICDROID’s performance varies with the number of
+context demonstrations provided at test time. We observe a clear improvement in performance as the number of context examples increases from 1 to 3. However,
+the gains drop with 4 to 6 examples due to the limited context length supported by the transformer policy during training. Naively extending context length is computationally
+expensive, with memory scaling quadratically in sequence length; future work can explore more efficient ways to handle more in-context examples.</p>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="title is-4" style="margin-top: 1.5em;">How does the quality of training data used in the Meta-ICL affect ICL performance?</h3>
+
+            <div class="columns is-vcentered">
+              <div class="column is-half">
+                <img src="./static/images/n_topk-1.png" alt="Top-K Results" style="max-width: 600px; width: 100%;" />
+              </div>
+              <div class="column is-half">
+                <div class="content has-text-justified">
+                  <p><strong</strong> To evaluate the impact of data quality on Meta-ICL, we vary the number of similar
+context segments retrieved during training, k. As shown, performance drops for large k due to the inclusion of
+dissimilar segments, while small k limits training diversity. We find that k = 50 strikes a balance between maintaining
+training diversity and avoiding excessive noise from dissimilar segments. These results highlight the importance of
+selecting context-target pairs with meaningful observation action similarity for effective Meta-ICL.</p>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="title is-4" style="margin-top: 1.5em;">How does scaling dataset size impact MimicDroid’s ability to perform ICL?</h3>
+            
+            <div class="columns is-vcentered grey-bg">
+              <div class="column is-half">
+                <img src="./static/images/success_vs_frames-1.png" alt="Success vs Frames" style="max-width: 600px; width: 100%;" />
+              </div>
+              <div class="column is-half">
+                <div class="content">
+                  <p>As shown, we observe consistent performance improvements across all generalization
+levels (L1–L3) as the amount of training data increases, demonstrating the scalability of learning from RGB play videos. Specifically, L1 improves from 35% at 128k frames
+to 59% at 320k, and L2 rises from 21% to 45%, resulting in a +24% absolute gain for both. L3 also improves, from 16% to 27% (+11%), though the gains are less pronounced compared to L1 and L2. These results affirm the benefits of scaling training data, while also motivating a more systematic
+study of the factors that influence ICL performance on harder generalization tasks like L3.</p>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="title is-4" style="margin-top: 1.5em;">Error Analysis</h3>
+            <div class="columns is-vcentered">
+              <div class="column is-half">
+                <img src="./static/images/dual_pie-1.png" alt="Error Analysis" style="max-width: 600px; width: 100%;" />
+              </div>
+              <div class="column is-half">
+                <div class="content">
+                  <p><strong>Failure Analysis:</strong> Failures in downstream tasks arise from task misidentification (26%), missed grasps (16%), and
+other errors (8%) like incomplete cabinet closure, missed placement (Fig. 4). Compared to Vid2Robot, MIMICDROID notably reduces both misidentification (−15%) and grasping errors (−5%) using ICL.</p>
+                </div>
+              </div>
+            </div>
+
+        </div>
+      </div>
+      </div>
+    </div>
+    </section>
+
+            <!-- <h3 class="title is-4" style="margin-top: 1.5em;">GR1 Embodiment</h3>
+            <figure class="image">
+              <img src="./static/images/real_world_results.png" alt="Real-world experiment results" />
+              <figcaption>
+                Real-world evaluation on six manipulation tasks using the DROID dataset. For each task, we use only <strong>5 target demonstrations</strong> and retrieve from a pool of 30k successful episodes. COLLAGE achieves an average success rate of 6.83/15, representing a <strong>58% relative performance improvement over STRAP (4.33/15) </strong> and a <strong> 64% improvement over LANG (4.16/15)</strong>. Policies trained solely on the 5 in-domain demonstrations (no retrieval) achieve only 1.00/15 success on average. In contrast, COLLAGE effectively leverages relevant demonstrations from DROID to significantly boost policy performance.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+
     <!-- Rollout Carousel -->
   <section class="section">
     <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Policy Rollouts with MimicDroid</h2>
+      <h2 class="title is-3 has-text-centered">Policy Rollouts using MimicDroid</h2>
       <figure>
       <div class="glide" style="position: relative;">
         <div class="glide__track" data-glide-el="track">
@@ -185,130 +306,6 @@
     </div>
   </section> 
 
-
-  <section class="section">
-    <div class="container is-max-desktop has-text-centered">
-      <h2 class="title is-3">Video</h2>
-      <p class="subtitle is-6">
-        Watch the video to see MimicDroid in action!
-      </p>
-
-      <video
-        controls
-        preload="metadata"
-        style="max-width:100%; border-radius:8px;"
-      >
-        <source src="./static/images/summary_video.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  </section>
-
-  <!-- Method Overview -->
-  <section class="section">
-  <div class="container is-max-desktop has-text-centered">
-    <h2 class="title is-3">Method Overview</h2>
-    <figure class="image">
-      <img src="./static/images/mew_method_figurev2-1.png" 
-           alt="Overview of MIMICDROID" />
-          
-      <figcaption class="method-caption has-text-justified">
-        <strong>Overview of MimicDroid.</strong> MimicDroid performs meta-training for in-context learning (Meta-ICL) by constructing context-target pairs from human play videos.
-    For a target segment, we retrieve the top-k most similar trajectory segments (top-left) based on observation-action similarity (top-right) to serve as context.
-    These context-target pairs are used to teach the policy in-context learning (bottom-left). To overcome the human-robot visual gap and avoid overfitting to human-specific visual cues, we apply visual masking to input images (bottom-right), improving transferability.
-      </figcaption>
-    </figure>
-  </div>
-</section>
-
-  
-
-  <!-- Experiments -->
-   <section class="section">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-full">
-          <h2 class="title is-3">Quantitative Analaysis</h2>
-          <div class="content">
-            <h3 class="title is-4" style="margin-top: 1.5em;">Simulation Benchmark Results</h3>
-            <figure class="image">
-              <img src="./static/images/results.png" alt="experiment results" />
-              <figcaption>
-               <p>Success rates of MimicDroid in the simulation benchmark, comparing both the Abstract and GR1 embodiments across levels of generalization difficulty (L1–L3). MimicDroid consistently outperforms prior approaches and ablations, demonstrating strong transfer from human play videos to humanoid control.</p>
-              </figcaption>
-            </figure>
-            <h3 class="title is-4" style="margin-top: 1.5em;">Impact of increasing Number of In-Context Demonstrations</h3>
-            
-            <div class="columns is-multiline is-centered">
-              <figure class="image">
-                <div class="has-text-centered">
-                  <img src="./static/images/n_prompts-1.png" alt="Number of Prompts Results" style="max-width: 600px; width: 100%;" />
-                </div>
-                <figcaption>Performance as a function of the number of test-time in-context demonstrations. This result highlights that MimicDroid benefits from more context at test time, with performance improving as more demonstration examples are provided.</figcaption>
-              </figure>
-            </div>
-
-            <h3 class="title is-4" style="margin-top: 1.5em;">Impact of Context Segments</h3>
-            
-            <div class="columns is-multiline is-centered">
-              <figure class="image">
-                <div class="has-text-centered">
-                  <img src="./static/images/n_topk-1.png" alt="Top-K Results" style="max-width: 600px; width: 100%;" />
-                </div>
-                <figcaption class="has-text-justified">Effect of the number of retrieved top-k context segments used during training. This shows the importance of having an appropriate retrieval budget at training time for optimal performance.</figcaption>
-              </figure>
-            </div>
-
-            <h3 class="title is-4" style="margin-top: 1.5em;">Impact of Increasing Training Data</h3>
-            
-            <div class="columns is-multiline is-centered">
-              <figure class="image">
-                <div class="has-text-centered">
-                  <img src="./static/images/success_vs_frames-1.png" alt="Success vs Frames" style="max-width: 600px; width: 100%;" />
-                </div>
-                <figcaption>Scaling behavior as the amount of training video data (frames) increases. This demonstrates that MimicDroid benefits from larger play video datasets, with performance continuing to improve as more training data is available.</figcaption>
-              </figure>
-            </div>
-
-            <h3 class="title is-4" style="margin-top: 1.5em;">Error Analysis</h3>
-            <figure class="image">
-              <img src="./static/images/dual_pie-1.png" alt="Error Analysis" />
-              <figcaption>Error analysis of the model's predictions, highlighting the types of errors made and their frequency.</figcaption>
-            </figure>
-
-        </div>
-      </div>
-      </div>
-    </div>
-    </section>
-
-            <!-- <h3 class="title is-4" style="margin-top: 1.5em;">GR1 Embodiment</h3>
-            <figure class="image">
-              <img src="./static/images/real_world_results.png" alt="Real-world experiment results" />
-              <figcaption>
-                Real-world evaluation on six manipulation tasks using the DROID dataset. For each task, we use only <strong>5 target demonstrations</strong> and retrieve from a pool of 30k successful episodes. COLLAGE achieves an average success rate of 6.83/15, representing a <strong>58% relative performance improvement over STRAP (4.33/15) </strong> and a <strong> 64% improvement over LANG (4.16/15)</strong>. Policies trained solely on the 5 in-domain demonstrations (no retrieval) achieve only 1.00/15 success on average. In contrast, COLLAGE effectively leverages relevant demonstrations from DROID to significantly boost policy performance.
-              </figcaption>
-            </figure>
-          </div>
-        </div>
-      </div>
-    </div> -->
-  </section>
-    <!-- Weights Predicted by COLLAGE -->
-<!-- <section class="section">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Importance Weights Predicted by COLLAGE</h2>
-      <div class="has-text-centered">
-        <figure class="image" style="max-width: 950px; width: 100%; margin: 0 auto;">
-          <img src="./static/images/modality_weights_pie_chart.png" alt="Modality Weights Pie Chart" style="width: 100%; height: auto; border-radius: 8px;">
-          <figcaption style="margin-top: 0.75rem; font-size: 1rem; color: #444;">
-            <figcaption style="margin-top: 0.75rem;">
-                Importance weights assigned by <strong>COLLAGE</strong> to different modalities used in our framework (Visual, Motion, Shape, Language).              
-          </figcaption>
-        </figure>
-      </div>
-    </div>
-  </section> -->
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
