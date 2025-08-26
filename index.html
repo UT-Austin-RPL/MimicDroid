@@ -80,16 +80,7 @@
                             <span>arXiv</span>
                           </a>
                         </span>
-                        <!-- Video Link. -->
-                        <!-- <span class="link-block">
-                          <a href="https://www.youtube.com/watch?v=ts0e2HHp3Lk"
-                             class="external-link button is-normal is-rounded is-dark">
-                            <span class="icon">
-                                <i class="fab fa-youtube"></i>
-                            </span>
-                            <span>Video</span>
-                          </a>
-                        </span> -->
+              
                         <!-- Code Link. -->
                         <span class="link-block">
                           <a href="."
@@ -100,15 +91,7 @@
                             <span>Code (Coming Soon)</span>
                             </a>
                         </span>
-                        <!-- Dataset Link. -->
-                        <!-- <span class="link-block">
-                          <a href="https://drive.google.com/drive/folders/1mNJmnyzIoCudRcTdRVrN3WAiuWIM8355"
-                             class="external-link button is-normal is-rounded is-dark">
-                            <span class="icon">
-                                <i class="far fa-images"></i>
-                            </span>
-                            <span>Dataset</span>
-                            </a> -->
+             
                       </div>
                     </div>
             </div>
@@ -200,7 +183,7 @@
               </div>
               <div class="column is-half">
                 <div class="content has-text-justified ">
-                  <p><strong></strong> We evaluate how MIMICDROID’s performance varies with the number of
+                  <p> We evaluate how MimicDroid’s performance varies with the number of
 context demonstrations provided at test time. We observe a clear improvement in performance as the number of context examples increases from 1 to 3. However,
 the gains drop with 4 to 6 examples due to the limited context length supported by the transformer policy during training. Naively extending context length is computationally
 expensive, with memory scaling quadratically in sequence length; future work can explore more efficient ways to handle more in-context examples.</p>
@@ -216,7 +199,7 @@ expensive, with memory scaling quadratically in sequence length; future work can
               </div>
               <div class="column is-half">
                 <div class="content has-text-justified">
-                  <p><strong</strong> To evaluate the impact of data quality on Meta-ICL, we vary the number of similar
+                  <p> To evaluate the impact of data quality on Meta-ICL, we vary the number of similar
 context segments retrieved during training, k. As shown, performance drops for large k due to the inclusion of
 dissimilar segments, while small k limits training diversity. We find that k = 50 strikes a balance between maintaining
 training diversity and avoiding excessive noise from dissimilar segments. These results highlight the importance of
@@ -260,16 +243,6 @@ other errors (8%) like incomplete cabinet closure, missed placement (Fig. 4). Co
     </div>
     </section>
 
-            <!-- <h3 class="title is-4" style="margin-top: 1.5em;">GR1 Embodiment</h3>
-            <figure class="image">
-              <img src="./static/images/real_world_results.png" alt="Real-world experiment results" />
-              <figcaption>
-                Real-world evaluation on six manipulation tasks using the DROID dataset. For each task, we use only <strong>5 target demonstrations</strong> and retrieve from a pool of 30k successful episodes. COLLAGE achieves an average success rate of 6.83/15, representing a <strong>58% relative performance improvement over STRAP (4.33/15) </strong> and a <strong> 64% improvement over LANG (4.16/15)</strong>. Policies trained solely on the 5 in-domain demonstrations (no retrieval) achieve only 1.00/15 success on average. In contrast, COLLAGE effectively leverages relevant demonstrations from DROID to significantly boost policy performance.
-              </figcaption>
-            </figure>
-          </div>
-        </div>
-      </div>
 
     <!-- Rollout Carousel -->
   <section class="section">
@@ -332,48 +305,6 @@ other errors (8%) like incomplete cabinet closure, missed placement (Fig. 4). Co
     // Initialize
     panels.forEach((p, i) => p.style.display = i === 0 ? 'block' : 'none');
   </script>
-
-
-<!-- <section class="section">
-  <div class="container is-max-desktop has-text-centered">
-    <h2 class="title is-3">Why use multiple feature modalities for retrieval?</h2>
-    <p class="subtitle is-6">
-      Below, we illustrate the benefits of leveraging on multiple modalities for data retrieval and using COLLAGE to fuse them.
-    </p> 
-
-    <!-- Book Place task -->
-<!--    <p class="subtitle is-6">
-      Retrieved data for the task of <strong>Place the Book in the Back Compartment of the Caddy</strong>.
-    </p>
-    <figure class="image" style="margin-bottom: 2rem;">
-      <img
-        src="./static/images/book_caddy_4feats.png"
-        alt="Retrieved data for Book Place task"
-        style="max-width:100%;"
-      />
-      <figcaption>
-        <!-- Although the instruction <strong>“Place the Book in the Back Compartment of the Caddy”</strong> matches exactly, visual-only retrieval from the prior dataset misses these segments due to appearance differences.
-        For this task, the target demonstration involves placing the book in the back compartment of a caddy. The prior dataset contains two helpful types of segments: (1) those with the same scene but a different end-pose, where the book is placed in the front compartment—these are reliably retrieved using visual similarity; and (2) those with the same task but different scene appearance, where the book is correctly placed in the back compartment but the visual context differs—these are primarily retrieved using motion and language cues. Since each modality recovers complementary subsets of relevant data, fusing them in COLLAGE raises accuracy from 66.00 % (visual only) to 89.33 %, yielding an absolute gain of 23.33 percentage points.
-    </figcaption>
-    </figure> 
-
-    <!-- Cheese Butter task 
-    <p class="subtitle is-6">
-      Retrieved data for the task of <strong>Put Both the Cream Cheese Box and the Butter in the Basket</strong>.
-    </p>
-    <figure class="image">
-      <img
-        src="./static/images/cheese_butter_4feats.png"
-        alt="Retrieved data for Cheese Butter task"
-        style="max-width:100%;"
-      />
-      <figcaption>
-        In the Cheese Butter task, shape-based retrieval from the prior dataset retrieves far more examples from “Pick up Butter..” and “Pick up Tomato Sauce..” than visual- or motion-based retrieval. These segments provide direct, task-relevant demonstrations of placing similarly shaped objects into the basket. Consequently, the shape modality outperforms both visual and motion, and COLLAGE assigns it the highest weight—yielding performance on par with shape-only retrieval.
-      </figcaption>
-    </figure>
-  </div>
-</section> -->
-
 
   <!-- Footer -->
   <footer class="footer">
