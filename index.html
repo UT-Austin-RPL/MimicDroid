@@ -17,9 +17,606 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
 
+  <!-- Custom styles for Navigation and Enhanced Design -->
+  <style>
+    /* Navigation Bar Styles */
+    .navbar {
+      background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(249,250,251,0.95) 100%);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+      padding: 0.75rem 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      transition: all 0.3s ease;
+      border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+    }
+
+    .navbar.scrolled {
+      background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(249,250,251,0.98) 100%);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.12);
+      padding: 0.5rem 0;
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-brand:hover {
+      transform: translateX(5px);
+    }
+
+    .navbar-menu {
+      background: transparent;
+    }
+
+    .navbar-item {
+      color: #4a5568;
+      font-weight: 500;
+      font-size: 1.05rem;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 0.5rem 1.25rem;
+      margin: 0 0.25rem;
+    }
+
+    .navbar-item::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      transform: translateX(-50%);
+      transition: width 0.3s ease;
+    }
+
+    .navbar-item:hover {
+      color: #667eea;
+      transform: translateY(-2px);
+    }
+
+    .navbar-item:hover::before {
+      width: 80%;
+    }
+
+    .navbar-item.is-active {
+      color: #667eea;
+      background: rgba(102, 126, 234, 0.08);
+      border-radius: 8px;
+    }
+
+    /* Special button style for navbar */
+    .navbar-item.button-nav {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 50px;
+      padding: 0.5rem 1.5rem;
+      margin-left: 1rem;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    .navbar-item.button-nav:hover {
+      background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+      transform: translateY(-3px);
+    }
+
+    .navbar-item.button-nav.is-active {
+      background: linear-gradient(135deg, #4c51bf 0%, #553c9a 100%);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+      transform: translateY(-3px) scale(1.05);
+    }
+
+    /* Add padding to body for fixed navbar */
+    body {
+      padding-top: 80px;
+    }
+
+    /* Enhanced Hero Section */
+    .hero {
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.03) 0%, rgba(118, 75, 162, 0.03) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(102, 126, 234, 0.05) 0%, transparent 70%);
+      animation: float 20s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      33% { transform: translate(-30px, -30px) rotate(120deg); }
+      66% { transform: translate(30px, -30px) rotate(240deg); }
+    }
+
+    /* Enhanced Section Styles */
+    .section {
+      position: relative;
+      padding: 5rem 1.5rem;
+    }
+
+    .section:nth-child(even) {
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.02) 0%, rgba(118, 75, 162, 0.02) 100%);
+    }
+
+    /* Beautiful Cards */
+    .beautiful-card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      padding: 2rem;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid rgba(102, 126, 234, 0.1);
+    }
+
+    .beautiful-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 60px rgba(102, 126, 234, 0.15);
+      border-color: rgba(102, 126, 234, 0.3);
+    }
+
+    /* Smooth scroll behavior */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Enhanced title styles */
+    .title.is-1, .title.is-2, .title.is-3 {
+      position: relative;
+      display: inline-block;
+    }
+
+    .title.is-3::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 2px;
+    }
+
+    /* Mobile menu styles */
+    @media screen and (max-width: 1023px) {
+      .navbar-burger {
+        color: #667eea;
+      }
+      
+      .navbar-burger:hover {
+        background-color: rgba(102, 126, 234, 0.1);
+      }
+      
+      .navbar-burger span {
+        background-color: #667eea;
+        height: 2px;
+      }
+      
+      .navbar-menu.is-active {
+        background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(249,250,251,0.98) 100%);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      }
+    }
+
+    /* Scroll to top button */
+    .scroll-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 99;
+      box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+    }
+
+    .scroll-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .scroll-to-top:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+    }
+
+  /* Custom styles for Evaluation Videos */
+    .evaluation-video-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s ease;
+      border: 1px solid #e8e8e8;
+    }
+
+    .evaluation-video-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .evaluation-video-container {
+      border-radius: 8px;
+      overflow: hidden;
+      background: #f5f5f5;
+      margin-bottom: 1rem;
+    }
+
+    .evaluation-video {
+      width: 100%;
+      height: auto;
+      max-height: 280px;
+      object-fit: cover;
+      display: block;
+      border-radius: 8px;
+    }
+
+    .evaluation-video-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #363636;
+      text-align: center;
+      margin: 0;
+      padding: 0.5rem 0;
+      border-top: 2px solid #f0f0f0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-family: 'Google Sans', sans-serif;
+    }
+
+    #refresh-videos-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      color: white;
+      font-weight: 600;
+      padding: 0.75rem 2rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    #refresh-videos-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+      background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+    }
+
+    #refresh-videos-btn.is-loading {
+      background: linear-gradient(135deg, #a0a0a0 0%, #808080 100%);
+    }
+
+    #refresh-videos-btn .icon {
+      transition: transform 0.3s ease;
+    }
+
+    #refresh-videos-btn:hover .icon {
+      transform: rotate(180deg);
+    }
+
+    #evaluation-videos-grid {
+      margin-top: 2rem;
+      min-height: 400px;
+    }
+
+    /* Responsive adjustments */
+    @media screen and (max-width: 768px) {
+      .evaluation-video-card {
+        padding: 1rem;
+        margin-bottom: 1rem;
+      }
+      
+      .evaluation-video {
+        max-height: 200px;
+      }
+      
+      .evaluation-video-title {
+        font-size: 1rem;
+      }
+      
+      #refresh-videos-btn {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Loading animation for the grid */
+    #evaluation-videos-grid.loading {
+      opacity: 0.5;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Animation for video cards appearing */
+    .evaluation-video-card {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Stagger animation for multiple cards */
+    .column:nth-child(1) .evaluation-video-card {
+      animation-delay: 0.1s;
+    }
+
+    .column:nth-child(2) .evaluation-video-card {
+      animation-delay: 0.2s;
+    }
+
+    .column:nth-child(3) .evaluation-video-card {
+      animation-delay: 0.3s;
+    }
+
+    /* Evaluation Videos Section Styling */
+    .eval-tabs-container {
+      margin-bottom: 2rem;
+    }
+
+    .eval-tabs-container .tabs {
+      margin-bottom: 0;
+    }
+
+    .eval-tabs-container .tabs ul {
+      border-bottom: 3px solid #e8e8e8;
+    }
+
+    .eval-tabs-container .tabs li a {
+      color: #666;
+      font-weight: 600;
+      padding: 1rem 1.5rem;
+      transition: all 0.3s ease;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .eval-tabs-container .tabs li:hover a {
+      color: #667eea;
+      background: rgba(102, 126, 234, 0.05);
+    }
+
+    .eval-tabs-container .tabs li.is-active a {
+      color: #fff;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-bottom: 3px solid transparent;
+    }
+
+    .eval-tabs-container .tabs li.is-active a .icon i {
+      color: #ffd700;
+    }
+
+    .level-content {
+      padding: 2rem 0;
+    }
+
+    .level-subtitle {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem !important;
+      margin-top: 0.5rem !important;
+      font-size: 1.5rem !important;
+      line-height: 1.3 !important;
+    }
+    
+    .level-content .subtitle.is-6 {
+      margin-top: -0.5rem !important;
+      margin-bottom: 2rem !important;
+      color: #666;
+      font-size: 1rem !important;
+    }
+
+    .eval-glide {
+      margin-top: 2rem;
+    }
+
+    .eval-video-block {
+      padding: 0 12px;
+    }
+
+    .eval-video-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: all 0.4s ease;
+      border: 2px solid transparent;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .eval-video-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(102, 126, 234, 0.15);
+      border-color: rgba(102, 126, 234, 0.3);
+    }
+
+    .eval-video-card video {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .eval-video-caption {
+      padding: 1.2rem;
+      margin: 0;
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: #363636;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Custom Glide arrows for evaluation carousels */
+    .eval-glide .glide__arrow {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      font-size: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .eval-glide .glide__arrow:hover {
+      background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    .eval-glide .glide__arrow--left {
+      left: -25px;
+    }
+
+    .eval-glide .glide__arrow--right {
+      right: -25px;
+    }
+
+    /* Level difficulty indicators */
+    .tabs li[data-level="L1"] .icon i:nth-child(1) { color: #ffb366; }
+    .tabs li[data-level="L2"] .icon i:nth-child(1),
+    .tabs li[data-level="L2"] .icon i:nth-child(2) { color: #ff8c42; }
+    .tabs li[data-level="L3"] .icon i { color: #d2691e; }
+
+    /* Responsive adjustments for evaluation section */
+    @media screen and (max-width: 768px) {
+      .eval-tabs-container .tabs li a {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+      }
+      
+      .eval-video-card video {
+        height: 200px;
+      }
+      
+      .eval-glide .glide__arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+      }
+      
+      .eval-glide .glide__arrow--left {
+        left: -20px;
+      }
+      
+      .eval-glide .glide__arrow--right {
+        right: -20px;
+      }
+    }
+
+    /* Animation for level content switching */
+    .eval-content {
+      min-height: 400px;
+      position: relative;
+    }
+
+    .level-content {
+      position: absolute;
+      width: 100%;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .level-content.is-active {
+      position: relative;
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+
 </head>
 <body>
-  <section class="hero">
+  <!-- Beautiful Navigation Bar -->
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item navbar-brand" href="#home">
+          🤖 MimicDroid
+        </a>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div id="navbarMenu" class="navbar-menu">
+        <div class="navbar-end">
+          <a class="navbar-item" href="#home">Home</a>
+          <a class="navbar-item" href="#abstract">Abstract</a>
+          <a class="navbar-item" href="#demos">Demos</a>
+          <a class="navbar-item" href="#method">Method</a>
+          <a class="navbar-item" href="#experiments">Experiments</a>
+          <a class="navbar-item" href="evaluation.html">Evaluation</a>
+          <a class="navbar-item button-nav" href="#BibTeX">Cite</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Scroll to Top Button -->
+  <div class="scroll-to-top" id="scrollToTop">
+    <i class="fas fa-chevron-up"></i>
+  </div>
+
+  <section class="hero" id="home">
     <div class="hero-body">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
@@ -133,16 +730,17 @@
     </div>
   </div>-->
 
-  <section class="section">
+  <section class="section" id="abstract">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
-     
-          <h2 class="title is-3">Abstract</h2>
+          <div class="beautiful-card">
+            <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">  
             <p>
               We envision humanoids that can efficiently adapt to new tasks, achieving few-shot manipulation in ever-changing environments. In-context learning (ICL) is a promising framework to achieve this goal, but existing ICL approaches typically rely on costly teleoperated datasets or limited expressivity of simulations for training. In this work, we propose using human play videos—continuous, unlabeled videos of people interacting freely with their environment by their curiosity—as a scalable and diverse data source. Learning from human play videos poses two key challenges: (i) the absence of labeled data to train policies to learn in-context; (ii) the embodiment gap between humans and humanoids. We introduce MimicDroid, a method that enables humanoids to perform ICL by using only human play videos as training data. To overcome the lack of supervision, MimicDroid extracts trajectory pairs exhibiting similar manipulation behaviors in a self-supervised manner, e.g., “placing the bread on the oven tray,” and “placing a bagel on the oven tray.” The policy is trained to predict actions of one trajectory, conditioned on others with similar manipulation behaviors. This trains the model to learn in-context from the provided examples. To address the embodiment gap, first, MimicDroid retargets human wrist poses estimated from RGB videos to the humanoid, leveraging their kinematic similarity. Second, to handle the visual gap, it applies random patch masking during training to prevent overfitting to human-specific cues. To systematically evaluate few-shot learning for humanoids, we introduce an open-source simulation benchmark with three levels of increasing generalization difficulty from seen to unseen objects and environments. In both simulation and the real world, MimicDroid outperforms state-of-the-art methods, achieving nearly twofold better generalization to novel objects in the real world.
             </p>
+            </div>
           </div>
         </div>
       </div>
@@ -151,7 +749,7 @@
 
 
     <!-- Rollout Carousel -->
-  <section class="section">
+  <section class="section" id="demos">
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Policy Rollouts with MimicDroid</h2>
       <figure>
@@ -189,10 +787,9 @@
   <section class="section">
     <div class="container is-max-desktop has-text-centered">
       <h2 class="title is-3">Video</h2>
-      <p class="subtitle is-6">
+      <p class="is-6" style="margin-bottom: 1rem;">
         Watch the video to see MimicDroid in action!
       </p>
-
       <video
         controls
         preload="metadata"
@@ -205,7 +802,7 @@
   </section>
 
   <!-- Method Overview -->
-  <section class="section">
+  <section class="section" id="method">
   <div class="container is-max-desktop has-text-centered">
     <h2 class="title is-3">Method Overview</h2>
     <figure class="image">
@@ -224,7 +821,7 @@
   
 
   <!-- Experiments -->
-   <section class="section">
+   <section class="section" id="experiments">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-full">
@@ -294,6 +891,8 @@
       </div>
     </div>
   </section> -->
+
+
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
@@ -308,18 +907,94 @@
 </section>
   <!-- SCRIPTS -->
   <script>
-    const panels = Array.from(document.querySelectorAll('.task-panel'));
-    let current = 0;
-    function showPanel(i) {
-      panels[current].style.display = 'none';
-      current = (i + panels.length) % panels.length;
-      panels[current].style.display = 'block';
-    }
-    document.querySelectorAll('#prev-btn').forEach(btn => btn.onclick = () => showPanel(current - 1));
-    document.querySelectorAll('#next-btn').forEach(btn => btn.onclick = () => showPanel(current + 1));
-
-    // Initialize
-    panels.forEach((p, i) => p.style.display = i === 0 ? 'block' : 'none');
+    // Navigation functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      // Burger menu for mobile
+      const burger = document.querySelector('.navbar-burger');
+      const menu = document.getElementById('navbarMenu');
+      
+      if (burger) {
+        burger.addEventListener('click', () => {
+          burger.classList.toggle('is-active');
+          menu.classList.toggle('is-active');
+        });
+      }
+      
+      // Navbar scroll effect
+      const navbar = document.querySelector('.navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+      
+      // Scroll to top button
+      const scrollToTop = document.getElementById('scrollToTop');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          scrollToTop.classList.add('visible');
+        } else {
+          scrollToTop.classList.remove('visible');
+        }
+      });
+      
+      scrollToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      
+      // Active navigation link based on scroll position
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.navbar-item');
+      
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 100;
+          if (window.scrollY >= sectionTop) {
+            current = section.getAttribute('id');
+          }
+        });
+        
+        navLinks.forEach(link => {
+          link.classList.remove('is-active');
+          if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('is-active');
+          }
+        });
+      });
+      
+      // Handle cite button click state
+      const citeButton = document.querySelector('a[href="#BibTeX"]');
+      if (citeButton) {
+        citeButton.addEventListener('click', function() {
+          // Remove active state from all nav items
+          navLinks.forEach(link => {
+            link.classList.remove('is-active');
+          });
+          // Add active state to cite button temporarily
+          this.classList.add('is-active');
+          
+          // Remove active state after a delay to show the click feedback
+          setTimeout(() => {
+            this.classList.remove('is-active');
+          }, 1000);
+        });
+      }
+      
+      // Smooth scroll for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          if (this.getAttribute('href') === '#') return;
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+    });
   </script>
 
 
@@ -380,6 +1055,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.6.0/dist/glide.min.js"></script>
   <script>
     window.addEventListener('load', function () {
+      // Initialize main policy rollouts carousel
       new Glide('.glide', {
         type: 'carousel',
         rewind: false,
@@ -391,7 +1067,13 @@
           768: { perView: 1 }
         }
       }).mount();
+
+
     });
+
+
   </script>
+
+
 </body>
 </html>

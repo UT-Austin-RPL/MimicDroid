@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MimicDroid Evaluation Results - Training and Testing Videos" />
+  <title>MimicDroid - Evaluation</title>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.6.0/dist/css/glide.core.min.css" />
+  <link rel="stylesheet" href="./static/css/index.css" />
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+
+  <!-- Custom styles for Evaluation Page -->
+  <style>
+    /* Navigation Bar Styles (same as index) */
+    .navbar {
+      background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(249,250,251,0.95) 100%);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+      padding: 0.75rem 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      transition: all 0.3s ease;
+      border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+    }
+
+    .navbar.scrolled {
+      background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(249,250,251,0.98) 100%);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.12);
+      padding: 0.5rem 0;
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-brand:hover {
+      transform: translateX(5px);
+    }
+
+    .navbar-item {
+      color: #4a5568;
+      font-weight: 500;
+      font-size: 1.05rem;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 0.5rem 1.25rem;
+      margin: 0 0.25rem;
+    }
+
+    .navbar-item::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      transform: translateX(-50%);
+      transition: width 0.3s ease;
+    }
+
+    .navbar-item:hover {
+      color: #667eea;
+      transform: translateY(-2px);
+    }
+
+    .navbar-item:hover::before {
+      width: 80%;
+    }
+
+    .navbar-item.is-active {
+      color: #667eea;
+      background: rgba(102, 126, 234, 0.08);
+      border-radius: 8px;
+    }
+
+    /* Special button style for navbar */
+    .navbar-item.button-nav {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 50px;
+      padding: 0.5rem 1.5rem;
+      margin-left: 1rem;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    .navbar-item.button-nav:hover {
+      background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+      transform: translateY(-3px);
+    }
+
+    .navbar-item.button-nav.is-active {
+      background: linear-gradient(135deg, #4c51bf 0%, #553c9a 100%);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+      transform: translateY(-3px) scale(1.05);
+    }
+
+    body {
+      padding-top: 80px;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.03) 0%, rgba(118, 75, 162, 0.03) 100%);
+      min-height: 100vh;
+    }
+
+    /* Hero Section for Evaluation Page */
+    .hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 4rem 1.5rem;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      animation: float 20s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      33% { transform: translate(-30px, -30px) rotate(120deg); }
+      66% { transform: translate(30px, -30px) rotate(240deg); }
+    }
+
+    .hero .title {
+      color: white !important;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero .subtitle {
+      color: rgba(255, 255, 255, 0.9) !important;
+      font-size: 1.25rem;
+    }
+
+    /* Beautiful Cards for Videos */
+    .evaluation-video-card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 2px solid transparent;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .evaluation-video-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 15px 40px rgba(102, 126, 234, 0.15);
+      border-color: rgba(102, 126, 234, 0.3);
+    }
+
+    .evaluation-video-container {
+      border-radius: 12px;
+      overflow: hidden;
+      background: #f5f5f5;
+      margin-bottom: 1rem;
+    }
+
+    .evaluation-video {
+      width: 100%;
+      height: auto;
+      max-height: 320px;
+      object-fit: cover;
+      display: block;
+      border-radius: 12px;
+    }
+
+    .evaluation-video-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #363636;
+      text-align: center;
+      margin: 0;
+      padding: 0.75rem 0;
+      border-top: 2px solid #f0f0f0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-family: 'Google Sans', sans-serif;
+    }
+
+    /* Refresh Button */
+    #refresh-videos-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      color: white;
+      font-weight: 600;
+      padding: 0.875rem 2.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+      font-size: 1.1rem;
+    }
+
+    #refresh-videos-btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+      background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+    }
+
+    #refresh-videos-btn .icon {
+      transition: transform 0.3s ease;
+    }
+
+    #refresh-videos-btn:hover .icon {
+      transform: rotate(180deg);
+    }
+
+    /* Evaluation Tabs Styling */
+    .eval-tabs-container {
+      margin-bottom: 3rem;
+      background: white;
+      border-radius: 20px;
+      padding: 1.5rem;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .eval-tabs-container .tabs {
+      margin-bottom: 0;
+    }
+
+    .eval-tabs-container .tabs ul {
+      border-bottom: 3px solid #e8e8e8;
+      justify-content: center;
+    }
+
+    .eval-tabs-container .tabs li a {
+      color: #666;
+      font-weight: 600;
+      padding: 1.2rem 2rem;
+      transition: all 0.3s ease;
+      border-radius: 12px 12px 0 0;
+      font-size: 1.1rem;
+    }
+
+    .eval-tabs-container .tabs li:hover a {
+      color: #667eea;
+      background: rgba(102, 126, 234, 0.05);
+    }
+
+    .eval-tabs-container .tabs li.is-active a {
+      color: #fff;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-bottom: 3px solid transparent;
+    }
+
+    /* Level-specific tab styling */
+    .eval-tabs-container .tabs li[data-level="L1"].is-active a {
+      background: linear-gradient(135deg, #ffb366 0%, #ffa366 100%);
+    }
+
+    .eval-tabs-container .tabs li[data-level="L2"].is-active a {
+      background: linear-gradient(135deg, #ff8c42 0%, #ff7b29 100%);
+    }
+
+    .eval-tabs-container .tabs li[data-level="L3"].is-active a {
+      background: linear-gradient(135deg, #d2691e 0%, #c55a0a 100%);
+    }
+
+    .eval-tabs-container .tabs li[data-level="L1"]:hover a {
+      color: #ffb366;
+      background: rgba(255, 179, 102, 0.1);
+    }
+
+    .eval-tabs-container .tabs li[data-level="L2"]:hover a {
+      color: #ff8c42;
+      background: rgba(255, 140, 66, 0.1);
+    }
+
+    .eval-tabs-container .tabs li[data-level="L3"]:hover a {
+      color: #d2691e;
+      background: rgba(210, 105, 30, 0.1);
+    }
+
+    /* Level Content */
+    .level-content {
+      padding: 3rem 0;
+    }
+
+    .level-subtitle {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.5rem !important;
+      font-size: 2rem !important;
+    }
+
+    /* Level-specific subtitle colors */
+    #L1-content .level-subtitle {
+      background: linear-gradient(135deg, #ffb366 0%, #ffa366 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    #L2-content .level-subtitle {
+      background: linear-gradient(135deg, #ff8c42 0%, #ff7b29 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    #L3-content .level-subtitle {
+      background: linear-gradient(135deg, #d2691e 0%, #c55a0a 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .eval-video-block {
+      padding: 0 15px;
+    }
+
+    .eval-video-card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      transition: all 0.4s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .eval-video-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(102, 126, 234, 0.2);
+    }
+
+    .eval-video-card video {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .eval-video-caption {
+      padding: 1.5rem;
+      margin: 0;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #363636;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Glide arrows customization */
+    .eval-glide .glide__arrow {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      font-size: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .eval-glide .glide__arrow:hover {
+      background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    }
+
+    .eval-glide .glide__arrow--left {
+      left: -30px;
+    }
+
+    .eval-glide .glide__arrow--right {
+      right: -30px;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .column:nth-child(1) .evaluation-video-card {
+      animation-delay: 0.1s;
+    }
+
+    .column:nth-child(2) .evaluation-video-card {
+      animation-delay: 0.2s;
+    }
+
+    .column:nth-child(3) .evaluation-video-card {
+      animation-delay: 0.3s;
+    }
+
+    /* Section styling */
+    .section {
+      padding: 5rem 1.5rem;
+    }
+
+    .section:nth-child(even) {
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.02) 0%, rgba(118, 75, 162, 0.02) 100%);
+    }
+
+    /* Tab content transitions */
+    .eval-content {
+      min-height: 500px;
+      position: relative;
+    }
+
+    .level-content {
+      position: absolute;
+      width: 100%;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .level-content.is-active {
+      position: relative;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Scroll to top button */
+    .scroll-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 99;
+      box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+    }
+
+    .scroll-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .scroll-to-top:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+    }
+
+    /* Mobile responsive */
+    @media screen and (max-width: 1023px) {
+      .navbar-burger {
+        color: #667eea;
+      }
+      
+      .navbar-burger:hover {
+        background-color: rgba(102, 126, 234, 0.1);
+      }
+      
+      .navbar-burger span {
+        background-color: #667eea;
+        height: 2px;
+      }
+      
+      .navbar-menu.is-active {
+        background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(249,250,251,0.98) 100%);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .evaluation-video-card {
+        padding: 1rem;
+        margin-bottom: 1rem;
+      }
+      
+      .evaluation-video {
+        max-height: 220px;
+      }
+      
+      .eval-tabs-container .tabs li a {
+        padding: 0.875rem 1.25rem;
+        font-size: 1rem;
+      }
+      
+      .eval-video-card video {
+        height: 220px;
+      }
+      
+      .eval-glide .glide__arrow {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Beautiful Navigation Bar -->
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item navbar-brand" href="index.html">
+          🤖 MimicDroid
+        </a>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div id="navbarMenu" class="navbar-menu">
+        <div class="navbar-end">
+          <a class="navbar-item" href="index.html">Home</a>
+          <a class="navbar-item" href="index.html#abstract">Abstract</a>
+          <a class="navbar-item" href="index.html#demos">Demos</a>
+          <a class="navbar-item" href="index.html#method">Method</a>
+          <a class="navbar-item" href="index.html#experiments">Experiments</a>
+          <a class="navbar-item is-active" href="evaluation.html">Evaluation</a>
+          <a class="navbar-item button-nav" href="index.html#BibTeX">Cite</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Scroll to Top Button -->
+  <div class="scroll-to-top" id="scrollToTop">
+    <i class="fas fa-chevron-up"></i>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container has-text-centered">
+      <h1 class="title">Evaluation Results</h1>
+      <p class="subtitle">
+        Explore MimicDroid's training demonstrations and performance across different levels of generalization
+      </p>
+    </div>
+  </section>
+
+  <!-- Training Videos Section -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full">
+          <h2 class="title is-3">Training Videos</h2>
+          <p class="subtitle is-6" style="margin-bottom: 2rem;">
+            Sample demonstrations from our training dataset showing various manipulation tasks
+          </p>
+          
+          <!-- Refresh Button -->
+          <div class="has-text-centered" style="margin-bottom: 3rem;">
+            <button id="refresh-videos-btn" class="button is-primary is-large is-rounded">
+              <span class="icon">
+                <i class="fas fa-sync-alt"></i>
+              </span>
+              <span>Show 3 Random Videos</span>
+            </button>
+          </div>
+
+          <!-- Video Grid -->
+          <div id="evaluation-videos-grid" class="columns is-multiline is-centered">
+            <!-- Videos will be dynamically inserted here -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Evaluation Videos Section -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full">
+          <h2 class="title is-3">Evaluation Videos</h2>
+          <p class="subtitle is-6" style="margin-bottom: 3rem;">
+            Performance demonstrations across different levels of generalization difficulty
+          </p>
+          
+          <!-- Level Tabs -->
+          <div class="eval-tabs-container">
+            <div class="tabs is-centered is-large">
+              <ul>
+                <li class="is-active" data-level="L1">
+                  <a>
+                    <span>Level 1</span>
+                  </a>
+                </li>
+                <li data-level="L2">
+                  <a>
+                    <span>Level 2</span>
+                  </a>
+                </li>
+                <li data-level="L3">
+                  <a>
+                    <span>Level 3</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Level Content -->
+          <div class="eval-content">
+            <!-- L1 Content -->
+            <div id="L1-content" class="level-content is-active">
+              <h3 class="title is-4 level-subtitle">Level 1: Same Objects & Environment</h3>
+              <p class="subtitle is-6">Basic manipulation tasks with familiar objects in known environments</p>
+              <div class="glide eval-glide" id="L1-glide">
+                <div class="glide__track" data-glide-el="track">
+                  <ul class="glide__slides">
+                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop playsinline controls><source src="./static/videos/eval/CloseLeftCabinetDoor_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Close Left Cabinet Door</p></div></li>
+                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop playsinline controls><source src="./static/videos/eval/PnPSinkToCabinet_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Pick and Place: Sink to Cabinet</p></div></li>
+                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop playsinline controls><source src="./static/videos/eval/PnPSinkToRightCounterPlate_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Pick and Place: Sink to Counter Plate</p></div></li>
+                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop playsinline controls><source src="./static/videos/eval/TurnOnFaucet_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Turn On Faucet</p></div></li>
+                  </ul>
+                </div>
+                <div class="glide__arrows" data-glide-el="controls">
+                  <button class="glide__arrow glide__arrow--left" data-glide-dir="<">‹</button>
+                  <button class="glide__arrow glide__arrow--right" data-glide-dir=">">›</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- L2 Content -->
+            <div id="L2-content" class="level-content">
+              <h3 class="title is-4 level-subtitle">Level 2: New Objects, Same Environment</h3>
+              <p class="subtitle is-6">Intermediate tasks with novel objects in familiar settings</p>
+              <div class="glide eval-glide" id="L2-glide">
+                <div class="glide__track" data-glide-el="track">
+                  <ul class="glide__slides">
+                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop playsinline controls><source src="./static/videos/eval/CloseLeftCabinetDoorL2_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Close Left Cabinet Door (L2)</p></div></li>
+                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop playsinline controls><source src="./static/videos/eval/CloseRightCabinetDoorL2_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Close Right Cabinet Door (L2)</p></div></li>
+                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop playsinline controls><source src="./static/videos/eval/PnPSinkToCabinetL2_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Pick and Place: Sink to Cabinet (L2)</p></div></li>
+                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop playsinline controls><source src="./static/videos/eval/PnPSinkToRightCounterPlateL2_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Pick and Place: Sink to Counter Plate (L2)</p></div></li>
+                  </ul>
+                </div>
+                <div class="glide__arrows" data-glide-el="controls">
+                  <button class="glide__arrow glide__arrow--left" data-glide-dir="<">‹</button>
+                  <button class="glide__arrow glide__arrow--right" data-glide-dir=">">›</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- L3 Content -->
+            <div id="L3-content" class="level-content">
+              <h3 class="title is-4 level-subtitle">Level 3: New Objects & Environment</h3>
+              <p class="subtitle is-6">Advanced tasks with novel objects in unfamiliar environments</p>
+              <div class="glide eval-glide" id="L3-glide">
+                <div class="glide__track" data-glide-el="track">
+                  <ul class="glide__slides">
+                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop playsinline controls><source src="./static/videos/eval/CloseLeftCabinetDoorL3_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Close Left Cabinet Door (L3)</p></div></li>
+                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop playsinline controls><source src="./static/videos/eval/PnPSinkToMicrowaveTopL3_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Pick and Place: Sink to Microwave Top (L3)</p></div></li>
+                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop playsinline controls><source src="./static/videos/eval/PnPSinkToRightCounterPlateL3_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Pick and Place: Sink to Counter Plate (L3)</p></div></li>
+                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop playsinline controls><source src="./static/videos/eval/TurnOnFaucetL3_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Turn On Faucet (L3)</p></div></li>
+                  </ul>
+                </div>
+                <div class="glide__arrows" data-glide-el="controls">
+                  <button class="glide__arrow glide__arrow--left" data-glide-dir="<">‹</button>
+                  <button class="glide__arrow glide__arrow--right" data-glide-dir=">">›</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <p>
+          <a href="index.html">← Back to Main Page</a>
+        </p>
+        <p>
+          This website is based on the <a href="https://nerfies.github.io/">Nerfies</a> website template,
+          licensed under a <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.6.0/dist/glide.min.js"></script>
+  <script>
+    // Navigation functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      // Burger menu for mobile
+      const burger = document.querySelector('.navbar-burger');
+      const menu = document.getElementById('navbarMenu');
+      
+      if (burger) {
+        burger.addEventListener('click', () => {
+          burger.classList.toggle('is-active');
+          menu.classList.toggle('is-active');
+        });
+      }
+      
+      // Navbar scroll effect
+      const navbar = document.querySelector('.navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+      
+      // Scroll to top button
+      const scrollToTop = document.getElementById('scrollToTop');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          scrollToTop.classList.add('visible');
+        } else {
+          scrollToTop.classList.remove('visible');
+        }
+      });
+      
+      scrollToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      
+      // Handle cite button click state
+      const citeButton = document.querySelector('a[href="index.html#BibTeX"]');
+      const navLinks = document.querySelectorAll('.navbar-item');
+      if (citeButton) {
+        citeButton.addEventListener('click', function() {
+          // Remove active state from all nav items
+          navLinks.forEach(link => {
+            link.classList.remove('is-active');
+          });
+          // Add active state to cite button temporarily
+          this.classList.add('is-active');
+          
+          // Remove active state after a delay to show the click feedback
+          setTimeout(() => {
+            this.classList.remove('is-active');
+          }, 500);
+        });
+      }
+    });
+
+    // Initialize Glide carousel
+    window.addEventListener('load', function () {
+      // Initialize tab functionality first
+      initializeEvaluationTabs();
+      
+      // Only initialize the L1 carousel since it's visible by default
+      setTimeout(() => {
+        initializeSpecificCarousel('L1');
+      }, 100);
+    });
+
+    // Store Glide instances globally
+    let glideInstances = {};
+
+    // Function to initialize a specific carousel
+    function initializeSpecificCarousel(levelId) {
+      const configs = {
+        'L1': { id: 'L1-glide', perView: 2, gap: 30 },
+        'L2': { id: 'L2-glide', perView: 2, gap: 30 },
+        'L3': { id: 'L3-glide', perView: 2, gap: 30 }
+      };
+      
+      const config = configs[levelId];
+      if (!config) return;
+      
+      // Destroy existing instance if it exists
+      if (glideInstances[config.id]) {
+        glideInstances[config.id].destroy();
+      }
+      
+      const element = document.getElementById(config.id);
+      if (element) {
+        setTimeout(() => {
+          glideInstances[config.id] = new Glide(`#${config.id}`, {
+            type: 'carousel',
+            rewind: true,
+            perView: config.perView,
+            gap: config.gap,
+            focusAt: 'center',
+            breakpoints: {
+              1024: { perView: Math.min(config.perView, 2), gap: 15 },
+              768: { perView: 1, gap: 10 }
+            }
+          });
+          glideInstances[config.id].mount();
+        }, 150); // Small delay to ensure content is visible
+      }
+    }
+
+    // Function to initialize tab functionality
+    function initializeEvaluationTabs() {
+      const tabs = document.querySelectorAll('.eval-tabs-container .tabs li');
+      const contents = document.querySelectorAll('.level-content');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', (e) => {
+          e.preventDefault();
+          
+          const targetLevel = tab.getAttribute('data-level');
+          
+          // Remove active class from all tabs and contents
+          tabs.forEach(t => t.classList.remove('is-active'));
+          contents.forEach(c => c.classList.remove('is-active'));
+          
+          // Add active class to clicked tab
+          tab.classList.add('is-active');
+          
+          // Show corresponding content with smooth transition
+          const targetContent = document.getElementById(`${targetLevel}-content`);
+          if (targetContent) {
+            targetContent.classList.add('is-active');
+            // Initialize the carousel for this level after content is visible
+            initializeSpecificCarousel(targetLevel);
+          }
+        });
+      });
+    }
+  </script>
+
+  <!-- Training Videos Script -->
+  <script>
+    // Array of all available training videos
+    const trainVideos = [
+      'training_003_start1641_len2048_video06.mp4',
+      'training_006_start5788_len2048_video02.mp4',
+      'training_009_start14037_len2048_video11.mp4',
+      'training_012_start12400_len2048_video08.mp4',
+      'training_017_start12551_len2048_video09.mp4',
+      'training_020_start17913_len2048_video08.mp4',
+      'training_004_start9374_len2048_video01.mp4',
+      'training_007_start9677_len2048_video07.mp4',
+      'training_010_start17146_len2048_video11.mp4',
+      'training_013_start0707_len2048_video04.mp4',
+      'training_017_start2514_len2048_video10.mp4',
+      'training_005_start4424_len2048_video09.mp4',
+      'training_008_start16833_len2048_video07.mp4',
+      'training_012_start0953_len2048_video04.mp4',
+      'training_015_start1024_len2048_video01.mp4',
+      'training_019_start16327_len2048_video04.mp4'
+    ];
+
+    // Function to format video title
+    function formatVideoTitle(filename) {
+      // Extract meaningful parts from training video names
+      const match = filename.match(/training_(\d+)_start(\d+)_len(\d+)_video(\d+)/);
+      if (match) {
+        return `Training Sample ${match[1]} - Video ${match[4]}`;
+      }
+      return filename.replace('.mp4', '');
+    }
+
+    // Function to shuffle array and get random selection
+    function getRandomVideos(count = 3) {
+      const shuffled = [...trainVideos].sort(() => 0.5 - Math.random());
+      return shuffled.slice(0, count);
+    }
+
+    // Function to display videos in the grid
+    function displayVideos(videos) {
+      const grid = document.getElementById('evaluation-videos-grid');
+      grid.innerHTML = '';
+
+      videos.forEach((video, index) => {
+        const videoTitle = formatVideoTitle(video);
+        const videoPath = `./static/videos/training/${video}`;
+        
+        const videoColumn = document.createElement('div');
+        videoColumn.className = 'column is-one-third';
+        
+        videoColumn.innerHTML = `
+          <div class="evaluation-video-card">
+            <div class="evaluation-video-container">
+              <video class="evaluation-video" autoplay muted loop playsinline controls>
+                <source src="${videoPath}" type="video/mp4" />
+              </video>
+              <h4 class="evaluation-video-title">${videoTitle}</h4>
+            </div>
+          </div>
+        `;
+        
+        grid.appendChild(videoColumn);
+
+        // Add error handling for video loading
+        const video_element = videoColumn.querySelector('video');
+        video_element.addEventListener('error', function() {
+          console.error('Failed to load video:', videoPath);
+          this.closest('.evaluation-video-container').innerHTML = `
+            <div style="padding: 3rem; text-align: center; background: #f5f5f5; border-radius: 12px;">
+              <i class="fas fa-video-slash" style="font-size: 2rem; color: #999; margin-bottom: 1rem;"></i>
+              <p style="color: #666; font-weight: 500;">Video not available</p>
+              <small style="color: #999;">${video}</small>
+            </div>
+          `;
+        });
+      });
+    }
+
+    // Function to refresh videos with animation
+    function refreshVideos() {
+      const button = document.getElementById('refresh-videos-btn');
+      const grid = document.getElementById('evaluation-videos-grid');
+      
+      // Add loading animation to button
+      button.classList.add('is-loading');
+      
+      // Fade out current videos
+      grid.style.opacity = '0.3';
+      grid.style.transition = 'opacity 0.3s ease';
+      
+      setTimeout(() => {
+        const newVideos = getRandomVideos(3);
+        displayVideos(newVideos);
+        
+        // Fade in new videos
+        grid.style.opacity = '1';
+        button.classList.remove('is-loading');
+      }, 300);
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      const refreshButton = document.getElementById('refresh-videos-btn');
+      refreshButton.addEventListener('click', refreshVideos);
+      
+      // Display initial random videos
+      const initialVideos = getRandomVideos(3);
+      displayVideos(initialVideos);
+    });
+  </script>
+</body>
+</html>
