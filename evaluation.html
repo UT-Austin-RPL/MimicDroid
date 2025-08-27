@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="MimicDroid Evaluation Results - Training and Testing Videos" />
-  <title>MimicDroid - Evaluation</title>
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <meta name="description" content="MimicDroid Simulation Benchmark - Training and Testing Videos" />
+  <title>MimicDroid - Simulation Benchmark</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./static/css/bulma.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.6.0/dist/css/glide.core.min.css" />
   <link rel="stylesheet" href="./static/css/index.css" />
@@ -91,37 +92,39 @@
 
     /* Special button style for navbar */
     .navbar-item.button-nav {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
+      background: transparent;
+      color: #667eea;
       border-radius: 50px;
-      padding: 0.5rem 1.5rem;
+      padding: 0.5rem 1.25rem;
       margin-left: 1rem;
       font-weight: 600;
-      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      border: 1px solid rgba(102, 126, 234, 0.4);
+      box-shadow: none;
     }
 
     .navbar-item.button-nav:hover {
-      background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
-      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-      transform: translateY(-3px);
+      background: rgba(102, 126, 234, 0.08);
+      box-shadow: none;
+      transform: translateY(-2px);
     }
 
     .navbar-item.button-nav.is-active {
-      background: linear-gradient(135deg, #4c51bf 0%, #553c9a 100%);
-      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
-      transform: translateY(-3px) scale(1.05);
+      background: rgba(102, 126, 234, 0.12);
+      box-shadow: none;
+      transform: translateY(-2px);
     }
 
     body {
       padding-top: 80px;
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.03) 0%, rgba(118, 75, 162, 0.03) 100%);
-      min-height: 100vh;
+      /* background: linear-gradient(135deg, rgba(102, 126, 234, 0.03) 0%, rgba(118, 75, 162, 0.03) 100%); */
+      /* min-height: 100vh; */
+      font-family: 'Google Sans', 'Noto Sans', 'Castoro', sans-serif;
     }
 
     /* Hero Section for Evaluation Page */
     .hero {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.03) 0%, rgba(118, 75, 162, 0.03) 100%);
+      /* color: white; */
       padding: 4rem 1.5rem;
       margin-bottom: 3rem;
       position: relative;
@@ -135,7 +138,7 @@
       right: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(102, 126, 234, 0.05) 0%, transparent 70%);
       animation: float 20s ease-in-out infinite;
     }
 
@@ -146,13 +149,13 @@
     }
 
     .hero .title {
-      color: white !important;
+      /* color: white !important; */
       font-size: 3rem;
       margin-bottom: 1rem;
     }
 
     .hero .subtitle {
-      color: rgba(255, 255, 255, 0.9) !important;
+      /* color: rgba(255, 255, 255, 0.9) !important; */
       font-size: 1.25rem;
     }
 
@@ -438,22 +441,16 @@
 
     /* Tab content transitions */
     .eval-content {
-      min-height: 500px;
       position: relative;
     }
 
     .level-content {
-      position: absolute;
+      display: none;
       width: 100%;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
     }
 
     .level-content.is-active {
-      position: relative;
-      opacity: 1;
-      visibility: visible;
+      display: block;
     }
 
     /* Scroll to top button */
@@ -553,11 +550,11 @@
         <div class="navbar-end">
           <a class="navbar-item" href="index.html">Home</a>
           <a class="navbar-item" href="index.html#abstract">Abstract</a>
-          <a class="navbar-item" href="index.html#demos">Demos</a>
           <a class="navbar-item" href="index.html#method">Method</a>
           <a class="navbar-item" href="index.html#experiments">Experiments</a>
-          <a class="navbar-item is-active" href="evaluation.html">Evaluation</a>
-          <a class="navbar-item button-nav" href="index.html#BibTeX">Cite</a>
+          <a class="navbar-item" href="index.html#demos">Demos</a>
+          <a class="navbar-item is-active" href="evaluation.html">Simulation Benchmark</a>
+          <a class="navbar-item" href="index.html#BibTeX">Cite</a>
         </div>
       </div>
     </div>
@@ -571,7 +568,7 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="container has-text-centered">
-      <h1 class="title">Evaluation Results</h1>
+      <h1 class="title"  style="margin-bottom: 2rem;">Simulation Benchmark</h1>
       <p class="subtitle">
         Explore MimicDroid's training demonstrations and performance across different levels of generalization
       </p>
@@ -612,7 +609,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-full">
-          <h2 class="title is-3">Evaluation Videos</h2>
+          <h2 class="title is-3">Simulation Benchmark Videos</h2>
           <p class="subtitle is-6" style="margin-bottom: 3rem;">
             Performance demonstrations across different levels of generalization difficulty
           </p>
@@ -849,12 +846,16 @@
           // Add active class to clicked tab
           tab.classList.add('is-active');
           
-          // Show corresponding content with smooth transition
+          // Show corresponding content
           const targetContent = document.getElementById(`${targetLevel}-content`);
           if (targetContent) {
             targetContent.classList.add('is-active');
-            // Initialize the carousel for this level after content is visible
-            initializeSpecificCarousel(targetLevel);
+            
+            // Initialize the carousel for this level without scroll restoration
+            // The layout should remain stable now
+            setTimeout(() => {
+              initializeSpecificCarousel(targetLevel);
+            }, 100);
           }
         });
       });

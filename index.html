@@ -5,9 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="" />
   <title>MimicDroid</title>
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-  rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./static/css/bulma.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.6.0/dist/css/glide.core.min.css" />
   <link rel="stylesheet" href="./static/css/index.css" />
@@ -97,30 +96,32 @@
 
     /* Special button style for navbar */
     .navbar-item.button-nav {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
+      background: transparent;
+      color: #667eea;
       border-radius: 50px;
-      padding: 0.5rem 1.5rem;
+      padding: 0.5rem 1.25rem;
       margin-left: 1rem;
       font-weight: 600;
-      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      border: 1px solid rgba(102, 126, 234, 0.4);
+      box-shadow: none;
     }
 
     .navbar-item.button-nav:hover {
-      background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
-      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-      transform: translateY(-3px);
+      background: rgba(102, 126, 234, 0.08);
+      box-shadow: none;
+      transform: translateY(-2px);
     }
 
     .navbar-item.button-nav.is-active {
-      background: linear-gradient(135deg, #4c51bf 0%, #553c9a 100%);
-      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
-      transform: translateY(-3px) scale(1.05);
+      background: rgba(102, 126, 234, 0.12);
+      box-shadow: none;
+      transform: translateY(-2px);
     }
 
     /* Add padding to body for fixed navbar */
     body {
       padding-top: 80px;
+      font-family: 'Google Sans', 'Noto Sans', 'Castoro', sans-serif;
     }
 
     /* Enhanced Hero Section */
@@ -601,11 +602,11 @@
         <div class="navbar-end">
           <a class="navbar-item" href="#home">Home</a>
           <a class="navbar-item" href="#abstract">Abstract</a>
-          <a class="navbar-item" href="#demos">Demos</a>
           <a class="navbar-item" href="#method">Method</a>
           <a class="navbar-item" href="#experiments">Experiments</a>
-          <a class="navbar-item" href="evaluation.html">Evaluation</a>
-          <a class="navbar-item button-nav" href="#BibTeX">Cite</a>
+          <a class="navbar-item" href="#demos">Demos</a>
+          <a class="navbar-item" href="evaluation.html">Simulation Benchmark</a>
+          <a class="navbar-item" href="#BibTeX">Cite</a>
         </div>
       </div>
     </div>
@@ -721,7 +722,7 @@
 
   <section class="section">
     <div class="container is-max-desktop has-text-centered">
-      <h2 class="title is-3">Video</h2>
+      <h2 class="title is-3" style="margin-bottom: 3rem;">Video</h2>
       <p class="subtitle is-6">
         Watch the video to see MimicDroid in action!
       </p>
@@ -740,7 +741,7 @@
 
 
   <!-- Method Overview -->
-  <section class="section">
+  <section class="section" id="method">
   <div class="container is-max-desktop has-text-centered grey-bg">
     <h2 class="title is-3">Method Overview</h2>
     <figure class="image">
@@ -759,7 +760,7 @@
   
 
   <!-- Experiments -->
-   <section class="section">
+   <section class="section" id="experiments">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-full">
@@ -878,7 +879,7 @@ other errors (8%) like incomplete cabinet closure, missed placement (Fig. 4). Co
   </section> 
 
 
-  <section class="section">
+  <!-- <section class="section">
     <div class="container is-max-desktop has-text-centered">
       <h2 class="title is-3">Video</h2>
       <p class="is-6" style="margin-bottom: 1rem;">
@@ -894,9 +895,9 @@ other errors (8%) like incomplete cabinet closure, missed placement (Fig. 4). Co
       </video>
     </div>
   </section>
-
+ -->
   <!-- Method Overview -->
-  <section class="section" id="method">
+  <!-- <section class="section" id="method">
   <div class="container is-max-desktop has-text-centered">
     <h2 class="title is-3">Method Overview</h2>
     <figure class="image">
@@ -910,12 +911,12 @@ other errors (8%) like incomplete cabinet closure, missed placement (Fig. 4). Co
       </figcaption>
     </figure>
   </div>
-</section>
+</section> -->
 
   
 
   <!-- Experiments -->
-   <section class="section" id="experiments">
+   <!-- <section class="section" id="experiments">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-full">
@@ -952,11 +953,23 @@ other errors (8%) like incomplete cabinet closure, missed placement (Fig. 4). Co
               <figcaption>Real-world qualitative rollouts of MimicDroid. The humanoid GR1 successfully adapts to novel objects and environments using only a few human video demonstrations at test time. Examples include placing food items on trays, transferring them into containers, and interacting with household appliances. These case studies illustrate the method’s ability to generalize across tasks and embodiments from purely video-based training.</figcaption>
             </figure>
 
+            <h3 class="title is-4" style="margin-top: 1.5em;">Failure Analysis</h3>
+            <div class="columns is-vcentered">
+              <div class="column is-half">
+                <img src="./static/images/dual_pie-1.png" alt="Failure Analysis" style="max-width: 600px; width: 100%;" />
+              </div>
+              <div class="column is-half">
+                <div class="content">
+                  <p>Failures in downstream tasks arise from task misidentification (26%), missed grasps (16%), and other errors (8%) like incomplete cabinet closure or missed placement. Compared to Vid2Robot, MimicDroid reduces both misidentification (−15%) and grasping errors (−5%) via in-context learning.</p>
+                </div>
+              </div>
+            </div>
+
         </div>
       </div>
       </div>
     </div>
-    </section>
+    </section> -->
 
             <!-- <h3 class="title is-4" style="margin-top: 1.5em;">GR1 Embodiment</h3>
             <figure class="image">
