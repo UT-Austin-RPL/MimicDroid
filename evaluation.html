@@ -62,6 +62,19 @@
       transform: translateX(5px);
     }
 
+    /* Ensure navbar brand keeps gradient styling in all states */
+    .navbar-brand:hover,
+    .navbar-brand:focus,
+    .navbar-brand:active,
+    .navbar-brand.is-active {
+      color: #ff8c42 !important; /* Fallback */
+      background: linear-gradient(135deg, #ff8c42 0%, #d2691e 100%) !important;
+      background-clip: text !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      background-color: transparent !important;
+    }
+
     .navbar-item {
       color: #4a5568;
       font-weight: 500;
