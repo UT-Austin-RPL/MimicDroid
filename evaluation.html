@@ -42,11 +42,20 @@
     .navbar-brand {
       font-weight: 700;
       font-size: 1.5rem;
+      color: #ff8c42; /* Fallback color */
       background: linear-gradient(135deg, #ff8c42 0%, #d2691e 100%);
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       transition: all 0.3s ease;
+    }
+    
+    /* Fallback for browsers that don't support background-clip */
+    @supports not (background-clip: text) {
+      .navbar-brand {
+        color: #ff8c42 !important;
+        background: none !important;
+      }
     }
 
     .navbar-brand:hover {
@@ -436,11 +445,30 @@
 
     /* Section styling */
     .section {
+      position: relative;
       padding: 5rem 1.5rem;
     }
 
+    /* Elegant section dividers instead of grey backgrounds */
+    .section:not(:first-child)::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(135deg, #ff8c42 0%, #d2691e 100%);
+      border-radius: 2px;
+    }
+
+    /* Alternate section spacing for visual rhythm */
     .section:nth-child(even) {
-      background: linear-gradient(135deg, rgba(255, 140, 66, 0.02) 0%, rgba(210, 105, 30, 0.02) 100%);
+      padding: 6rem 1.5rem;
+    }
+
+    .section:nth-child(odd) {
+      padding: 4.5rem 1.5rem;
     }
 
     /* Tab content transitions */
@@ -455,6 +483,24 @@
 
     .level-content.is-active {
       display: block;
+    }
+
+    /* Enhanced title styles */
+    .title.is-1, .title.is-2, .title.is-3 {
+      position: relative;
+      display: inline-block;
+    }
+
+    .title.is-3::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(135deg, #ff8c42 0%, #d2691e 100%);
+      border-radius: 2px;
     }
 
     /* Scroll to top button */
@@ -573,8 +619,8 @@
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="container">
       <div class="navbar-brand">
-        <a class="navbar-item navbar-brand" href="index.html">
-          🤖 MimicDroid
+        <a class="navbar-item navbar-brand is-size-3" href="index.html">
+          MimicDroid
         </a>
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
           <span aria-hidden="true"></span>

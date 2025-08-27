@@ -42,11 +42,20 @@
     .navbar-brand {
       font-weight: 700;
       font-size: 1.5rem;
+      color: #ff8c42; /* Fallback color */
       background: linear-gradient(135deg, #ff8c42 0%, #d2691e 100%);
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       transition: all 0.3s ease;
+    }
+    
+    /* Fallback for browsers that don't support background-clip */
+    @supports not (background-clip: text) {
+      .navbar-brand {
+        color: #ff8c42 !important;
+        background: none !important;
+      }
     }
 
     .navbar-brand:hover {
@@ -156,8 +165,26 @@
       padding: 5rem 1.5rem;
     }
 
+    /* Elegant section dividers instead of grey backgrounds */
+    .section:not(:first-child)::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(135deg, #ff8c42 0%, #d2691e 100%);
+      border-radius: 2px;
+    }
+
+    /* Alternate section spacing for visual rhythm */
     .section:nth-child(even) {
-      background: linear-gradient(135deg, rgba(255, 140, 66, 0.02) 0%, rgba(210, 105, 30, 0.02) 100%);
+      padding: 6rem 1.5rem;
+    }
+
+    .section:nth-child(odd) {
+      padding: 4.5rem 1.5rem;
     }
 
     /* Beautiful Cards */
@@ -190,7 +217,7 @@
     .title.is-3::after {
       content: '';
       position: absolute;
-      bottom: -10px;
+      bottom: -20px;
       left: 50%;
       transform: translateX(-50%);
       width: 60px;
@@ -623,8 +650,8 @@
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="container">
       <div class="navbar-brand">
-        <a class="navbar-item navbar-brand" href="#home">
-          🤖 MimicDroid
+        <a class="navbar-item navbar-brand is-size-3" href="#home">
+          MimicDroid
         </a>
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
           <span aria-hidden="true"></span>
@@ -776,7 +803,7 @@
 
   <!-- Method Overview -->
   <section class="section" id="method">
-  <div class="container is-max-desktop has-text-centered grey-bg">
+  <div class="container is-max-desktop has-text-centered">
     <h2 class="title is-3">Method Overview</h2>
     <figure class="image">
       <img src="./static/images/mew_method_figurev2-1.png" 
@@ -810,7 +837,7 @@
             </div>
             <h3 class="title is-4" style="margin-top: 1.5em;">How well MimicDroid's performance scales with the number of in-context examples?</h3>
             
-            <div class="columns is-vcentered grey-bg">
+            <div class="columns is-vcentered">
               <div class="column is-half">
                 <img src="./static/images/n_prompts-1.png" alt="Number of Prompts Results" style="max-width: 600px; width: 100%;" />
               </div>
@@ -841,9 +868,9 @@ selecting context-target pairs with meaningful observation action similarity for
               </div>
             </div>
 
-            <h3 class="title is-4" style="margin-top: 1.5em;">How does scaling dataset size impact MimicDroid’s ability to perform ICL?</h3>
+            <h3 class="title is-4" style="margin-top: 1.5em;">How does scaling dataset size impact MimicDroid's ability to perform ICL?</h3>
             
-            <div class="columns is-vcentered grey-bg">
+            <div class="columns is-vcentered">
               <div class="column is-half">
                 <img src="./static/images/success_vs_frames-1.png" alt="Success vs Frames" style="max-width: 600px; width: 100%;" />
               </div>
@@ -879,8 +906,8 @@ other errors (8%) like incomplete cabinet closure, missed placement (Fig. 4). Co
 
     <!-- Rollout Carousel -->
   <section class="section" id="demos">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Policy Rollouts using MimicDroid</h2>
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title is-3" style="margin-bottom: 3rem;">Policy Rollouts using MimicDroid</h2>
       <figure>
       <div class="glide" style="position: relative;">
         <div class="glide__track" data-glide-el="track">
