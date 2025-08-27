@@ -76,7 +76,7 @@
     }
 
     .navbar-item:hover {
-      color: #ff8c42;
+      color: #ff8c42 !important;
       transform: translateY(-2px);
     }
 
@@ -92,25 +92,27 @@
 
     /* Special button style for navbar */
     .navbar-item.button-nav {
-      background: transparent;
-      color: #ff8c42;
+      background: linear-gradient(135deg, #ff8c42 0%, #d2691e 100%);
+      color: white !important;
       border-radius: 50px;
       padding: 0.5rem 1.25rem;
       margin-left: 1rem;
       font-weight: 600;
       border: 1px solid rgba(255, 140, 66, 0.4);
-      box-shadow: none;
+      box-shadow: 0 4px 15px rgba(255, 140, 66, 0.3);
     }
 
     .navbar-item.button-nav:hover {
-      background: rgba(255, 140, 66, 0.08);
-      box-shadow: none;
+      background: linear-gradient(135deg, #e67e22 0%, #d35400 100%) !important;
+      color: white !important;
+      box-shadow: 0 6px 20px rgba(255, 140, 66, 0.4);
       transform: translateY(-2px);
     }
 
     .navbar-item.button-nav.is-active {
-      background: rgba(255, 140, 66, 0.12);
-      box-shadow: none;
+      background: linear-gradient(135deg, #e67e22 0%, #d35400 100%) !important;
+      color: white !important;
+      box-shadow: 0 6px 20px rgba(255, 140, 66, 0.4);
       transform: translateY(-2px);
     }
 
@@ -223,7 +225,8 @@
     #refresh-videos-btn:hover {
       transform: translateY(-3px) scale(1.05);
       box-shadow: 0 10px 30px rgba(255, 140, 66, 0.4);
-      background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+      background: linear-gradient(135deg, #e67e22 0%, #d35400 100%) !important;
+      color: white !important;
     }
 
     #refresh-videos-btn .icon {
@@ -485,6 +488,38 @@
       box-shadow: 0 8px 30px rgba(255, 140, 66, 0.4);
     }
 
+    /* Fix hover states for all buttons and navbar items to prevent blue text */
+    .button:hover {
+      color: white !important;
+    }
+
+    .button.is-dark:hover {
+      color: white !important;
+      background-color: #363636 !important;
+    }
+
+    .button.is-primary:hover {
+      color: white !important;
+    }
+
+    .external-link.button:hover {
+      color: white !important;
+    }
+
+    /* Additional navbar hover fixes */
+    .navbar-item:hover,
+    .navbar-item:focus,
+    .navbar-item:active {
+      color: #ff8c42 !important;
+      background-color: transparent !important;
+    }
+
+    .navbar-item.button-nav:hover,
+    .navbar-item.button-nav:focus,
+    .navbar-item.button-nav:active {
+      color: white !important;
+    }
+
     /* Mobile responsive */
     @media screen and (max-width: 1023px) {
       .navbar-burger {
@@ -554,7 +589,7 @@
           <a class="navbar-item" href="index.html#method">Method</a>
           <a class="navbar-item" href="index.html#experiments">Experiments</a>
           <a class="navbar-item" href="index.html#demos">Demos</a>
-          <a class="navbar-item is-active" href="evaluation.html">Simulation Benchmark</a>
+          <a class="navbar-item button-nav is-active" href="evaluation.html">Simulation Benchmark</a>
           <a class="navbar-item" href="index.html#BibTeX">Cite</a>
         </div>
       </div>
@@ -647,10 +682,10 @@
               <div class="glide eval-glide" id="L1-glide">
                 <div class="glide__track" data-glide-el="track">
                   <ul class="glide__slides">
-                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop playsinline controls><source src="./static/videos/eval/CloseLeftCabinetDoor_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Close Left Cabinet Door</p></div></li>
-                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop playsinline controls><source src="./static/videos/eval/PnPSinkToCabinet_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Pick and Place: Sink to Cabinet</p></div></li>
-                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop playsinline controls><source src="./static/videos/eval/PnPSinkToRightCounterPlate_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Pick and Place: Sink to Counter Plate</p></div></li>
-                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop playsinline controls><source src="./static/videos/eval/TurnOnFaucet_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Turn On Faucet</p></div></li>
+                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop autoplay playsinline controls><source src="./static/videos/eval/CloseLeftCabinetDoor_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Close Left Cabinet Door</p></div></li>
+                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop autoplay playsinline controls><source src="./static/videos/eval/PnPSinkToCabinet_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Pick and Place: Sink to Cabinet</p></div></li>
+                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop autoplay playsinline controls><source src="./static/videos/eval/PnPSinkToRightCounterPlate_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Pick and Place: Sink to Counter Plate</p></div></li>
+                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop autoplay playsinline controls><source src="./static/videos/eval/TurnOnFaucet_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Turn On Faucet</p></div></li>
                   </ul>
                 </div>
                 <div class="glide__arrows" data-glide-el="controls">
@@ -667,10 +702,10 @@
               <div class="glide eval-glide" id="L2-glide">
                 <div class="glide__track" data-glide-el="track">
                   <ul class="glide__slides">
-                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop playsinline controls><source src="./static/videos/eval/CloseLeftCabinetDoorL2_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Close Left Cabinet Door</p></div></li>
-                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop playsinline controls><source src="./static/videos/eval/CloseRightCabinetDoorL2_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Close Right Cabinet Door</p></div></li>
-                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop playsinline controls><source src="./static/videos/eval/PnPSinkToCabinetL2_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Pick and Place: Sink to Cabinet</p></div></li>
-                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop playsinline controls><source src="./static/videos/eval/PnPSinkToRightCounterPlateL2_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Pick and Place: Sink to Counter Plate</p></div></li>
+                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop autoplay playsinline controls><source src="./static/videos/eval/CloseLeftCabinetDoorL2_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Close Left Cabinet Door</p></div></li>
+                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop autoplay playsinline controls><source src="./static/videos/eval/CloseRightCabinetDoorL2_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Close Right Cabinet Door</p></div></li>
+                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop autoplay playsinline controls><source src="./static/videos/eval/PnPSinkToCabinetL2_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Pick and Place: Sink to Cabinet</p></div></li>
+                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop autoplay playsinline controls><source src="./static/videos/eval/PnPSinkToRightCounterPlateL2_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Pick and Place: Sink to Counter Plate</p></div></li>
                   </ul>
                 </div>
                 <div class="glide__arrows" data-glide-el="controls">
@@ -687,10 +722,10 @@
               <div class="glide eval-glide" id="L3-glide">
                 <div class="glide__track" data-glide-el="track">
                   <ul class="glide__slides">
-                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop playsinline controls><source src="./static/videos/eval/CloseLeftCabinetDoorL3_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Close Left Cabinet Door</p></div></li>
-                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop playsinline controls><source src="./static/videos/eval/PnPSinkToMicrowaveTopL3_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Pick and Place: Sink to Microwave Top</p></div></li>
-                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop playsinline controls><source src="./static/videos/eval/PnPSinkToRightCounterPlateL3_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Pick and Place: Sink to Counter Plate</p></div></li>
-                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop playsinline controls><source src="./static/videos/eval/TurnOnFaucetL3_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Turn On Faucet</p></div></li>
+                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop autoplay playsinline controls><source src="./static/videos/eval/CloseLeftCabinetDoorL3_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Close Left Cabinet Door</p></div></li>
+                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop autoplay playsinline controls><source src="./static/videos/eval/PnPSinkToMicrowaveTopL3_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Pick and Place: Sink to Microwave Top</p></div></li>
+                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop autoplay playsinline controls><source src="./static/videos/eval/PnPSinkToRightCounterPlateL3_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Pick and Place: Sink to Counter Plate</p></div></li>
+                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop autoplay playsinline controls><source src="./static/videos/eval/TurnOnFaucetL3_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Turn On Faucet</p></div></li>
                   </ul>
                 </div>
                 <div class="glide__arrows" data-glide-el="controls">
