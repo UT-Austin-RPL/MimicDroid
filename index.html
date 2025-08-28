@@ -655,9 +655,23 @@
         transform: translateY(0);
       }
     }
-  </style>
 
-</head>
+.publication-container {
+  max-width: 1100px !important;
+}
+
+    .double-img {
+  display: flex;
+  gap: 1rem; /* spacing between images */
+  justify-content: center;
+}
+.double-img img {
+  width: 50%;
+  height: auto;
+}
+
+</style>
+</link></head>
 <body>
   <!-- Beautiful Navigation Bar -->
   <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -790,170 +804,124 @@
           <source src="./static/images/summary_video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-      </div>
-    </div>
-  </section>
-
-
-  <section class="section" id="abstract">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <div>
-            <h2 class="title is-3">Abstract</h2>
-          <div class="content has-text-justified">  
-            <p>
+</div>
+</div>
+</section>
+<section class="section" id="abstract">
+<div class="container is-max-desktop">
+<div class="columns is-centered has-text-centered">
+<div class="column is-four-fifths">
+<div>
+<h2 class="title is-3">Abstract</h2>
+<div class="content has-text-justified">
+<p>
               We envision humanoids that can efficiently adapt to new tasks, achieving few-shot manipulation in ever-changing environments. In-context learning (ICL) is a promising framework to achieve this goal, but existing ICL approaches typically rely on costly teleoperated datasets or limited expressivity of simulations for training. In this work, we propose using human play videos—continuous, unlabeled videos of people interacting freely with their environment by their curiosity—as a scalable and diverse data source. Learning from human play videos poses two key challenges: (i) the absence of labeled data to train policies to learn in-context; (ii) the embodiment gap between humans and humanoids. We introduce MimicDroid, a method that enables humanoids to perform ICL by using only human play videos as training data. To overcome the lack of supervision, MimicDroid extracts trajectory pairs exhibiting similar manipulation behaviors in a self-supervised manner, e.g., "placing the bread on the oven tray," and "placing a bagel on the oven tray." The policy is trained to predict actions of one trajectory, conditioned on others with similar manipulation behaviors. This trains the model to learn in-context from the provided examples. To address the embodiment gap, first, MimicDroid retargets human wrist poses estimated from RGB videos to the humanoid, leveraging their kinematic similarity. Second, to handle the visual gap, it applies random patch masking during training to prevent overfitting to human-specific cues. To systematically evaluate few-shot learning for humanoids, we introduce an open-source simulation benchmark with three levels of increasing generalization difficulty from seen to unseen objects and environments. In both simulation and the real world, MimicDroid outperforms state-of-the-art methods, achieving nearly twofold better generalization to novel objects in the real world.
             </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-
-  <!-- Method Overview -->
-  <section class="section" id="method">
-  <div class="container is-max-desktop has-text-centered">
-    <h2 class="title is-3">Method Overview</h2>
-    <figure class="image">
-      <img src="./static/images/mew_method_figurev2-1.png" 
-           alt="Overview of MIMICDROID" />
-          
-      <figcaption class="method-caption has-text-justified">
-        <strong>Overview of MimicDroid.</strong> MimicDroid performs meta-training for in-context learning (Meta-ICL) by constructing context-target pairs from human play videos.
-    For a target segment, we retrieve the top-k most similar trajectory segments (top-left) based on observation-action similarity (top-right) to serve as context.
-    These context-target pairs are used to teach the policy in-context learning (bottom-left). To overcome the human-robot visual gap and avoid overfitting to human-specific visual cues, we apply visual masking to input images (bottom-right), improving transferability.
-      </figcaption>
-    </figure>
-  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
+<!-- Method Overview -->
+<section class="section" id="method">
+<div class="container is-max-desktop has-text-centered">
+<h2 class="title is-3">Method Overview</h2>
+<figure class="image">
+<img alt="Overview of MIMICDROID" src="./static/images/mew_method_figurev2-1.png"/>
+<figcaption class="method-caption has-text-justified">
+  MimicDroid performs meta-training for in-context learning (Meta-ICL) by constructing context-target pairs from human play videos.
+  <ul style="text-align:left; margin-top:0.5rem;">
+    <li><strong>• Top:</strong> For a target segment, we retrieve the top-k most similar trajectory segments (top-left) based on observation-action similarity (top-right) to serve as context.</li>
+    <li><strong>• Bottom:</strong> These context-target pairs are used to train an ICL policy (bottom-left). To overcome the human-robot visual gap and avoid overfitting to human-specific visual cues, we apply visual masking to input images (bottom-right), improving transferability.</li>
+  </ul>
+</figcaption>
+</figure>
+</div>
+</section>
+<!-- Experiments -->
+<section class="section" id="experiments">
+<div class="container is-max-desktop">
+<div class="columns is-centered has-text-centered">
+<div class="column is-full">
+<h2 class="title is-3">Simulation Results</h2>
+<div class="content">
+    <h4 class="title is-4" style="margin-top: 1.5em;">Todo: add a link to Simulation Benchmark, and qualitative videos in sim</h4>
+<h3 class="title is-4" style="margin-top: 1.5em;">Baseline Comparisons in Simulation Benchmark</h3>
+<div class="columns is-vcentered">
+<div class="column is-half">
+<img alt="Number of Prompts Results" src="./static/images/all_methods_abstract.png" style="max-width: 600px; width: 100%;"/>
+</div>
+<div class="column is-half">
+<img alt="Number of Prompts Results" src="./static/images/all_methods_gr1.png" style="max-width: 600px; width: 100%;"/>
+</div>
+</div>
+</div>
 
-  
-
-  <!-- Experiments -->
-   <section class="section" id="experiments">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-full">
-          <h2 class="title is-3">Quantitative Analaysis</h2>
-          <div class="content">
-            <h3 class="title is-4" style="margin-top: 1.5em;">Simulation Benchmark Results</h3>
-            <figure class="image">
-              <img src="./static/images/results.png" alt="experiment results" />
-              <figcaption>
-               <p>Success rates of MimicDroid in the simulation benchmark, comparing both the Abstract and GR1 embodiments across levels of generalization difficulty (L1–L3). MimicDroid consistently outperforms prior approaches and ablations, demonstrating strong transfer from human play videos to humanoid control.</p>
-              </figcaption>
-            </figure>
-            </div>
-            <h3 class="title is-4" style="margin-top: 1.5em;">How well MimicDroid's performance scales with the number of in-context examples?</h3>
-            
-            <div class="columns is-vcentered">
-              <div class="column is-half">
-                <img src="./static/images/n_prompts-1.png" alt="Number of Prompts Results" style="max-width: 600px; width: 100%;" />
-              </div>
-              <div class="column is-half">
-                <div class="content has-text-justified ">
-                  <p> We evaluate how MimicDroid’s performance varies with the number of
-context demonstrations provided at test time. We observe a clear improvement in performance as the number of context examples increases from 1 to 3. However,
-the gains drop with 4 to 6 examples due to the limited context length supported by the transformer policy during training. Naively extending context length is computationally
-expensive, with memory scaling quadratically in sequence length; future work can explore more efficient ways to handle more in-context examples.</p>
-                </div>
-              </div>
-            </div>
-
-            <h3 class="title is-4" style="margin-top: 1.5em;">How does the quality of training data used in the Meta-ICL affect ICL performance?</h3>
-
-            <div class="columns is-vcentered">
-              <div class="column is-half">
-                <img src="./static/images/n_topk-1.png" alt="Top-K Results" style="max-width: 600px; width: 100%;" />
-              </div>
-              <div class="column is-half">
-                <div class="content has-text-justified">
-                  <p> To evaluate the impact of data quality on Meta-ICL, we vary the number of similar
-context segments retrieved during training, k. As shown, performance drops for large k due to the inclusion of
-dissimilar segments, while small k limits training diversity. We find that k = 50 strikes a balance between maintaining
-training diversity and avoiding excessive noise from dissimilar segments. These results highlight the importance of
-selecting context-target pairs with meaningful observation action similarity for effective Meta-ICL.</p>
-                </div>
-              </div>
-            </div>
-
-            <h3 class="title is-4" style="margin-top: 1.5em;">How does scaling dataset size impact MimicDroid's ability to perform ICL?</h3>
-            
-            <div class="columns is-vcentered">
-              <div class="column is-half">
-                <img src="./static/images/success_vs_frames-1.png" alt="Success vs Frames" style="max-width: 600px; width: 100%;" />
-              </div>
-              <div class="column is-half">
-                <div class="content">
-                  <p>As shown, we observe consistent performance improvements across all generalization
-levels (L1–L3) as the amount of training data increases, demonstrating the scalability of learning from RGB play videos. Specifically, L1 improves from 35% at 128k frames
-to 59% at 320k, and L2 rises from 21% to 45%, resulting in a +24% absolute gain for both. L3 also improves, from 16% to 27% (+11%), though the gains are less pronounced compared to L1 and L2. These results affirm the benefits of scaling training data, while also motivating a more systematic
+<h3 class="title is-4" style="margin-top: 1.5em;">How does scaling dataset size impact MimicDroid's ability to perform ICL?</h3>
+<div class="columns is-vcentered">
+<div class="column is-half">
+<img alt="Success vs Frames" src="./static/images/data_size.png" style="max-width: 600px; width: 100%;"/>
+</div>
+<div class="column is-half">
+<div class="content has-text-justified">
+<p>We observe consistent performance improvements across all generalization
+levels (L1–L3) as the amount of training data increases, demonstrating the scalability of learning from RGB play videos. These results also motivates a more systematic
 study of the factors that influence ICL performance on harder generalization tasks like L3.</p>
-                </div>
-              </div>
-            </div>
-
-            <h3 class="title is-4" style="margin-top: 1.5em;">Failure Analysis</h3>
-            <div class="columns is-vcentered">
-              <div class="column is-half">
-                <img src="./static/images/dual_pie-1.png" alt="Failure Analysis" style="max-width: 600px; width: 100%;" />
-              </div>
-              <div class="column is-half">
-                <div class="content">
-                  <p>Failures in downstream tasks arise from task misidentification (26%), missed grasps (16%), and
+</div>
+</div>
+</div>
+<h3 class="title is-4" style="margin-top: 1.5em;">Failure Analysis</h3>
+<div class="columns is-vcentered">
+<div class="column is-half">
+<img alt="Failure Analysis" src="./static/images/dual_pie-1.png" style="max-width: 600px; width: 100%;"/>
+</div>
+<div class="column is-half">
+<div class="content has-text-justified">
+<p>Failures in downstream tasks arise from task misidentification (26%), missed grasps (16%), and
 other errors (8%) like incomplete cabinet closure, missed placement (Fig. 4). Compared to Vid2Robot, MimicDroid notably reduces both misidentification (−15%) and grasping errors (−5%) using ICL.</p>
-                </div>
-              </div>
-            </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-        </div>
-      </div>
-      </div>
-    </div>
-    </section>
-
-
-    <!-- Rollout Carousel -->
-  <section class="section" id="demos">
-    <div class="container is-max-desktop has-text-centered">
-      <h2 class="title is-3" style="margin-bottom: 3rem;">Policy Rollouts using MimicDroid</h2>
-      <figure>
-      <div class="glide" style="position: relative;">
-        <div class="glide__track" data-glide-el="track">
-          <ul class="glide__slides">
-            <li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay muted loop playsinline controls><source src="./static/videos/potatoes_basket.mp4" type="video/mp4" /></video></div><p class="video-caption">Potatoes-Basket</p></div></li>
-            <li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay muted loop playsinline controls><source src="./static/videos/demo_oven_plate_chips.mp4" type="video/mp4" /></video></div><p class="video-caption">Chips-Plate</p></div></li>
-            <li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay muted loop playsinline controls><source src="./static/videos/demo_rotating_disk.mp4" type="video/mp4" /></video></div><p class="video-caption">Cookies-Plate</p></div></li>
-            <li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay muted loop playsinline controls><source src="./static/videos/demo_rotating_disk_plate.mp4" type="video/mp4" /></video></div><p class="video-caption">Bread-Plate</p></div></li>
-            <li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay muted loop playsinline controls><source src="./static/videos/strawberries_to_plate.mp4" type="video/mp4" /></video></div><p class="video-caption">Strawberries-Oven</p></div></li>
-            <li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay muted loop playsinline controls><source src="./static/videos/bread_on_oven_tray.mp4" type="video/mp4" /></video></div><p class="video-caption">Bread-Tray</p></div></li>
-          </ul>
-        </div>
-        <div class="glide__arrows" data-glide-el="controls">
-          <button class="glide__arrow glide__arrow--left" data-glide-dir="<">‹</button>
-          <button class="glide__arrow glide__arrow--right" data-glide-dir=">">›</button>
-        </div>
-        <div class="glide__bullets" data-glide-el="controls[nav]">
-          <button class="glide__bullet" data-glide-dir="=0"></button>
-          <button class="glide__bullet" data-glide-dir="=1"></button>
-          <button class="glide__bullet" data-glide-dir="=2"></button>
-          <button class="glide__bullet" data-glide-dir="=3"></button>
-          <button class="glide__bullet" data-glide-dir="=4"></button>
-          <button class="glide__bullet" data-glide-dir="=5"></button>
-        </div>
-      </div>
-      <!-- <figcaption class="has-text-centered" style="margin-top: 1rem;">.</figcaption> -->
-        
-    </figure>
-    </div>
-  </section> 
-
-
-  <!-- <section class="section">
+</section>
+<!-- Rollout Carousel -->
+<section class="section" id="demos">
+<div class="container is-max-desktop has-text-centered">
+<h2 class="title is-3" style="margin-bottom: 3rem;">Real-world results</h2>
+<figure>
+<div class="glide" style="position: relative;">
+<div class="glide__track" data-glide-el="track">
+<ul class="glide__slides">
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/potatoes_basket.mp4" type="video/mp4"/></video></div><p class="video-caption">Potatoes-Basket</p></div></li>
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/demo_oven_plate_chips.mp4" type="video/mp4"/></video></div><p class="video-caption">Chips-Plate</p></div></li>
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/demo_rotating_disk.mp4" type="video/mp4"/></video></div><p class="video-caption">Cookies-Plate</p></div></li>
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/demo_rotating_disk_plate.mp4" type="video/mp4"/></video></div><p class="video-caption">Bread-Plate</p></div></li>
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/strawberries_to_plate.mp4" type="video/mp4"/></video></div><p class="video-caption">Strawberries-Oven</p></div></li>
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/bread_on_oven_tray.mp4" type="video/mp4"/></video></div><p class="video-caption">Bread-Tray</p></div></li>
+</ul>
+</div>
+<div class="glide__arrows" data-glide-el="controls">
+<button class="glide__arrow glide__arrow--left" data-glide-dir="&lt;">‹</button>
+<button class="glide__arrow glide__arrow--right" data-glide-dir="&gt;">›</button>
+</div>
+<div class="glide__bullets" data-glide-el="controls[nav]">
+<button class="glide__bullet" data-glide-dir="=0"></button>
+<button class="glide__bullet" data-glide-dir="=1"></button>
+<button class="glide__bullet" data-glide-dir="=2"></button>
+<button class="glide__bullet" data-glide-dir="=3"></button>
+<button class="glide__bullet" data-glide-dir="=4"></button>
+<button class="glide__bullet" data-glide-dir="=5"></button>
+</div>
+</div>
+<!-- <figcaption class="has-text-centered" style="margin-top: 1rem;">.</figcaption> -->
+</figure>
+</div>
+</section>
+<!-- <section class="section">
     <div class="container is-max-desktop has-text-centered">
       <h2 class="title is-3">Video</h2>
       <p class="is-6" style="margin-bottom: 1rem;">
@@ -1056,8 +1024,8 @@ other errors (8%) like incomplete cabinet closure, missed placement (Fig. 4). Co
         </div>
       </div>
     </div> -->
-  </section>
-    <!-- Weights Predicted by COLLAGE -->
+
+<!-- Weights Predicted by COLLAGE -->
 <!-- <section class="section">
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Importance Weights Predicted by COLLAGE</h2>
@@ -1079,7 +1047,7 @@ other errors (8%) like incomplete cabinet closure, missed placement (Fig. 4). Co
       <h2 class="title">BibTeX</h2>
       <pre><code>@article{shah2025mimicdroid,
   title={MimicDroid: In-Context Learning for Humanoid Manipulation by Watching Humans},
-  author={Shah, Rutav and Wang, Qi and Jiang, Zhenyu and Liu, Shuijing and Kumar, Sateesh and Seo, Mingyo and Mart{\'\i}n-Mart{\'\i}n, Roberto and Zhu, Yuke},
+  author={Shah, Rutav and Liu, Shuijing and Wang, Qi and Jiang, Zhenyu and Kumar, Sateesh and Seo, Mingyo and Mart{\'\i}n-Mart{\'\i}n, Roberto and Zhu, Yuke},
   journal={arXiv preprint arXiv:},
   year={2025}
 }</code></pre>
