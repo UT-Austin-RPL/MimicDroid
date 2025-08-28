@@ -649,7 +649,7 @@
           <a class="navbar-item" href="index.html#experiments">Experiments</a>
           <a class="navbar-item" href="index.html#demos">Demos</a>
           <a class="navbar-item" href="index.html#BibTeX">Cite</a>
-          <a class="navbar-item button-nav is-active" href="evaluation.html">Simulation Benchmark</a>
+          <a class="navbar-item button-nav" href="evaluation.html">Simulation Benchmark</a>
         </div>
       </div>
     </div>
@@ -686,7 +686,7 @@
               <span class="icon">
                 <i class="fas fa-sync-alt"></i>
               </span>
-              <span>Show 3 Random Videos</span>
+              <span>Show 6 Random Videos</span>
             </button>
           </div>
 
@@ -990,7 +990,7 @@
     }
 
     // Function to shuffle array and get random selection
-    function getRandomVideos(count = 3) {
+    function getRandomVideos(count = 6) {
       const shuffled = [...trainVideos].sort(() => 0.5 - Math.random());
       return shuffled.slice(0, count);
     }
@@ -1047,7 +1047,7 @@
       grid.style.transition = 'opacity 0.3s ease';
       
       setTimeout(() => {
-        const newVideos = getRandomVideos(3);
+        const newVideos = getRandomVideos(6);
         displayVideos(newVideos);
         
         // Fade in new videos
@@ -1062,7 +1062,7 @@
       refreshButton.addEventListener('click', refreshVideos);
       
       // Display initial random videos
-      const initialVideos = getRandomVideos(3);
+      const initialVideos = getRandomVideos(6);
       displayVideos(initialVideos);
     });
   </script>
