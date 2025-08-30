@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="static/images/mimicdroid.png">
 
   <!-- Custom styles for Evaluation Page -->
   <style>
@@ -384,12 +384,14 @@
     .eval-video-card video {
       width: 100%;
       height: 320px;
-      object-fit: cover;
+      object-fit: contain; /* Changed from 'cover' to 'contain' */
       display: block;
+      border-radius: 20px 20px 0 0; /* Add top border radius to match card */
+      color: #363636;
     }
 
     .eval-video-caption {
-      padding: 1.5rem;
+      padding: 1.1rem;
       margin: 0;
       font-weight: 600;
       font-size: 1.1rem;
@@ -400,7 +402,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 20px;
+      border-radius: 0 0 20px 20px; /* Add bottom border radius to match card */
+      width: 100%;
     }
 
     /* Glide arrows customization */
@@ -625,6 +628,11 @@
         font-size: 18px;
       }
     }
+
+    .subtitle.is-6 {
+      text-align: justify;
+      text-align-last: center; /* Centers the last line */
+    }
   </style>
 </head>
 <body>
@@ -649,7 +657,7 @@
           <a class="navbar-item" href="index.html#experiments">Experiments</a>
           <a class="navbar-item" href="index.html#demos">Demos</a>
           <a class="navbar-item" href="index.html#BibTeX">Cite</a>
-          <a class="navbar-item button-nav is-active" href="evaluation.html">Simulation Benchmark</a>
+          <a class="navbar-item button-nav" href="evaluation.html">Simulation Benchmark</a>
         </div>
       </div>
     </div>
@@ -665,37 +673,8 @@
     <div class="container has-text-centered">
       <h1 class="title"  style="margin-bottom: 2rem;">Simulation Benchmark</h1>
       <p class="subtitle">
-        Explore MimicDroid's training demonstrations and performance across different levels of generalization
+        MimicDroid's proposed benchmark for few-shot learning for humanoid manipulation and training data.
       </p>
-    </div>
-  </section>
-
-  <!-- Training Videos Section -->
-  <section class="section">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-full">
-          <h2 class="title is-3" style="margin-bottom: 5rem;">Training Videos</h2>
-          <p class="subtitle is-6" style="margin-bottom: 2rem;">
-            Sample demonstrations from our training dataset showing various manipulation tasks
-          </p>
-          
-          <!-- Refresh Button -->
-          <div class="has-text-centered" style="margin-bottom: 3rem;">
-            <button id="refresh-videos-btn" class="button is-primary is-large is-rounded">
-              <span class="icon">
-                <i class="fas fa-sync-alt"></i>
-              </span>
-              <span>Show 3 Random Videos</span>
-            </button>
-          </div>
-
-          <!-- Video Grid -->
-          <div id="evaluation-videos-grid" class="columns is-multiline is-centered">
-            <!-- Videos will be dynamically inserted here -->
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -704,9 +683,11 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-full">
-          <h2 class="title is-3" style="margin-bottom: 5rem;">Simulation Benchmark Videos</h2>
+          <h2 class="title is-3" style="margin-bottom: 5rem;">Levels of Generalization Difficulty</h2>
           <p class="subtitle is-6" style="margin-bottom: 3rem;">
-            Performance demonstrations across different levels of generalization difficulty
+            Evaluation is structured into three levels: L1, L2, and L3, which progressively increase in difficulty by varying objects and environments, enabling systematic assessment of few-shot learning.
+            Each level is evaluated on a set of four manipulation tasks.<br/><br/>
+            Below, we visualize the demonstrations for each task in the following videos.
           </p>
           
           <!-- Level Tabs -->
@@ -736,63 +717,164 @@
           <div class="eval-content">
             <!-- L1 Content -->
             <div id="L1-content" class="level-content is-active">
-              <h3 class="title is-4 level-subtitle">Level 1: Same Objects & Environment</h3>
-              <p class="subtitle is-6">Basic manipulation tasks with familiar objects in known environments</p>
-              <div class="glide eval-glide" id="L1-glide">
-                <div class="glide__track" data-glide-el="track">
-                  <ul class="glide__slides">
-                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop autoplay playsinline controls><source src="./static/videos/eval/CloseLeftCabinetDoor_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Close Left Cabinet Door</p></div></li>
-                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop autoplay playsinline controls><source src="./static/videos/eval/PnPSinkToCabinet_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Pick and Place: Sink to Cabinet</p></div></li>
-                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop autoplay playsinline controls><source src="./static/videos/eval/PnPSinkToRightCounterPlate_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Pick and Place: Sink to Counter Plate</p></div></li>
-                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop autoplay playsinline controls><source src="./static/videos/eval/TurnOnFaucet_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Turn On Faucet</p></div></li>
-                  </ul>
+              <h3 class="title is-4 level-subtitle">Seen Object, Seen Environment</h3>
+              <p class="subtitle is-6">
+                Manipulation tasks with objects it encountered during training in the environments. <br/>
+                This level evaluates the robot's ability to generalize to new object positions.
+              </p>
+              <div class="columns is-multiline is-centered">
+                <div class="column is-half">
+                  <div class="eval-video-card">
+                    <video muted loop autoplay playsinline controls>
+                      <source src="./static/videos/eval/CloseLeftCabinetDoor_003.mp4" type="video/mp4" />
+                    </video>
+                    <p class="eval-video-caption">Close Left Cabinet Door</p>
+                  </div>
                 </div>
-                <div class="glide__arrows" data-glide-el="controls">
-                  <button class="glide__arrow glide__arrow--left" data-glide-dir="<">‹</button>
-                  <button class="glide__arrow glide__arrow--right" data-glide-dir=">">›</button>
+                <div class="column is-half">
+                  <div class="eval-video-card">
+                    <video muted loop autoplay playsinline controls>
+                      <source src="./static/videos/eval/PnPSinkToCabinet_003.mp4" type="video/mp4" />
+                    </video>
+                    <p class="eval-video-caption">Pick and Place from Sink to Cabinet</p>
+                  </div>
+                </div>
+                <div class="column is-half">
+                  <div class="eval-video-card">
+                    <video muted loop autoplay playsinline controls>
+                      <source src="./static/videos/eval/PnPSinkToRightCounterPlate_003.mp4" type="video/mp4" />
+                    </video>
+                    <p class="eval-video-caption">Pick and Place from Sink to Right Counter Plate</p>
+                  </div>
+                </div>
+                <div class="column is-half">
+                  <div class="eval-video-card">
+                    <video muted loop autoplay playsinline controls>
+                      <source src="./static/videos/eval/TurnOnFaucet_003.mp4" type="video/mp4" />
+                    </video>
+                    <p class="eval-video-caption">Turn On Faucet</p>
+                  </div>
                 </div>
               </div>
             </div>
 
             <!-- L2 Content -->
             <div id="L2-content" class="level-content">
-              <h3 class="title is-4 level-subtitle">Level 2: New Objects, Same Environment</h3>
-              <p class="subtitle is-6">Intermediate tasks with novel objects in familiar settings</p>
-              <div class="glide eval-glide" id="L2-glide">
-                <div class="glide__track" data-glide-el="track">
-                  <ul class="glide__slides">
-                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop autoplay playsinline controls><source src="./static/videos/eval/CloseLeftCabinetDoorL2_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Close Left Cabinet Door</p></div></li>
-                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop autoplay playsinline controls><source src="./static/videos/eval/CloseRightCabinetDoorL2_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Close Right Cabinet Door</p></div></li>
-                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop autoplay playsinline controls><source src="./static/videos/eval/PnPSinkToCabinetL2_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Pick and Place: Sink to Cabinet</p></div></li>
-                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop autoplay playsinline controls><source src="./static/videos/eval/PnPSinkToRightCounterPlateL2_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Pick and Place: Sink to Counter Plate</p></div></li>
-                  </ul>
+              <h3 class="title is-4 level-subtitle">Unseen Object, Seen Environment</h3>
+              <p class="subtitle is-6">
+                Manipulation tasks with novel objects it has not encountered during training. <br/>
+                This level evaluates the robot's ability to adapt to novel objects using few demonstrations.
+              </p>
+              <div class="columns is-multiline is-centered">
+                <div class="column is-half">
+                  <div class="eval-video-card">
+                    <video muted loop autoplay playsinline controls>
+                      <source src="./static/videos/eval/CloseLeftCabinetDoorL2_003.mp4" type="video/mp4" />
+                    </video>
+                    <p class="eval-video-caption">Close Left Cabinet Door</p>
+                  </div>
                 </div>
-                <div class="glide__arrows" data-glide-el="controls">
-                  <button class="glide__arrow glide__arrow--left" data-glide-dir="<">‹</button>
-                  <button class="glide__arrow glide__arrow--right" data-glide-dir=">">›</button>
+                <div class="column is-half">
+                  <div class="eval-video-card">
+                    <video muted loop autoplay playsinline controls>
+                      <source src="./static/videos/eval/CloseRightCabinetDoorL2_003.mp4" type="video/mp4" />
+                    </video>
+                    <p class="eval-video-caption">Close Right Cabinet Door</p>
+                  </div>
+                </div>
+                <div class="column is-half">
+                  <div class="eval-video-card">
+                    <video muted loop autoplay playsinline controls>
+                      <source src="./static/videos/eval/PnPSinkToCabinetL2_003.mp4" type="video/mp4" />
+                    </video>
+                    <p class="eval-video-caption">Pick and Place from Sink to Cabinet</p>
+                  </div>
+                </div>
+                <div class="column is-half">
+                  <div class="eval-video-card">
+                    <video muted loop autoplay playsinline controls>
+                      <source src="./static/videos/eval/PnPSinkToRightCounterPlateL2_003.mp4" type="video/mp4" />
+                    </video>
+                    <p class="eval-video-caption">Pick and Place from Sink to Right Counter Plate</p>
+                  </div>
                 </div>
               </div>
             </div>
 
             <!-- L3 Content -->
             <div id="L3-content" class="level-content">
-              <h3 class="title is-4 level-subtitle">Level 3: New Objects & Environment</h3>
-              <p class="subtitle is-6">Advanced tasks with novel objects in unfamiliar environments</p>
-              <div class="glide eval-glide" id="L3-glide">
-                <div class="glide__track" data-glide-el="track">
-                  <ul class="glide__slides">
-                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop autoplay playsinline controls><source src="./static/videos/eval/CloseLeftCabinetDoorL3_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Close Left Cabinet Door</p></div></li>
-                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop autoplay playsinline controls><source src="./static/videos/eval/PnPSinkToMicrowaveTopL3_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Pick and Place: Sink to Microwave Top</p></div></li>
-                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop autoplay playsinline controls><source src="./static/videos/eval/PnPSinkToRightCounterPlateL3_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Pick and Place: Sink to Counter Plate</p></div></li>
-                    <li class="glide__slide"><div class="eval-video-block"><div class="eval-video-card"><video muted loop autoplay playsinline controls><source src="./static/videos/eval/TurnOnFaucetL3_003.mp4" type="video/mp4" /></video></div><p class="eval-video-caption">Turn On Faucet</p></div></li>
-                  </ul>
+              <h3 class="title is-4 level-subtitle">Unseen Object, Unseen Environment</h3>
+              <p class="subtitle is-6">
+                Manipulation tasks with novel objects in new kitchen environments it has not encountered during training. <br/>
+                This level tests the robot's ability to generalize to different background, furniture layouts, and novel objects.
+              </p>
+              <div class="columns is-multiline is-centered">
+                <div class="column is-half">
+                  <div class="eval-video-card">
+                    <video muted loop autoplay playsinline controls>
+                      <source src="./static/videos/eval/CloseLeftCabinetDoorL3_003.mp4" type="video/mp4" />
+                    </video>
+                    <p class="eval-video-caption">Close Left Cabinet Door</p>
+                  </div>
                 </div>
-                <div class="glide__arrows" data-glide-el="controls">
-                  <button class="glide__arrow glide__arrow--left" data-glide-dir="<">‹</button>
-                  <button class="glide__arrow glide__arrow--right" data-glide-dir=">">›</button>
+                <div class="column is-half">
+                  <div class="eval-video-card">
+                    <video muted loop autoplay playsinline controls>
+                      <source src="./static/videos/eval/PnPSinkToMicrowaveTopL3_003.mp4" type="video/mp4" />
+                    </video>
+                    <p class="eval-video-caption">Pick and Place from Sink to Microwave Top</p>
+                  </div>
+                </div>
+                <div class="column is-half">
+                  <div class="eval-video-card">
+                    <video muted loop autoplay playsinline controls>
+                      <source src="./static/videos/eval/PnPSinkToRightCounterPlateL3_003.mp4" type="video/mp4" />
+                    </video>
+                    <p class="eval-video-caption">Pick and Place from Sink to Right Counter Plate</p>
+                  </div>
+                </div>
+                <div class="column is-half">
+                  <div class="eval-video-card">
+                    <video muted loop autoplay playsinline controls>
+                      <source src="./static/videos/eval/TurnOnFaucetL3_003.mp4" type="video/mp4" />
+                    </video>
+                    <p class="eval-video-caption">Turn On Faucet</p>
+                  </div>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Training Videos Section -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full">
+          <h2 class="title is-3" style="margin-bottom: 5rem;">Training Videos</h2>
+          <p class="subtitle is-6" style="margin-bottom: 2rem; text-align: justify; margin-left: auto; margin-right: auto;">
+            We collect human play data in simulation by letting an operator interact freely in randomized kitchen environments using a spacemouse.
+            Each play session lasts 20 minutes and captures diverse interactions covering a broad range of tasks, object configurations, and manipulation behaviors.
+            In total, we gather 8 hours of simulated play, amounting to 320k timesteps.<br/><br/>
+            Below, we visualize random clips of play data from our training dataset.
+          </p>
+          
+          <!-- Refresh Button -->
+          <div class="has-text-centered" style="margin-bottom: 3rem;">
+            <button id="refresh-videos-btn" class="button is-primary is-large is-rounded">
+              <span class="icon">
+                <i class="fas fa-sync-alt"></i>
+              </span>
+              <span>Show 6 Random Videos</span>
+            </button>
+          </div>
+
+          <!-- Video Grid -->
+          <div id="evaluation-videos-grid" class="columns is-multiline is-centered">
+            <!-- Videos will be dynamically inserted here -->
           </div>
         </div>
       </div>
@@ -990,7 +1072,7 @@
     }
 
     // Function to shuffle array and get random selection
-    function getRandomVideos(count = 3) {
+    function getRandomVideos(count = 6) {
       const shuffled = [...trainVideos].sort(() => 0.5 - Math.random());
       return shuffled.slice(0, count);
     }
@@ -1047,7 +1129,7 @@
       grid.style.transition = 'opacity 0.3s ease';
       
       setTimeout(() => {
-        const newVideos = getRandomVideos(3);
+        const newVideos = getRandomVideos(6);
         displayVideos(newVideos);
         
         // Fade in new videos
@@ -1062,7 +1144,7 @@
       refreshButton.addEventListener('click', refreshVideos);
       
       // Display initial random videos
-      const initialVideos = getRandomVideos(3);
+      const initialVideos = getRandomVideos(6);
       displayVideos(initialVideos);
     });
   </script>
