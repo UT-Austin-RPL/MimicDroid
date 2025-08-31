@@ -901,10 +901,10 @@
 <section class="section">
 <div class="container is-max-desktop has-text-centered">
 <div class="beautiful-card">
-<h2 class="title is-3" style="margin-bottom: 3rem;">Video</h2>
-<p class="subtitle is-6">
-          Watch the video to see MimicDroid in action!
-        </p>
+<h2 class="title is-3" style="margin-bottom: 3rem;">Overview</h2>
+<!-- <p class="subtitle is-6"> -->
+<!--   Watch the video to see MimicDroid in action! -->
+<!-- </p> -->
 <video controls="" preload="metadata" style="max-width:100%; border-radius:8px;">
 <source src="./static/images/summary_video.mp4" type="video/mp4"/>
           Your browser does not support the video tag.
@@ -920,7 +920,7 @@
 <h2 class="title is-3">Abstract</h2>
 <div class="content has-text-justified">
 <p>
-              We envision humanoids that can efficiently adapt to new tasks, achieving few-shot manipulation in ever-changing environments. In-context learning (ICL) is a promising framework to achieve this goal, but existing ICL approaches typically rely on costly teleoperated datasets or limited expressivity of simulations for training. In this work, we propose using human play videos—continuous, unlabeled videos of people interacting freely with their environment by their curiosity—as a scalable and diverse data source. Learning from human play videos poses two key challenges: (i) the absence of labeled data to train policies to learn in-context; (ii) the embodiment gap between humans and humanoids. We introduce MimicDroid, a method that enables humanoids to perform ICL by using only human play videos as training data. To overcome the lack of supervision, MimicDroid extracts trajectory pairs exhibiting similar manipulation behaviors in a self-supervised manner, e.g., "placing the bread on the oven tray," and "placing a bagel on the oven tray." The policy is trained to predict actions of one trajectory, conditioned on others with similar manipulation behaviors. This trains the model to learn in-context from the provided examples. To address the embodiment gap, first, MimicDroid retargets human wrist poses estimated from RGB videos to the humanoid, leveraging their kinematic similarity. Second, to handle the visual gap, it applies random patch masking during training to prevent overfitting to human-specific cues. To systematically evaluate few-shot learning for humanoids, we introduce an open-source simulation benchmark with three levels of increasing generalization difficulty from seen to unseen objects and environments. In both simulation and the real world, MimicDroid outperforms state-of-the-art methods, achieving nearly twofold better generalization to novel objects in the real world.
+We aim to enable humanoid robots to efficiently solve new manipulation tasks from a few video examples in ever-changing environments. In-context learning (ICL) is a promising framework to achieve this goal. However, existing ICL approaches rely on costly teleoperated datasets. We propose using human play videos—continuous, unlabeled videos of people interacting freely with their environment—as a scalable and diverse training data source. Our formulation involves two key challenges: (i) lack of annotated data to train policies to learn in-context; and (ii) the embodiment gap between humans and humanoids. We introduce MimicDroid, a method that enables humanoids to perform ICL using human play videos as the only training data. To overcome the lack of super- vision, MimicDroid extracts trajectory pairs with similar manipulation behaviors. It then trains the policy to predict the actions of one trajectory conditioned on the other. Through this process, the model acquires ICL capabilities for adapting to novel objects and environments at test time. To bridge the embodiment gap, MimicDroid first retargets human wrist poses from RGB videos to the humanoid, leveraging their kinematic similarity. It further applies random patch masking to address the visual gap, reducing overfitting to human-specific cues. To evaluate few-shot learning for humanoids, we introduce an open-source simulation benchmark with increasing levels of generalization difficulty. MimicDroid outperforms state-of- the-art methods, achieving nearly 2× higher success rates on novel real-world objects, demonstrating improved generalization.
             </p>
 </div>
 </div>
@@ -933,7 +933,7 @@
 <div class="container is-max-desktop has-text-centered">
 <h2 class="title is-3">Method Overview</h2>
 <figure class="image">
-<img alt="Overview of MIMICDROID" src="./static/images/mew_method_figurev2-1.png"/>
+<img alt="Overview of MimicDroid" src="./static/images/mew_method_figurev2-1.png"/>
 <figcaption class="method-caption has-text-justified">
   MimicDroid performs meta-training for in-context learning (Meta-ICL) by constructing context-target pairs from human play videos.
   <ul style="text-align:left; margin-top:0.5rem;">
@@ -1163,7 +1163,7 @@ other errors (8%) like incomplete cabinet closure, missed placement (Fig. 4). Co
     <h2 class="title is-3">Method Overview</h2>
     <figure class="image">
       <img src="./static/images/mew_method_figurev2-1.png"
-           alt="Overview of MIMICDROID" />
+           alt="Overview of MimicDroid" />
 
       <figcaption class="method-caption has-text-justified">
         <strong>Overview of MimicDroid.</strong> MimicDroid performs meta-training for in-context learning (Meta-ICL) by constructing context-target pairs from human play videos.
