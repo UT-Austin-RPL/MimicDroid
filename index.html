@@ -670,6 +670,129 @@
   height: auto;
 }
 
+/* Video carousel styling */
+.video-block {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.video-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.video-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.video-card video {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+}
+
+.video-caption {
+  padding: 0.75rem;
+  margin: 0;
+  font-weight: 600;
+  color: #363636;
+  text-align: center;
+  /* background: rgba(255, 140, 66, 0.05); */
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+/* Glide arrow styling */
+.glide__arrow {
+  background: linear-gradient(135deg, #ff8c42 0%, #d2691e 100%);
+  color: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 20px;
+  top: 125px; /* Center of 250px video height */
+  transform: translateY(-50%);
+  box-shadow: 0 4px 15px rgba(255, 140, 66, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.glide__arrow:hover {
+  background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 20px rgba(255, 140, 66, 0.4);
+}
+
+.glide__arrow--left {
+  left: -25px;
+}
+
+.glide__arrow--right {
+  right: -25px;
+}
+
+.glide__bullets {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  gap: 8px;
+}
+
+.glide__bullet {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ddd;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.glide__bullet--active {
+  background: linear-gradient(135deg, #ff8c42 0%, #d2691e 100%);
+  transform: scale(1.2);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .video-card video {
+    height: 300px;  /* Larger on mobile since only 1 per view */
+  }
+  
+  .video-caption {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+  
+  .glide__arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    top: 150px; /* Center of 300px video height on mobile */
+  }
+  
+  .glide__arrow--left {
+    left: -20px;
+  }
+  
+  .glide__arrow--right {
+    right: -20px;
+  }
+}
+
 </style>
 </link></head>
 <body>
@@ -872,17 +995,38 @@ other errors (8%) like incomplete cabinet closure, missed placement (Fig. 4). Co
 <section class="section" id="demos">
 <div class="container is-max-desktop has-text-centered">
 <h2 class="title is-3" style="margin-bottom: 3rem;">Real-world results</h2>
+
+<h3 class="title is-4">Cluttered Environments</h3>
 <figure>
-<div class="glide" style="position: relative;">
+<div class="glide cluttered-carousel" style="position: relative;">
 <div class="glide__track" data-glide-el="track">
 <ul class="glide__slides">
-<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/potatoes_basket.mp4" type="video/mp4"/></video></div><p class="video-caption">Potatoes-Basket</p></div></li>
-<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/demo_oven_plate_chips.mp4" type="video/mp4"/></video></div><p class="video-caption">Chips-Plate</p></div></li>
-<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/demo_rotating_disk.mp4" type="video/mp4"/></video></div><p class="video-caption">Cookies-Plate</p></div></li>
-<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/demo_rotating_disk_plate.mp4" type="video/mp4"/></video></div><p class="video-caption">Bread-Plate</p></div></li>
-<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/strawberries_to_plate.mp4" type="video/mp4"/></video></div><p class="video-caption">Strawberries-Oven</p></div></li>
-<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/bread_on_oven_tray.mp4" type="video/mp4"/></video></div><p class="video-caption">Bread-Tray</p></div></li>
-</ul>
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/cluttered/oven top to plate; chips; multiple tasks; good_fast16.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Oven Top to Plate</p></div></li>
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/cluttered/plate to oven tray; bread; multiple tasks_fast16.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Plate to Oven Tray</p></div></li>
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/cluttered/rotating disk to plate; bread 2; multiple tasks_fast16.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Rotating Disk to Plate</p></div></li>
+</div>
+<div class="glide__arrows" data-glide-el="controls">
+<button class="glide__arrow glide__arrow--left" data-glide-dir="&lt;">‹</button>
+<button class="glide__arrow glide__arrow--right" data-glide-dir="&gt;">›</button>
+</div>
+<div class="glide__bullets" data-glide-el="controls[nav]">
+<button class="glide__bullet" data-glide-dir="=0"></button>
+<button class="glide__bullet" data-glide-dir="=1"></button>
+<button class="glide__bullet" data-glide-dir="=2"></button>
+</div>
+</div>
+<!-- <figcaption class="has-text-centered" style="margin-top: 1rem;">.</figcaption> -->
+</figure>
+
+<h3 class="title is-4" style="margin-top: 3rem;">Novel Object Categories</h3>
+<figure>
+<div class="glide novel-carousel" style="position: relative;">
+<div class="glide__track" data-glide-el="track">
+<ul class="glide__slides">
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/novel/new oven top to snack basket; chocolates_fast16.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">New Oven Top to Snack Basket</p></div></li>
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/novel/rotating disk to plate; cheese cubes_fast16.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Rotating Disk to Plate</p></div></li>
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/novel/rotating disk to veggie basket; potato_fast16.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Rotating Disk to Veggie Basket</p></div></li>
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/novel/rotating disk to veggie plate; garlic_fast16.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Rotating Disk to Veggie Plate</p></div></li>
 </div>
 <div class="glide__arrows" data-glide-el="controls">
 <button class="glide__arrow glide__arrow--left" data-glide-dir="&lt;">‹</button>
@@ -893,12 +1037,107 @@ other errors (8%) like incomplete cabinet closure, missed placement (Fig. 4). Co
 <button class="glide__bullet" data-glide-dir="=1"></button>
 <button class="glide__bullet" data-glide-dir="=2"></button>
 <button class="glide__bullet" data-glide-dir="=3"></button>
-<button class="glide__bullet" data-glide-dir="=4"></button>
-<button class="glide__bullet" data-glide-dir="=5"></button>
 </div>
 </div>
 <!-- <figcaption class="has-text-centered" style="margin-top: 1rem;">.</figcaption> -->
 </figure>
+  
+<h3 class="title is-4" style="margin-top: 3rem;">Articulated Object Manipulation</h3>
+<figure>
+<div class="glide articulate-carousel" style="position: relative;">
+<div class="glide__track" data-glide-el="track">
+<ul class="glide__slides">
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/articulate/trim-close-drawer_speed8.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Close Drawer</p></div></li>
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/articulate/trim-close-laptop_speed8.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Close Laptop</p></div></li>
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/articulate/trim-open-drawer-and-place_speed8.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Open Drawer and Place</p></div></li>
+</div>
+<div class="glide__arrows" data-glide-el="controls">
+<button class="glide__arrow glide__arrow--left" data-glide-dir="&lt;">‹</button>
+<button class="glide__arrow glide__arrow--right" data-glide-dir="&gt;">›</button>
+</div>
+<div class="glide__bullets" data-glide-el="controls[nav]">
+<button class="glide__bullet" data-glide-dir="=0"></button>
+<button class="glide__bullet" data-glide-dir="=1"></button>
+<button class="glide__bullet" data-glide-dir="=2"></button>
+</div>
+</div>
+<!-- <figcaption class="has-text-centered" style="margin-top: 1rem;">.</figcaption> -->
+</figure>
+
+<h3 class="title is-4" style="margin-top: 3rem;">Varied Object Positions</h3>
+<h4 class="title is-5">Place Chips on Serving Tray</h4>
+<div class="columns is-vcentered" style="margin-top: 1rem;">
+  <div class="column is-half">
+    <div class="video-block">
+      <div class="video-card">
+        <video autoplay="" controls="" loop="" muted="" playsinline="">
+          <source src="./static/videos/spatial/trim-right-to-plate_speed8.0x.mp4" type="video/mp4"/>
+        </video>
+      </div>
+      <p class="video-caption">Right to Plate</p>
+    </div>
+  </div>
+  <div class="column is-half">
+    <div class="video-block">
+      <div class="video-card">
+        <video autoplay="" controls="" loop="" muted="" playsinline="">
+          <source src="./static/videos/spatial/trim-top-right-to-plate_speed8.0x.mp4" type="video/mp4"/>
+        </video>
+      </div>
+      <p class="video-caption">Top Right to Plate</p>
+    </div>
+  </div>
+</div>
+
+<h4 class="title is-5">Place Scissors on Table </h4>
+<div class="columns is-vcentered" style="margin-top: 1rem;">
+  <div class="column is-half">
+    <div class="video-block">
+      <div class="video-card">
+        <video autoplay="" controls="" loop="" muted="" playsinline="">
+          <source src="./static/videos/spatial/trim-scissor-down-position_speed8.0x.mp4" type="video/mp4"/>
+        </video>
+      </div>
+      <p class="video-caption">Scissor Down Position</p>
+    </div>
+  </div>
+  <div class="column is-half">
+    <div class="video-block">
+      <div class="video-card">
+        <video autoplay="" controls="" loop="" muted="" playsinline="">
+          <source src="./static/videos/spatial/trim-scissor-top-position_speed8.0x.mp4" type="video/mp4"/>
+        </video>
+      </div>
+      <p class="video-caption">Scissor Top Position</p>
+    </div>
+  </div>
+</div>
+
+<h3 class="title is-4" style="margin-top: 3rem;">Failure Cases (Minor Difference in Kinematic Mappings)</h3>
+
+<div class="columns is-vcentered" style="margin-top: 1rem;">
+  <div class="column is-half">
+    <div class="video-block">
+      <div class="video-card">
+        <video autoplay="" controls="" loop="" muted="" playsinline="">
+          <source src="./static/videos/failure/rotating disk to veggie basket; onion; failure_fast16.0x.mp4" type="video/mp4"/>
+        </video>
+      </div>
+      <p class="video-caption">Grabbing Onion from Rotating Disk</p>
+    </div>
+  </div>
+  <div class="column is-half">
+    <div class="video-block">
+      <div class="video-card">
+        <video autoplay="" controls="" loop="" muted="" playsinline="">
+          <source src="./static/videos/failure/trim-pumping-failure_speed8.0x.mp4" type="video/mp4"/>
+        </video>
+      </div>
+      <p class="video-caption">Pumping Bottle</p>
+    </div>
+  </div>
+</div>
+
 </div>
 </section>
 <!-- <section class="section">
@@ -1132,23 +1371,48 @@ other errors (8%) like incomplete cabinet closure, missed placement (Fig. 4). Co
 <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.6.0/dist/glide.min.js"></script>
 <script>
     window.addEventListener('load', function () {
-      // Initialize main policy rollouts carousel
-      new Glide('.glide', {
+      // Initialize cluttered environments carousel (3 videos)
+      new Glide('.cluttered-carousel', {
         type: 'carousel',
-        rewind: false,
+        rewind: true,
         perView: 3,
         focusAt: 'center',
-        gap: 24,
+        gap: 20,
+        autoplay: false,
         breakpoints: {
-          1024: { perView: 2 },
+          1024: { perView: 1 },
           768: { perView: 1 }
         }
       }).mount();
 
+      // Initialize articulated object manipulation carousel (3 videos)
+      new Glide('.articulate-carousel', {
+        type: 'carousel',
+        rewind: true,
+        perView: 3,
+        focusAt: 'center',
+        gap: 20,
+        autoplay: false,
+        breakpoints: {
+          1024: { perView: 1 },
+          768: { perView: 1 }
+        }
+      }).mount();
 
+      // Initialize novel object categories carousel (4 videos)
+      new Glide('.novel-carousel', {
+        type: 'carousel',
+        rewind: true,
+        perView: 3,
+        focusAt: 'center',
+        gap: 20,
+        autoplay: false,
+        breakpoints: {
+          1024: { perView: 1 },
+          768: { perView: 1 }
+        }
+      }).mount();
     });
-
-
   </script>
 </body>
 </html>
