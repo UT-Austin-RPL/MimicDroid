@@ -766,10 +766,38 @@
   transform: scale(1.2);
 }
 
+/* Failure case videos - taller height */
+.failure-video-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.failure-video-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.failure-video-card video {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+}
+
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
   .video-card video {
     height: 300px;  /* Larger on mobile since only 1 per view */
+  }
+  
+  .failure-video-card video {
+    height: 350px;  /* Taller failure videos on mobile too */
   }
   
   .video-caption {
@@ -1113,22 +1141,28 @@ other errors (8%) like incomplete cabinet closure, missed placement (Fig. 4). Co
   </div>
 </div>
 
-<h3 class="title is-4" style="margin-top: 3rem;">Failure Cases (Minor Difference in Kinematic Mappings)</h3>
+<h3 class="title is-4" style="margin-top: 3rem;">Failure Cases</h3>
+<h4 class="title is-5">Misalignment Leads to Object Slipping</h4>
 
-<div class="columns is-vcentered" style="margin-top: 1rem;">
-  <div class="column is-half">
+<div class="columns is-centered" style="margin-top: 1rem;">
+  <div class="column is-full">
     <div class="video-block">
-      <div class="video-card">
+      <div class="failure-video-card">
         <video autoplay="" controls="" loop="" muted="" playsinline="">
           <source src="./static/videos/failure/rotating disk to veggie basket; onion; failure_fast16.0x.mp4" type="video/mp4"/>
         </video>
       </div>
-      <p class="video-caption">Grabbing Onion from Rotating Disk</p>
+      <p class="video-caption">Grabbing Onion</p>
     </div>
   </div>
-  <div class="column is-half">
+</div>
+
+<h4 class="title is-5">Mispredicted Motion Direction</h4>
+
+<div class="columns is-centered" style="margin-top: 1rem;">
+  <div class="column is-full">
     <div class="video-block">
-      <div class="video-card">
+      <div class="failure-video-card">
         <video autoplay="" controls="" loop="" muted="" playsinline="">
           <source src="./static/videos/failure/trim-pumping-failure_speed8.0x.mp4" type="video/mp4"/>
         </video>
@@ -1138,6 +1172,36 @@ other errors (8%) like incomplete cabinet closure, missed placement (Fig. 4). Co
   </div>
 </div>
 
+<h4 class="title is-5">Overfits to Specific Hand Sizes Causing Collisions</h4>
+
+<div class="columns is-centered" style="margin-top: 1rem;">
+  <div class="column is-full">
+    <div class="video-block">
+      <div class="failure-video-card">
+        <video autoplay="" controls="" loop="" muted="" playsinline="">
+          <source src="./static/videos/failure/collision.mp4" type="video/mp4"/>
+        </video>
+      </div>
+      <p class="video-caption">Plate to Oven</p>
+    </div>
+  </div>
+</div>
+
+
+<h4 class="title is-5">New Oven Needs a Different Grasp Height Causing Collisions</h4>
+
+<div class="columns is-centered" style="margin-top: 1rem;">
+  <div class="column is-full">
+    <div class="video-block">
+      <div class="failure-video-card">
+        <video autoplay="" controls="" loop="" muted="" playsinline="">
+          <source src="./static/videos/failure/new-oven-failure.mp4" type="video/mp4"/>
+        </video>
+      </div>
+      <p class="video-caption">Pull Out Oven Tray</p>
+    </div>
+  </div>
+</div>
 </div>
 </section>
 <!-- <section class="section">

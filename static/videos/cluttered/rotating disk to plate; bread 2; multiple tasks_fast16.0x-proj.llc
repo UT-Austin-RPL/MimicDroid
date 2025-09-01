@@ -1,0 +1,10 @@
+{
+  version: 1,
+  mediaFileName: 'rotating disk to plate; bread 2; multiple tasks_fast16.0x.mp4',
+  cutSegments: [
+    {
+      start: 0.4048706095890411,
+      name: '',
+    },
+  ],
+}
