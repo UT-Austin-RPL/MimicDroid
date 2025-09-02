@@ -701,17 +701,23 @@
 }
 
 .video-caption {
+  display: block;           /* was: display: flex */
+  text-align: center;
   padding: 0.75rem;
   margin: 0;
   font-weight: 600;
   color: #363636;
-  text-align: center;
-  /* background: rgba(255, 140, 66, 0.05); */
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-size: 0.9rem;
+  /* remove/ignore align-items/justify-content/flex-grow when using block */
+  white-space: normal;      /* ensure wrapping */
+}
+.video-caption em {
+  font-style: italic;
+  color: #d35400;
+}
+.eval-video-caption em {
+  font-style: italic;
+  color: #d35400;
 }
 
 /* Glide arrow styling */
@@ -858,7 +864,7 @@
 <!-- <a class="navbar-item" href="#abstract">Abstract</a> -->
 <a class="navbar-item" href="#method">Method</a>
 <a class="navbar-item" href="#experiments">Experiments</a>
-<a class="navbar-item" href="#demos">Demos</a>
+<a class="navbar-item" href="#demos">Videos</a>
 <a class="navbar-item" href="#BibTeX">Cite</a>
 <a class="navbar-item button-nav" href="evaluation.html">Simulation Benchmark</a>
 </div>
@@ -906,15 +912,6 @@
 <br/>
 <div class="column has-text-centered">
 <div class="publication-links">
-<!-- PDF Link. -->
-<span class="link-block">
-<a class="external-link button is-normal is-rounded is-dark" href=".">
-<span class="icon">
-<i class="fas fa-file-pdf"></i>
-</span>
-<span>Paper</span>
-</a>
-</span>
 <!--arXiv Link.-->
 <span class="link-block">
 <a class="external-link button is-normal is-rounded is-dark" href=".">
@@ -931,6 +928,17 @@
 <i class="fab fa-github"></i>
 </span>
 <span>Code (Coming Soon)</span>
+</a>
+</span>
+<!-- Dataset Link. -->
+<span class="link-block">
+<a class="external-link button is-normal is-rounded is-dark" href=".">
+<span class="icon">
+<i class="fas fa-database"></i>
+</span>
+<span>Dataset</span>
+</a>
+</span>
 </a>
 </span>
 </div>
@@ -990,7 +998,7 @@ MimicDroid outperforms state-of-the-art methods, achieving nearly two times high
 <img alt="Overview of MimicDroid" src="./static/images/mew_method_figurev2-1.png"/>
 <figcaption class="method-caption has-text-justified">
 MimicDroid performs meta-training for in-context learning (Meta-ICL) by constructing context-target pairs from human play videos.
-<ul style="text-align:justify; margin-top:0.5rem; has-text-justified">
+<ul class="has-text-justified" style="text-align:justify; margin-top:0.5rem;">
   <li><strong>Top.</strong> For a target segment, we retrieve the top-k most similar trajectory segments (top-left) based on observation-action similarity (top-right) to serve as context.</li>
   <li><strong>Bottom.</strong> These context-target pairs are used to train an ICL policy (bottom-left). To overcome the human-robot visual gap and avoid overfitting to human-specific visual cues, we apply visual masking to input images (bottom-right), improving transferability.</li>
 </ul>
@@ -1063,18 +1071,6 @@ study of the factors that influence ICL performance on harder generalization tas
 </div>
 </div>
 </div>
-<h3 class="title is-4" style="margin-top: 1.5em;">Failure Analysis</h3>
-<div class="columns is-vcentered">
-<div class="column is-half">
-<img alt="Failure Analysis" src="./static/images/dual_pie-1.png" style="max-width: 600px; width: 100%;"/>
-</div>
-<div class="column is-half">
-<div class="content has-text-justified">
-<p>Failures in downstream tasks arise from task misidentification (26%), missed grasps (16%), and
-other errors (8%) like incomplete cabinet closure, missed placement (Fig. 4). Compared to Vid2Robot, MimicDroid notably reduces both misidentification (−15%) and grasping errors (−5%) using ICL.</p>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -1116,7 +1112,7 @@ other errors (8%) like incomplete cabinet closure, missed placement (Fig. 4). Co
 <div class="glide cluttered-carousel" style="position: relative;">
 <div class="glide__track" data-glide-el="track">
 <ul class="glide__slides">
-<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/cluttered/oven top to plate; chips; multiple tasks; good_fast16.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Bread from Rotating Snack Server to</p></div></li>
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/cluttered/oven top to plate; chips; multiple tasks; good_fast16.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Bread from Rotating Server to</p></div></li>
 <li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/cluttered/plate to oven tray; bread; multiple tasks_fast16.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Chips from Oven Top to Plate</p></div></li>
 <li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/cluttered/rotating disk to plate; bread 2; multiple tasks_fast16.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Bread from Plate to Oven Tray</p></div></li>
 </div>
@@ -1128,30 +1124,6 @@ other errors (8%) like incomplete cabinet closure, missed placement (Fig. 4). Co
 <button class="glide__bullet" data-glide-dir="=0"></button>
 <button class="glide__bullet" data-glide-dir="=1"></button>
 <button class="glide__bullet" data-glide-dir="=2"></button>
-</div>
-</div>
-<!-- <figcaption class="has-text-centered" style="margin-top: 1rem;">.</figcaption> -->
-</figure>
-
-<h3 class="title is-4" style="margin-top: 3rem;">Novel Object Categories</h3>
-<figure>
-<div class="glide novel-carousel" style="position: relative;">
-<div class="glide__track" data-glide-el="track">
-<ul class="glide__slides">
-<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/novel/new oven top to snack basket; chocolates_fast16.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Garlic from Rotating Snack Server to Plate</p></div></li>
-<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/novel/rotating disk to plate; cheese cubes_fast16.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Chips from Oven Top to Basket</p></div></li>
-<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/novel/rotating disk to veggie basket; potato_fast16.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Cheese from Oven Top to Veggie Basket</p></div></li>
-<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/novel/rotating disk to veggie plate; garlic_fast16.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Potato from Rotating Snack Server to Veggie Basket</p></div></li>
-</div>
-<div class="glide__arrows" data-glide-el="controls">
-<button class="glide__arrow glide__arrow--left" data-glide-dir="&lt;">‹</button>
-<button class="glide__arrow glide__arrow--right" data-glide-dir="&gt;">›</button>
-</div>
-<div class="glide__bullets" data-glide-el="controls[nav]">
-<button class="glide__bullet" data-glide-dir="=0"></button>
-<button class="glide__bullet" data-glide-dir="=1"></button>
-<button class="glide__bullet" data-glide-dir="=2"></button>
-<button class="glide__bullet" data-glide-dir="=3"></button>
 </div>
 </div>
 <!-- <figcaption class="has-text-centered" style="margin-top: 1rem;">.</figcaption> -->
@@ -1180,116 +1152,127 @@ other errors (8%) like incomplete cabinet closure, missed placement (Fig. 4). Co
 </figure>
 
 <h3 class="title is-4" style="margin-top: 3rem;">Varied Object Positions</h3>
-<h4 class="title is-5">Place Chips on Serving Tray</h4>
-<div class="columns is-vcentered" style="margin-top: 1rem;">
-  <div class="column is-one-sixth"></div>
-  <div class="column is-one-third">
-    <div class="video-block">
-      <div class="video-card">
-        <video autoplay="" controls="" loop="" muted="" playsinline="">
-          <source src="./static/videos/spatial/trim-right-to-plate_speed8.0x.mp4" type="video/mp4"/>
-        </video>
-      </div>
-      <p class="video-caption">Move Chips on Bottom Right to Plate</p>
+<figure>
+  <div class="glide varied-carousel" style="position: relative;">
+    <div class="glide__track" data-glide-el="track">
+      <ul class="glide__slides">
+        <li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/spatial/trim-right-to-plate_speed8.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Chips on Bottom Right to Plate</p></div></li>
+        <li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/spatial/trim-top-right-to-plate_speed8.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Chips on Top Right to Plate</p></div></li>
+        <li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/spatial/trim-scissor-down-position_speed8.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Place Scissors from Above on Table</p></div></li>
+        <li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/spatial/trim-scissor-top-position_speed8.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Place Scissors from Bottom on Table</p></div></li>
+      </ul>
+    </div>
+    <div class="glide__arrows" data-glide-el="controls">
+      <button class="glide__arrow glide__arrow--left" data-glide-dir="&lt;">‹</button>
+      <button class="glide__arrow glide__arrow--right" data-glide-dir=">">›</button>
+    </div>
+    <div class="glide__bullets" data-glide-el="controls[nav]">
+      <button class="glide__bullet" data-glide-dir="=0"></button>
+      <button class="glide__bullet" data-glide-dir="=1"></button>
+      <button class="glide__bullet" data-glide-dir="=2"></button>
+      <button class="glide__bullet" data-glide-dir="=3"></button>
     </div>
   </div>
-  <div class="column is-one-third">
-    <div class="video-block">
-      <div class="video-card">
-        <video autoplay="" controls="" loop="" muted="" playsinline="">
-          <source src="./static/videos/spatial/trim-top-right-to-plate_speed8.0x.mp4" type="video/mp4"/>
-        </video>
-      </div>
-      <p class="video-caption">Move Chips on Top Right to Plate</p>
-    </div>
-  </div>
-  <div class="column is-one-sixth"></div>
+</figure>
+
+<h3 class="title is-4" style="margin-top: 3rem;">Novel Object Categories</h3>
+<figure>
+<div class="glide novel-carousel" style="position: relative;">
+<div class="glide__track" data-glide-el="track">
+<ul class="glide__slides">
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/novel/new oven top to snack basket; chocolates_fast16.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Garlic from Rotating Server to Plate</p></div></li>
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/novel/rotating disk to plate; cheese cubes_fast16.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Chips from Oven Top to Basket</p></div></li>
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/novel/rotating disk to veggie basket; potato_fast16.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Cheese from Oven Top to Basket</p></div></li>
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/novel/rotating disk to veggie plate; garlic_fast16.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Potato from Rotating Server to Basket</p></div></li>
 </div>
-
-<h4 class="title is-5">Place Scissors on Table </h4>
-<div class="columns is-vcentered" style="margin-top: 1rem;">
-  <div class="column is-one-sixth"></div>
-  <div class="column is-one-third">
-    <div class="video-block">
-      <div class="video-card">
-        <video autoplay="" controls="" loop="" muted="" playsinline="">
-          <source src="./static/videos/spatial/trim-scissor-down-position_speed8.0x.mp4" type="video/mp4"/>
-        </video>
-      </div>
-      <p class="video-caption">Move Scissors on Bottom to Table</p>
-    </div>
-  </div>
-  <div class="column is-one-third">
-    <div class="video-block">
-      <div class="video-card">
-        <video autoplay="" controls="" loop="" muted="" playsinline="">
-          <source src="./static/videos/spatial/trim-scissor-top-position_speed8.0x.mp4" type="video/mp4"/>
-        </video>
-      </div>
-      <p class="video-caption">Move Scissors on Top to Table</p>
-    </div>
-  </div>
-  <div class="column is-one-sixth"></div>
+<div class="glide__arrows" data-glide-el="controls">
+<button class="glide__arrow glide__arrow--left" data-glide-dir="&lt;">‹</button>
+<button class="glide__arrow glide__arrow--right" data-glide-dir="&gt;">›</button>
 </div>
-
-<h3 class="title is-4" style="margin-top: 3rem;">Failure Cases</h3>
-
-<div class="columns" style="margin-top: 1rem; align-items: flex-start;">
-  <div class="column is-one-sixth"></div>
-  <div class="column is-one-third">
-    <h4 class="title is-5">Misalignment Leads to Slipping</h4>
-    <div class="video-block">
-      <div class="video-card">
-        <video autoplay="" controls="" loop="" muted="" playsinline="">
-          <source src="./static/videos/failure/rotating disk to veggie basket; onion; failure_fast16.0x.mp4" type="video/mp4"/>
-        </video>
-      </div>
-      <p class="video-caption">Move Onion from Rotating Snack Server to Veggie Basket</p>
-    </div>
-  </div>
-  <div class="column is-one-third">
-    <h4 class="title is-5">Mispredicted Motion Direction</h4>
-    <div class="video-block">
-      <div class="video-card">
-        <video autoplay="" controls="" loop="" muted="" playsinline="">
-          <source src="./static/videos/failure/trim-pumping-failure_speed8.0x.mp4" type="video/mp4"/>
-        </video>
-      </div>
-      <p class="video-caption">Pumping Bottle</p>
-    </div>
-  </div>
-  <div class="column is-one-sixth"></div>
+<div class="glide__bullets" data-glide-el="controls[nav]">
+<button class="glide__bullet" data-glide-dir="=0"></button>
+<button class="glide__bullet" data-glide-dir="=1"></button>
+<button class="glide__bullet" data-glide-dir="=2"></button>
+<button class="glide__bullet" data-glide-dir="=3"></button>
 </div>
+</div>
+<!-- <figcaption class="has-text-centered" style="margin-top: 1rem;">.</figcaption> -->
+</figure>
 
+<h3 class="title is-4" style="margin-top: 3rem;">Failure Analysis</h3>
 
-
-
-<div class="columns is-vcentered" style="margin-top: 1rem;">
-  <div class="column is-one-sixth"></div>
-  <div class="column is-one-third">
-    <h4 class="title is-5">Overfits to Specific Hand Sizes Causing Collisions</h4>
-    <div class="video-block">
-      <div class="video-card">
-        <video autoplay="" controls="" loop="" muted="" playsinline="">
-          <source src="./static/videos/failure/collision.mp4" type="video/mp4"/>
-        </video>
-      </div>
-      <p class="video-caption">Move Bread from Plate to Oven Tray</p>
+<figure>
+  <div class="glide failure-carousel" style="position: relative;">
+    <div class="glide__track" data-glide-el="track">
+      <ul class="glide__slides">
+        <li class="glide__slide">
+          <div class="video-block">
+            <div class="video-card">
+              <video autoplay="" controls="" loop="" muted="" playsinline="">
+                <source src="./static/videos/failure/rotating disk to veggie basket; onion; failure_fast16.0x.mp4" type="video/mp4"/>
+              </video>
+            </div>
+            <p class="video-caption">Move onion from rotating server to basket<br/><em>Slight errors in hand pose prediction caused the object to slip</em></p>
+          </div>
+        </li>
+        <li class="glide__slide">
+          <div class="video-block">
+            <div class="video-card">
+              <video autoplay="" controls="" loop="" muted="" playsinline="">
+                <source src="./static/videos/failure/trim-pumping-failure_speed8.0x.mp4" type="video/mp4"/>
+              </video>
+            </div>
+            <p class="video-caption">Pump syrup bottle<br/><em>Mispredicted motion direction prevented pumping</em></p>
+          </div>
+        </li>
+        <li class="glide__slide">
+          <div class="video-block">
+            <div class="video-card">
+              <video autoplay="" controls="" loop="" muted="" playsinline="">
+                <source src="./static/videos/failure/collision.mp4" type="video/mp4"/>
+              </video>
+            </div>
+            <p class="video-caption">Move bread from plate to oven tray<br/><em>Bias toward specific hand sizes seen in training caused a collision in the cluttered scene</em></p>
+          </div>
+        </li>
+        <li class="glide__slide">
+          <div class="video-block">
+            <div class="video-card">
+              <video autoplay="" controls="" loop="" muted="" playsinline="">
+                <source src="./static/videos/failure/new-oven-failure.mp4" type="video/mp4"/>
+              </video>
+            </div>
+            <p class="video-caption">Pull out oven tray<br/><em>Failure to generalize to new oven's grasp height prevented successful tray removal</em></p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="glide__arrows" data-glide-el="controls">
+      <button class="glide__arrow glide__arrow--left" data-glide-dir="&lt;">‹</button>
+      <button class="glide__arrow glide__arrow--right" data-glide-dir=">">›</button>
+    </div>
+    <div class="glide__bullets" data-glide-el="controls[nav]">
+      <button class="glide__bullet" data-glide-dir="=0"></button>
+      <button class="glide__bullet" data-glide-dir="=1"></button>
+      <button class="glide__bullet" data-glide-dir="=2"></button>
+      <button class="glide__bullet" data-glide-dir="=3"></button>
     </div>
   </div>
+</figure>
 
-  <div class="column is-one-third">
-    <h4 class="title is-5">New Oven Needs a Different Grasp Height</h4>
-    <div class="video-block">
-      <div class="video-card">
-        <video autoplay="" controls="" loop="" muted="" playsinline="">
-          <source src="./static/videos/failure/new-oven-failure.mp4" type="video/mp4"/>
-        </video>
-      </div>
-      <p class="video-caption">Pull Out Oven Tray</p>
+<div class="columns is-vcentered">
+  <div class="column is-half">
+    <img alt="Failure Analysis" src="./static/images/dual_pie-1.png" style="max-width: 600px; width: 100%;"/>
+  </div>
+  <div class="column is-half">
+    <div class="content has-text-justified">
+      <p>
+        We further conduct a quantitative analysis of failure rates in simulation to understand common error modes.
+      </p>
+      <p>Failures in downstream tasks arise from task misidentification (26%), missed grasps (16%), and
+other errors (8%) like incomplete cabinet closure, missed placement (Fig. 4). Compared to Vid2Robot, MimicDroid notably reduces both misidentification (−15%) and grasping errors (−5%) using ICL.</p>
     </div>
   </div>
-  <div class="column is-one-sixth"></div>
 </div>
 
 </div>
@@ -1362,7 +1345,7 @@ other errors (8%) like incomplete cabinet closure, missed placement (Fig. 4). Co
             <h3 class="title is-4" style="margin-top: 1.5em;">Qualitative Analysis</h3>
             <figure class="image">
               <img src="./static/images/mew_rw_figure-1.png" alt="Qualitative Method Overview" />
-              <figcaption>Real-world qualitative rollouts of MimicDroid. The humanoid GR1 successfully adapts to novel objects and environments using only a few human video demonstrations at test time. Examples include placing food items on trays, transferring them into containers, and interacting with household appliances. These case studies illustrate the method’s ability to generalize across tasks and embodiments from purely video-based training.</figcaption>
+              <figcaption>Real-world qualitative rollouts of MimicDroid. The humanoid GR1 successfully adapts to novel objects and environments using only a few human video demonstrations at test time. Examples include placing food items on trays, transferring them into containers, and interacting with household appliances. These case studies illustrate the method's ability to generalize across tasks and embodiments from purely video-based training.</figcaption>
             </figure>
 
             <h3 class="title is-4" style="margin-top: 1.5em;">Failure Analysis</h3>
@@ -1553,8 +1536,36 @@ other errors (8%) like incomplete cabinet closure, missed placement (Fig. 4). Co
         }
       }).mount();
 
+      // Initialize varied object positions carousel (4 videos)
+      new Glide('.varied-carousel', {
+        type: 'carousel',
+        rewind: true,
+        perView: 3,
+        focusAt: 'center',
+        gap: 20,
+        autoplay: false,
+        breakpoints: {
+          1024: { perView: 1 },
+          768: { perView: 1 }
+        }
+      }).mount();
+
       // Initialize novel object categories carousel (4 videos)
       new Glide('.novel-carousel', {
+        type: 'carousel',
+        rewind: true,
+        perView: 3,
+        focusAt: 'center',
+        gap: 20,
+        autoplay: false,
+        breakpoints: {
+          1024: { perView: 1 },
+          768: { perView: 1 }
+        }
+      }).mount();
+
+      // Initialize failure cases carousel (4 videos)
+      new Glide('.failure-carousel', {
         type: 'carousel',
         rewind: true,
         perView: 3,
