@@ -821,6 +821,21 @@
   }
 }
 
+/* Top-K: keep full video in view */
+.topk-carousel .video-frame {
+  aspect-ratio: 8 / 2;   /* change if your videos use a different AR */
+  width: 100%;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.topk-carousel .video-frame > video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;     /* key: shows entire video (letterboxes) */
+  background: #ffffff;
+}
+
 </style>
 </link></head>
 <body>
@@ -963,13 +978,39 @@ We aim to enable humanoid robots to efficiently solve new manipulation tasks fro
 <figure class="image">
 <img alt="Overview of MimicDroid" src="./static/images/mew_method_figurev2-1.png"/>
 <figcaption class="method-caption has-text-justified">
-  MimicDroid performs meta-training for in-context learning (Meta-ICL) by constructing context-target pairs from human play videos.
-  <ul style="text-align:left; margin-top:0.5rem;">
-<li><strong>• Top:</strong> For a target segment, we retrieve the top-k most similar trajectory segments (top-left) based on observation-action similarity (top-right) to serve as context.</li>
-<li><strong>• Bottom:</strong> These context-target pairs are used to train an ICL policy (bottom-left). To overcome the human-robot visual gap and avoid overfitting to human-specific visual cues, we apply visual masking to input images (bottom-right), improving transferability.</li>
+MimicDroid performs meta-training for in-context learning (Meta-ICL) by constructing context-target pairs from human play videos.
+<ul style="text-align:justify; margin-top:0.5rem; has-text-justified">
+  <li><strong>Top.</strong> For a target segment, we retrieve the top-k most similar trajectory segments (top-left) based on observation-action similarity (top-right) to serve as context.</li>
+  <li><strong>Bottom.</strong> These context-target pairs are used to train an ICL policy (bottom-left). To overcome the human-robot visual gap and avoid overfitting to human-specific visual cues, we apply visual masking to input images (bottom-right), improving transferability.</li>
 </ul>
 </figcaption>
 </figure>
+<!-- add a videos of top k similar trajectory segments below here. make it sliding with only one video per display -->
+<div class="columns is-vcentered">
+  <div class="column is-full">
+    <h3 class="title is-4" style="margin-top: 2rem;">Top-K Similar Trajectory Segments</h3>
+    <p class="has-text-justified" style="margin-bottom: 1.5rem;">
+      We provide a visualization of the top-k similar trajectory segments below, randomly sampled from the dataset and showing only three videos per query (leftmost) out of the top ten.
+      Each such trajectory pair serves as a training instance for meta-training of in-context learning.
+    </p>
+    <figure>
+      <div class="glide topk-carousel" style="position: relative;">
+        <div class="glide__track" data-glide-el="track">
+          <ul class="glide__slides" id="topk-slides">
+            <!-- Videos will be dynamically loaded here -->
+          </ul>
+        </div>
+        <div class="glide__arrows" data-glide-el="controls">
+          <button class="glide__arrow glide__arrow--left" data-glide-dir="<">‹</button>
+          <button class="glide__arrow glide__arrow--right" data-glide-dir=">">›</button>
+        </div>
+        <div class="glide__bullets" data-glide-el="controls[nav]" id="topk-bullets">
+          <!-- Bullets will be dynamically generated -->
+        </div>
+      </div>
+    </figure>
+  </div>
+</div>
 </div>
 </section>
 <!-- Experiments -->
@@ -979,8 +1020,8 @@ We aim to enable humanoid robots to efficiently solve new manipulation tasks fro
 <div class="column is-full">
 <h2 class="title is-3">Simulation Results</h2>
 <div class="content">
-<h4 class="title is-4" style="margin-top: 1.5em;">Todo: add a link to Simulation Benchmark, and qualitative videos in sim</h4>
 <h3 class="title is-4" style="margin-top: 1.5em;">Baseline Comparisons in Simulation Benchmark</h3>
+<p>See details of <a href="#simulation-benchmark">simulation benchmark</a>, qualitative videos of <a href="#simulation-rollouts">simulation rollouts</a>, and quantitative results below.</p>
 <div class="columns is-vcentered">
 <div class="column is-half">
 <img alt="Number of Prompts Results" src="./static/images/all_methods_abstract.png" style="max-width: 600px; width: 100%;"/>
@@ -988,6 +1029,14 @@ We aim to enable humanoid robots to efficiently solve new manipulation tasks fro
 <div class="column is-half">
 <img alt="Number of Prompts Results" src="./static/images/all_methods_gr1.png" style="max-width: 600px; width: 100%;"/>
 </div>
+</div>
+<!-- add the description of the results below here -->
+<div class="content has-text-justified">
+<p>
+Task-conditioned baselines receive only task specifications, which limits their ability to perform in-context learning.
+As a result, they trail MIMICDROID by 14-18% across source and humanoid embodiments.
+Finetuning at test time suffers from catastrophic forgetting under distribution shifts, losing 10% across embodiments and failing at larger shifts such as L3, whereas MimicDroid adapts instantly and robustly, outperforming finetuning by 26-29% with only a 3% drop across embodiments.
+</p>
 </div>
 </div>
 <h3 class="title is-4" style="margin-top: 1.5em;">How does scaling dataset size impact MimicDroid's ability to perform ICL?</h3>
@@ -1019,10 +1068,37 @@ other errors (8%) like incomplete cabinet closure, missed placement (Fig. 4). Co
 </div>
 </div>
 </section>
+
+<!-- Simulation Rollout Examples -->
+<section class="section" id="simulation-rollouts">
+<div class="container is-max-desktop has-text-centered">
+<h2 class="title is-3" style="margin-bottom: 3rem;">Simulation Rollout Examples</h2>
+<p>Below are examples of MimicDroid's performance in the simulation benchmark. Note the videos below have wider angle than the actual observation for better viewing.</p>
+<figure>
+<div class="glide simulation-carousel" style="position: relative;">
+<div class="glide__track" data-glide-el="track">
+<ul class="glide__slides" id="simulation-slides">
+<!-- Slides will be loaded dynamically from manifest.json -->
+</ul>
+</div>
+<div class="glide__arrows" data-glide-el="controls">
+<button class="glide__arrow glide__arrow--left" data-glide-dir="&lt;">‹</button>
+<button class="glide__arrow glide__arrow--right" data-glide-dir="&gt;">›</button>
+</div>
+<div class="glide__bullets" data-glide-el="controls[nav]" id="simulation-bullets">
+<!-- Bullets will be generated dynamically -->
+</div>
+</div>
+<!-- <figcaption class="has-text-centered" style="margin-top: 1rem;">Simulation rollout examples demonstrating MimicDroid's performance in various simulated environments</figcaption> -->
+</figure>
+</div>
+</div>
+</section>
+
 <!-- Rollout Carousel -->
 <section class="section" id="demos">
 <div class="container is-max-desktop has-text-centered">
-<h2 class="title is-3" style="margin-bottom: 3rem;">Real-world results</h2>
+<h2 class="title is-3" style="margin-bottom: 3rem;">Real-World Rollout Examples</h2>
 
 <h3 class="title is-4">Cluttered Environments</h3>
 <figure>
@@ -1479,6 +1555,150 @@ other errors (8%) like incomplete cabinet closure, missed placement (Fig. 4). Co
           768: { perView: 1 }
         }
       }).mount();
+
+      // Initialize simulation rollout examples carousel
+      const simulationCarousel = new Glide('.simulation-carousel', {
+        type: 'carousel',
+        rewind: true,
+        perView: 1, // Show only 1 video at a time
+        focusAt: 'center',
+        gap: 20,
+        autoplay: false,
+        breakpoints: {
+          1024: { perView: 1 },
+          768: { perView: 1 }
+        }
+      });
+
+      // Function to load simulation videos using manifest.json
+      async function loadSimulationVideos() {
+        const container = document.getElementById('simulation-slides');
+        const bulletsContainer = document.getElementById('simulation-bullets');
+        if (!container || !bulletsContainer) return;
+
+        try {
+          const res = await fetch('./static/videos/sim_evals/manifest.json', { cache: "no-store" });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const videos = await res.json();
+
+          // Build slides
+          for (const videoName of videos) {
+            const li = document.createElement('li');
+            li.className = 'glide__slide';
+
+            // Build a safe URL for files with spaces/semicolons/etc.
+            const safeSrc = encodeURI(`./static/videos/sim_evals/${videoName}`);
+
+            // Extract filename without .mp4 extension for caption
+            const caption = videoName.replace('.mp4', '');
+
+            li.innerHTML = `
+              <div class="video-block">
+                <div class="video-card" style="background: white; padding: 10px; border-radius: 8px; width: 100%;">
+                  <div class="video-frame" style="display: flex; justify-content: center; align-items: center; background: white; width: 100%;">
+                    <video autoplay controls loop muted playsinline style="width: 100%; max-height: 400px; object-fit: contain;">
+                      <source src="${safeSrc}" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                </div>
+                <p class="video-caption">${caption}</p>
+              </div>
+            `;
+
+            container.appendChild(li);
+          }
+
+          // Generate bullets for navigation
+          for (let i = 0; i < videos.length; i++) {
+            const button = document.createElement('button');
+            button.className = 'glide__bullet';
+            button.setAttribute('data-glide-dir', `=${i}`);
+            bulletsContainer.appendChild(button);
+          }
+
+          // Mount the carousel after loading videos
+          simulationCarousel.mount();
+        } catch (error) {
+          console.error('Failed to load simulation videos:', error);
+          // Add fallback content
+          container.innerHTML = '<li class="glide__slide"><div class="video-block"><p>Simulation videos will be loaded here. Please ensure the sim_evals directory contains videos and a valid manifest.json file.</p></div></li>';
+        }
+      }
+
+      // Load simulation videos
+      loadSimulationVideos();
+
+      // Initialize Top-K similar trajectory segments carousel
+      const topkCarousel = new Glide('.topk-carousel', {
+        type: 'carousel',
+        rewind: true,
+        perView: 1, // Only one video at a time
+        focusAt: 'center',
+        gap: 20,
+        autoplay: false,
+        breakpoints: {
+          1024: { perView: 1 },
+          768: { perView: 1 }
+        }
+      });
+
+      // Function to load videos using a manifest.json in each directory
+      async function loadVideos(directory, containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+
+        try {
+          const res = await fetch(`./static/videos/${directory}/manifest.json`, { cache: "no-store" });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const videos = await res.json();
+
+          // Build slides
+          for (const videoName of videos) {
+            const li = document.createElement('li');
+            li.className = 'glide__slide';
+
+            // Build a safe URL for files with spaces/semicolons/etc.
+            const safeSrc = encodeURI(`./static/videos/${directory}/${videoName}`);
+
+            li.innerHTML = `
+              <div class="video-block">
+                <div class="video-card">
+                  <div class="video-frame">
+                    <video autoplay controls loop muted playsinline>
+                      <source src="${safeSrc}" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                </div>
+              </div>
+            `;
+
+            container.appendChild(li);
+          }
+
+          // Generate bullets for navigation
+          const bulletsContainer = document.getElementById('topk-bullets');
+          if (bulletsContainer) {
+            bulletsContainer.innerHTML = '';
+            for (let i = 0; i < videos.length; i++) {
+              const button = document.createElement('button');
+              button.className = 'glide__bullet';
+              button.setAttribute('data-glide-dir', `=${i}`);
+              bulletsContainer.appendChild(button);
+            }
+          }
+
+          // Mount the carousel after slides are loaded
+          topkCarousel.mount();
+        } catch (err) {
+          console.error(`Error loading videos from ${directory}:`, err);
+          container.innerHTML = '<p>Failed to load videos for this section.</p>';
+        }
+      }
+
+      // Load videos and initialize the carousel
+      loadVideos('top_k', 'topk-slides');
     });
   </script>
 </body>
