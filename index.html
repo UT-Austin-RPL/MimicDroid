@@ -855,7 +855,7 @@
 <div class="navbar-menu" id="navbarMenu">
 <div class="navbar-end">
 <a class="navbar-item" href="#home">Home</a>
-<a class="navbar-item" href="#abstract">Abstract</a>
+<!-- <a class="navbar-item" href="#abstract">Abstract</a> -->
 <a class="navbar-item" href="#method">Method</a>
 <a class="navbar-item" href="#experiments">Experiments</a>
 <a class="navbar-item" href="#demos">Demos</a>
@@ -963,8 +963,19 @@
 <h2 class="title is-3">Abstract</h2>
 <div class="content has-text-justified">
 <p>
-We aim to enable humanoid robots to efficiently solve new manipulation tasks from a few video examples in ever-changing environments. In-context learning (ICL) is a promising framework to achieve this goal. However, existing ICL approaches rely on costly teleoperated datasets. We propose using human play videos—continuous, unlabeled videos of people interacting freely with their environment—as a scalable and diverse training data source. Our formulation involves two key challenges: (i) lack of annotated data to train policies to learn in-context; and (ii) the embodiment gap between humans and humanoids. We introduce MimicDroid, a method that enables humanoids to perform ICL using human play videos as the only training data. To overcome the lack of super- vision, MimicDroid extracts trajectory pairs with similar manipulation behaviors. It then trains the policy to predict the actions of one trajectory conditioned on the other. Through this process, the model acquires ICL capabilities for adapting to novel objects and environments at test time. To bridge the embodiment gap, MimicDroid first retargets human wrist poses from RGB videos to the humanoid, leveraging their kinematic similarity. It further applies random patch masking to address the visual gap, reducing overfitting to human-specific cues. To evaluate few-shot learning for humanoids, we introduce an open-source simulation benchmark with increasing levels of generalization difficulty. MimicDroid outperforms state-of- the-art methods, achieving nearly 2× higher success rates on novel real-world objects, demonstrating improved generalization.
-            </p>
+We aim to enable humanoid robots to efficiently solve new manipulation tasks from a few video examples in ever-changing environments.
+In-context learning (ICL) is a promising framework to achieve this goal. However, existing ICL approaches rely on costly teleoperated datasets.
+We propose using human play videos—continuous, unlabeled videos of people interacting freely with their environment—as a scalable and diverse training data source.
+Our formulation involves two key challenges: (i) lack of annotated data to train policies to learn in-context; and (ii) the embodiment gap between humans and humanoids.
+We introduce MimicDroid, a method that enables humanoids to perform ICL using human play videos as the only training data.
+To overcome the lack of supervision, MimicDroid extracts trajectory pairs with similar manipulation behaviors.
+It then trains the policy to predict the actions of one trajectory conditioned on the other.
+Through this process, the model acquires ICL capabilities for adapting to novel objects and environments at test time.
+To bridge the embodiment gap, MimicDroid first retargets human wrist poses from RGB videos to the humanoid, leveraging their kinematic similarity.
+It further applies random patch masking to address the visual gap, reducing overfitting to human-specific cues.
+To evaluate few-shot learning for humanoids, we introduce an open-source simulation benchmark with increasing levels of generalization difficulty.
+MimicDroid outperforms state-of-the-art methods, achieving nearly two times higher success rates on novel real-world objects, demonstrating improved generalization.
+</p>
 </div>
 </div>
 </div>
@@ -1020,8 +1031,8 @@ MimicDroid performs meta-training for in-context learning (Meta-ICL) by construc
 <div class="column is-full">
 <h2 class="title is-3">Simulation Results</h2>
 <div class="content">
-<h3 class="title is-4" style="margin-top: 1.5em;">Baseline Comparisons in Simulation Benchmark</h3>
-<p>See details of <a href="#simulation-benchmark">simulation benchmark</a>, qualitative videos of <a href="#simulation-rollouts">simulation rollouts</a>, and quantitative results below.</p>
+<h3 class="title is-4" style="margin-top: 1.5em;">Baseline Comparisons</h3>
+<p>See details of <a href="evaluation.html#simulation-benchmark">simulation benchmark</a>, qualitative videos of <a href="#simulation-rollouts">simulation rollouts</a>, and quantitative results below.</p>
 <div class="columns is-vcentered">
 <div class="column is-half">
 <img alt="Number of Prompts Results" src="./static/images/all_methods_abstract.png" style="max-width: 600px; width: 100%;"/>
@@ -1033,9 +1044,9 @@ MimicDroid performs meta-training for in-context learning (Meta-ICL) by construc
 <!-- add the description of the results below here -->
 <div class="content has-text-justified">
 <p>
-Task-conditioned baselines receive only task specifications, which limits their ability to perform in-context learning.
-As a result, they trail MIMICDROID by 14-18% across source and humanoid embodiments.
-Finetuning at test time suffers from catastrophic forgetting under distribution shifts, losing 10% across embodiments and failing at larger shifts such as L3, whereas MimicDroid adapts instantly and robustly, outperforming finetuning by 26-29% with only a 3% drop across embodiments.
+MimicDroid adapts instantly and robustly, outperforming test-time finetuning by 26% on the abstract embodiment and 29% on the humanoid embodiment, while incurring only a 3% drop across embodiments.
+In contrast, finetuning often overfits to the abstract embodiment, showing a larger 10% drop across embodiments, and suffers from catastrophic forgetting under distribution shifts, failing at the most challenging level (L3).
+Task-conditioned baselines that rely only on task specifications show lower performance by 14% on the abstract and 18% on the humanoid embodiment.
 </p>
 </div>
 </div>
