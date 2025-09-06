@@ -886,7 +886,7 @@
 <span class="author-block">
 <a href="https://shahrutav.github.io/" target="_blank">Rutav Shah</a>,</span>
 <span class="author-block">
-<a href="https://shuijing725.github.io/" target="_blank">Shuijing Liu</a>,</span>
+<a href="https://shuijing725.github.io/" target="_blank">Shuijing Liu</a><sup>*</sup>,</span>
 <span class="author-block">
 <a href="https://www.linkedin.com/in/harry-wang-16470a211/" target="_blank">Qi Wang</a><sup>*</sup>,</span>
 <span class="author-block">
@@ -995,12 +995,12 @@ MimicDroid outperforms state-of-the-art methods, achieving nearly two times high
 <div class="container is-max-desktop has-text-centered">
 <h2 class="title is-3">Method Overview</h2>
 <figure class="image">
-<img alt="Overview of MimicDroid" src="./static/images/mew_method_figurev2-1.png"/>
+<img alt="Overview of MimicDroid" src="./static/images/mew_method_figure_inverted_cropped.png"/>
 <figcaption class="method-caption has-text-justified">
 MimicDroid performs meta-training for in-context learning (Meta-ICL) by constructing context-target pairs from human play videos.
 <ul class="has-text-justified" style="text-align:justify; margin-top:0.5rem;">
-  <li><strong>Top.</strong> For a target segment, we retrieve the top-k most similar trajectory segments (top-left) based on observation-action similarity (top-right) to serve as context.</li>
-  <li><strong>Bottom.</strong> These context-target pairs are used to train an ICL policy (bottom-left). To overcome the human-robot visual gap and avoid overfitting to human-specific visual cues, we apply visual masking to input images (bottom-right), improving transferability.</li>
+  <li><strong>Bottom.</strong> For a target segment, we retrieve the top-k most similar trajectory segments (bottom-left) based on observation-action similarity (bottom-right) to serve as context.</li>
+  <li><strong>Top.</strong> These context-target pairs are used to train an ICL policy (top-left). To overcome the human-robot visual gap and avoid overfitting to human-specific visual cues, we apply visual masking to input images (top-right), improving transferability.</li>
 </ul>
 </figcaption>
 </figure>
@@ -1106,15 +1106,20 @@ study of the factors that influence ICL performance on harder generalization tas
 <section class="section" id="demos">
 <div class="container is-max-desktop has-text-centered">
 <h2 class="title is-3" style="margin-bottom: 3rem;">Real-World Rollout Examples</h2>
+<!-- add a description that each rollout first shows the human video and then the robot executing the same task using in-context learning. The language is only provided for understanding the task. --->
+<p>
+  Each rollout first shows the human demonstration video, followed by the robot performing the same task via in-context learning.<br/>The language description is provided only to help viewers understand the task.
+</p>
+<br/>
 
 <h3 class="title is-4">Cluttered Environments</h3>
 <figure>
 <div class="glide cluttered-carousel" style="position: relative;">
 <div class="glide__track" data-glide-el="track">
 <ul class="glide__slides">
-<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/cluttered/oven top to plate; chips; multiple tasks; good_fast16.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Bread from Rotating Server to</p></div></li>
-<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/cluttered/plate to oven tray; bread; multiple tasks_fast16.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Chips from Oven Top to Plate</p></div></li>
-<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/cluttered/rotating disk to plate; bread 2; multiple tasks_fast16.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Bread from Plate to Oven Tray</p></div></li>
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/all_rollouts/cl_oven_top_plate.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Bread from Oven Top to Plate</p></div></li>
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/all_rollouts/cl_plate_to_oven.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Chips from Plate to Oven Tray</p></div></li>
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/all_rollouts/cl_rotating_disk_to_plate.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Bread from Rotating Server to Plate</p></div></li>
 </div>
 <div class="glide__arrows" data-glide-el="controls">
 <button class="glide__arrow glide__arrow--left" data-glide-dir="&lt;">‹</button>
@@ -1134,9 +1139,9 @@ study of the factors that influence ICL performance on harder generalization tas
 <div class="glide articulate-carousel" style="position: relative;">
 <div class="glide__track" data-glide-el="track">
 <ul class="glide__slides">
-<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/articulate/trim-close-drawer_speed8.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Close Drawer</p></div></li>
-<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/articulate/trim-close-laptop_speed8.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Close Laptop</p></div></li>
-<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/articulate/trim-open-drawer-and-place_speed8.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Open Drawer and Move Chips to Plate</p></div></li>
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/all_rollouts/close_drawer.mp4" type="video/mp4"/></video></div><p class="video-caption">Close Drawer</p></div></li>
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/all_rollouts/close_laptop.mp4" type="video/mp4"/></video></div><p class="video-caption">Close Laptop</p></div></li>
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/all_rollouts/open_drawer_place.mp4" type="video/mp4"/></video></div><p class="video-caption">Open Drawer and Move Chips to Plate</p></div></li>
 </div>
 <div class="glide__arrows" data-glide-el="controls">
 <button class="glide__arrow glide__arrow--left" data-glide-dir="&lt;">‹</button>
@@ -1156,10 +1161,10 @@ study of the factors that influence ICL performance on harder generalization tas
   <div class="glide varied-carousel" style="position: relative;">
     <div class="glide__track" data-glide-el="track">
       <ul class="glide__slides">
-        <li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/spatial/trim-right-to-plate_speed8.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Chips on Bottom Right to Plate</p></div></li>
-        <li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/spatial/trim-top-right-to-plate_speed8.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Chips on Top Right to Plate</p></div></li>
-        <li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/spatial/trim-scissor-down-position_speed8.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Place Scissors from Above on Table</p></div></li>
-        <li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/spatial/trim-scissor-top-position_speed8.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Place Scissors from Bottom on Table</p></div></li>
+        <li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/all_rollouts/place_chips_right.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Chips on Bottom Right to Plate</p></div></li>
+        <li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/all_rollouts/place_chips_right_top.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Chips on Top Right to Plate</p></div></li>
+        <li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/all_rollouts/scizor_top.mp4" type="video/mp4"/></video></div><p class="video-caption">Place Scissors from Above on Table</p></div></li>
+        <li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/all_rollouts/scizor_bottom_to_table.mp4" type="video/mp4"/></video></div><p class="video-caption">Place Scissors from Bottom on Table</p></div></li>
       </ul>
     </div>
     <div class="glide__arrows" data-glide-el="controls">
@@ -1180,10 +1185,10 @@ study of the factors that influence ICL performance on harder generalization tas
 <div class="glide novel-carousel" style="position: relative;">
 <div class="glide__track" data-glide-el="track">
 <ul class="glide__slides">
-<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/novel/new oven top to snack basket; chocolates_fast16.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Garlic from Rotating Server to Plate</p></div></li>
-<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/novel/rotating disk to plate; cheese cubes_fast16.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Chips from Oven Top to Basket</p></div></li>
-<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/novel/rotating disk to veggie basket; potato_fast16.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Cheese from Oven Top to Basket</p></div></li>
-<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/novel/rotating disk to veggie plate; garlic_fast16.0x.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Potato from Rotating Server to Basket</p></div></li>
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/all_rollouts/novel_obj_oven_to_plate.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Chocolates from Oven Top to Snack Basket</p></div></li>
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/all_rollouts/novel_obj_oven_to_plate copy.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Cheese Cubes from Oven Top to Plate</p></div></li>
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/all_rollouts/novel_object_rotating_disk_plate.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Garlic from Rotating Server to Basket</p></div></li>
+<li class="glide__slide"><div class="video-block"><div class="video-card"><video autoplay="" controls="" loop="" muted="" playsinline=""><source src="./static/videos/all_rollouts/novel_object_rotating_disk_plate 2.mp4" type="video/mp4"/></video></div><p class="video-caption">Move Cheese Cubes from Rotating Server to Basket</p></div></li>
 </div>
 <div class="glide__arrows" data-glide-el="controls">
 <button class="glide__arrow glide__arrow--left" data-glide-dir="&lt;">‹</button>
@@ -1209,7 +1214,7 @@ study of the factors that influence ICL performance on harder generalization tas
           <div class="video-block">
             <div class="video-card">
               <video autoplay="" controls="" loop="" muted="" playsinline="">
-                <source src="./static/videos/failure/rotating disk to veggie basket; onion; failure_fast16.0x.mp4" type="video/mp4"/>
+                <source src="./static/videos/failure/onion_grasp_failure.mp4" type="video/mp4"/>
               </video>
             </div>
             <p class="video-caption">Move onion from rotating server to basket<br/><em>Slight errors in hand pose prediction caused the object to slip</em></p>
@@ -1219,7 +1224,7 @@ study of the factors that influence ICL performance on harder generalization tas
           <div class="video-block">
             <div class="video-card">
               <video autoplay="" controls="" loop="" muted="" playsinline="">
-                <source src="./static/videos/failure/trim-pumping-failure_speed8.0x.mp4" type="video/mp4"/>
+                <source src="./static/videos/failure/spray_bottle_pump.mp4" type="video/mp4"/>
               </video>
             </div>
             <p class="video-caption">Pump syrup bottle<br/><em>Mispredicted motion direction prevented pumping</em></p>
@@ -1229,7 +1234,7 @@ study of the factors that influence ICL performance on harder generalization tas
           <div class="video-block">
             <div class="video-card">
               <video autoplay="" controls="" loop="" muted="" playsinline="">
-                <source src="./static/videos/failure/collision.mp4" type="video/mp4"/>
+                <source src="./static/videos/failure/collision_failure.mp4" type="video/mp4"/>
               </video>
             </div>
             <p class="video-caption">Move bread from plate to oven tray<br/><em>Bias toward specific hand sizes seen in training caused a collision in the cluttered scene</em></p>
@@ -1239,7 +1244,17 @@ study of the factors that influence ICL performance on harder generalization tas
           <div class="video-block">
             <div class="video-card">
               <video autoplay="" controls="" loop="" muted="" playsinline="">
-                <source src="./static/videos/failure/new-oven-failure.mp4" type="video/mp4"/>
+                <source src="./static/videos/failure/open_drawer_place.mp4" type="video/mp4"/>
+              </video>
+            </div>
+            <p class="video-caption">Open the drawer<br/><em>Mispredicted hand pose caused the robot to displace the drawer while opening it</em></p>
+          </div>
+        </li>
+        <li class="glide__slide">
+          <div class="video-block">
+            <div class="video-card">
+              <video autoplay="" controls="" loop="" muted="" playsinline="">
+                <source src="./static/videos/failure/new_height_failure.mp4" type="video/mp4"/>
               </video>
             </div>
             <p class="video-caption">Pull out oven tray<br/><em>Failure to generalize to new oven's grasp height prevented successful tray removal</em></p>
@@ -1277,120 +1292,6 @@ other errors (8%) like incomplete cabinet closure, missed placement (Fig. 4). Co
 
 </div>
 </section>
-<!-- <section class="section">
-    <div class="container is-max-desktop has-text-centered">
-      <h2 class="title is-3">Video</h2>
-      <p class="is-6" style="margin-bottom: 1rem;">
-        Watch the video to see MimicDroid in action!
-      </p>
-      <video
-        controls
-        preload="metadata"
-        style="max-width:100%; border-radius:8px;"
-      >
-        <source src="./static/images/summary_video.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  </section>
- -->
-<!-- Method Overview -->
-<!-- <section class="section" id="method">
-  <div class="container is-max-desktop has-text-centered">
-    <h2 class="title is-3">Method Overview</h2>
-    <figure class="image">
-      <img src="./static/images/mew_method_figurev2-1.png"
-           alt="Overview of MimicDroid" />
-
-      <figcaption class="method-caption has-text-justified">
-        <strong>Overview of MimicDroid.</strong> MimicDroid performs meta-training for in-context learning (Meta-ICL) by constructing context-target pairs from human play videos.
-    For a target segment, we retrieve the top-k most similar trajectory segments (top-left) based on observation-action similarity (top-right) to serve as context.
-    These context-target pairs are used to teach the policy in-context learning (bottom-left). To overcome the human-robot visual gap and avoid overfitting to human-specific visual cues, we apply visual masking to input images (bottom-right), improving transferability.
-      </figcaption>
-    </figure>
-  </div>
-</section> -->
-<!-- Experiments -->
-<!-- <section class="section" id="experiments">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-full">
-          <h2 class="title is-3">Experiments</h2>
-          <div class="content">
-            <figure class="image">
-              <img src="./static/images/results.png" alt="experiment results" />
-              <figcaption>
-               <p>Success rates of MimicDroid in the simulation benchmark, comparing both the Abstract and GR1 embodiments across levels of generalization difficulty (L1–L3). MimicDroid consistently outperforms prior approaches and ablations, demonstrating strong transfer from human play videos to humanoid control.</p>
-              </figcaption>
-            </figure>
-            <h3 class="title is-4" style="margin-top: 1.5em;">Quantitative Results</h3>
-
-            <div class="columns is-multiline is-centered">
-              <figure class="image">
-                <div class="columns is-multiline is-centered">
-                  <div class="column is-one-third">
-                    <img src="./static/images/n_prompts-1.png" alt="Number of Prompts Results" />
-                  </div>
-                  <div class="column is-one-third">
-                    <img src="./static/images/n_topk-1.png" alt="Top-K Results" />
-                  </div>
-                  <div class="column is-one-third">
-                    <img src="./static/images/success_vs_frames-1.png" alt="Success vs Frames" />
-                  </div>
-                </div>
-                <figcaption>Quantitative ablations of MimicDroid. Left: Performance as a function of the number of test-time in-context demonstrations. Middle: Effect of the number of retrieved top-k context segments used during training. Right: Scaling behavior as the amount of training video data (frames) increases. These results highlight that MimicDroid benefits from more context at test time, an appropriate retrieval budget at training time, and larger play video datasets.</figcaption>
-              </figure>
-            </div>
-
-            <h3 class="title is-4" style="margin-top: 1.5em;">Qualitative Analysis</h3>
-            <figure class="image">
-              <img src="./static/images/mew_rw_figure-1.png" alt="Qualitative Method Overview" />
-              <figcaption>Real-world qualitative rollouts of MimicDroid. The humanoid GR1 successfully adapts to novel objects and environments using only a few human video demonstrations at test time. Examples include placing food items on trays, transferring them into containers, and interacting with household appliances. These case studies illustrate the method's ability to generalize across tasks and embodiments from purely video-based training.</figcaption>
-            </figure>
-
-            <h3 class="title is-4" style="margin-top: 1.5em;">Failure Analysis</h3>
-            <div class="columns is-vcentered">
-              <div class="column is-half">
-                <img src="./static/images/dual_pie-1.png" alt="Failure Analysis" style="max-width: 600px; width: 100%;" />
-              </div>
-              <div class="column is-half">
-                <div class="content">
-                  <p>Failures in downstream tasks arise from task misidentification (26%), missed grasps (16%), and other errors (8%) like incomplete cabinet closure or missed placement. Compared to Vid2Robot, MimicDroid reduces both misidentification (−15%) and grasping errors (−5%) via in-context learning.</p>
-                </div>
-              </div>
-            </div>
-
-        </div>
-      </div>
-      </div>
-    </div>
-    </section> -->
-<!-- <h3 class="title is-4" style="margin-top: 1.5em;">GR1 Embodiment</h3>
-            <figure class="image">
-              <img src="./static/images/real_world_results.png" alt="Real-world experiment results" />
-              <figcaption>
-                Real-world evaluation on six manipulation tasks using the DROID dataset. For each task, we use only <strong>5 target demonstrations</strong> and retrieve from a pool of 30k successful episodes. COLLAGE achieves an average success rate of 6.83/15, representing a <strong>58% relative performance improvement over STRAP (4.33/15) </strong> and a <strong> 64% improvement over LANG (4.16/15)</strong>. Policies trained solely on the 5 in-domain demonstrations (no retrieval) achieve only 1.00/15 success on average. In contrast, COLLAGE effectively leverages relevant demonstrations from DROID to significantly boost policy performance.
-              </figcaption>
-            </figure>
-          </div>
-        </div>
-      </div>
-    </div> -->
-<!-- Weights Predicted by COLLAGE -->
-<!-- <section class="section">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Importance Weights Predicted by COLLAGE</h2>
-      <div class="has-text-centered">
-        <figure class="image" style="max-width: 950px; width: 100%; margin: 0 auto;">
-          <img src="./static/images/modality_weights_pie_chart.png" alt="Modality Weights Pie Chart" style="width: 100%; height: auto; border-radius: 8px;">
-          <figcaption style="margin-top: 0.75rem; font-size: 1rem; color: #444;">
-            <figcaption style="margin-top: 0.75rem;">
-                Importance weights assigned by <strong>COLLAGE</strong> to different modalities used in our framework (Visual, Motion, Shape, Language).
-          </figcaption>
-        </figure>
-      </div>
-    </div>
-  </section> -->
 <section class="section" id="BibTeX">
 <div class="container is-max-desktop content">
 <h2 class="title">BibTeX</h2>
