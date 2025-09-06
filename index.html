@@ -1039,8 +1039,17 @@ MimicDroid performs meta-training for in-context learning (Meta-ICL) by construc
 <div class="column is-full">
 <h2 class="title is-3">Simulation Results</h2>
 <div class="content">
+<div class="content has-text-justified" style="margin-bottom: 2rem;">
+  <p>Our simulation benchmark evaluates few-shot learning across three progressively challenging levels:</p>
+  <ul>
+    <li><strong>L1 (Seen Object, Seen Environment):</strong> Manipulation tasks with objects encountered during training in seen environments. This level evaluates the robot's ability to generalize to new object positions.</li>
+    <li><strong>L2 (Unseen Object, Seen Environment):</strong> Manipulation tasks with novel objects in seen environments. This level evaluates the robot's ability to adapt to novel objects using few demonstrations.</li>
+    <li><strong>L3 (Unseen Object, Unseen Environment):</strong> Manipulation tasks with novel objects in unseen environments. This level tests the robot's ability to generalize to different backgrounds, furniture layouts, and novel objects.</li>
+  </ul>
+  <p>See details of simulation benchmark <a href="evaluation.html#simulation-benchmark">here</a></p>
+</div>
 <h3 class="title is-4" style="margin-top: 1.5em;">Baseline Comparisons</h3>
-<p>See details of <a href="evaluation.html#simulation-benchmark">simulation benchmark</a>, qualitative videos of <a href="#simulation-rollouts">simulation rollouts</a>, and quantitative results below.</p>
+<p>See qualitative videos of simulation rollouts <a href="#simulation-rollouts">here</a>, and quantitative results below. </p>
 <div class="columns is-vcentered">
 <div class="column is-half">
 <img alt="Number of Prompts Results" src="./static/images/all_methods_abstract.png" style="max-width: 600px; width: 100%;"/>
@@ -1068,7 +1077,6 @@ Task-conditioned baselines that rely only on task specifications show lower perf
 <p>We observe consistent performance improvements across all generalization
 levels (L1–L3) as the amount of training data increases, demonstrating the scalability of learning from RGB play videos. These results also motivates a more systematic
 study of the factors that influence ICL performance on harder generalization tasks like L3.</p>
-</div>
 </div>
 </div>
 </div>
