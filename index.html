@@ -974,18 +974,7 @@
 <h2 class="title is-3">Abstract</h2>
 <div class="content has-text-justified">
 <p>
-We aim to enable humanoid robots to efficiently solve new manipulation tasks from a few video examples in ever-changing environments.
-In-context learning (ICL) is a promising framework to achieve this goal. However, existing ICL approaches rely on costly teleoperated datasets.
-We propose using human play videos—continuous, unlabeled videos of people interacting freely with their environment—as a scalable and diverse training data source.
-Our formulation involves two key challenges: (i) lack of annotated data to train policies to learn in-context; and (ii) the embodiment gap between humans and humanoids.
-We introduce MimicDroid, a method that enables humanoids to perform ICL using human play videos as the only training data.
-To overcome the lack of supervision, MimicDroid extracts trajectory pairs with similar manipulation behaviors.
-It then trains the policy to predict the actions of one trajectory conditioned on the other.
-Through this process, the model acquires ICL capabilities for adapting to novel objects and environments at test time.
-To bridge the embodiment gap, MimicDroid first retargets human wrist poses from RGB videos to the humanoid, leveraging their kinematic similarity.
-It further applies random patch masking to address the visual gap, reducing overfitting to human-specific cues.
-To evaluate few-shot learning for humanoids, we introduce an open-source simulation benchmark with increasing levels of generalization difficulty.
-MimicDroid outperforms state-of-the-art methods, achieving nearly two times higher success rates on novel real-world objects, demonstrating improved generalization.
+We aim to enable humanoid robots to efficiently solve new manipulation tasks from a few video examples. In-context learning (ICL) is a promising framework for achieving this goal due to its test-time data efficiency and rapid adaptability. However, current ICL methods rely on labor-intensive teleoperated data for training, which restricts scalability. We propose using human play videos—continuous, unlabeled videos of people interacting freely with their environment—as a scalable and diverse training data source. We introduce MimicDroid, which enables humanoids to perform ICL using human play videos as the only training data MimicDroid extracts trajectory pairs with similar manipulation behaviors and trains the policy to predict the actions of one trajectory conditioned on the other. Through this process, the model acquired ICL capabilities for adapting to novel objects and environments at test time. To bridge the embodiment gap, MimicDroid first retargets human wrist poses estimated from RGB videos to the humanoid, leveraging kinematic similarity. It also applies random patch masking during training to reduce overfitting to human-specific cues and improve robustness to visual differences. To evaluate few-shot learning for humanoids, we introduce an open-source simulation benchmark with increasing levels of generalization difficulty. MimicDroid outperformed state-of-the-art methods and achieved nearly twofold higher success rates in the real world.
 </p>
 </div>
 </div>
