@@ -842,6 +842,18 @@
   background: #ffffff;
 }
 
+/* Slightly adjust main hero title size */
+.publication-title {
+  font-size: 2.35rem !important;
+  line-height: 120%;
+  letter-spacing: -0.5px; /* negative value tightens spacing */2
+}
+
+@media screen and (max-width: 768px) {
+  .publication-title {
+    font-size: 1.9rem !important; /* tune for mobile */
+  }
+}
 </style>
 </link></head>
 <body>
@@ -880,7 +892,7 @@
 <div class="container is-max-desktop publication-container">
 <div class="columns is-centered">
 <div class="column has-text-centered">
-<h2 class="title is-2 publication-title">MimicDroid: In-Context Learning for <br/>Humanoid Robot Manipulation by Watching Humans </h2>
+<h2 class="title is-2 publication-title">MimicDroid: In-Context Learning for Humanoid Robot Manipulation<br/>from Human Play Videos</h2>
 <h2 class="subtitle is-2 publication-subtitle"></h2>
 <div class="is-size-5 publication-authors">
 <span class="author-block">
@@ -935,7 +947,7 @@
 </span>
 <!-- Dataset Link. -->
 <span class="link-block">
-<a class="external-link button is-normal is-rounded is-dark" href="https://huggingface.co/datasets/Rutav/MimicDroidDataset">
+<a class="external-link button is-normal is-rounded is-dark" href="https://huggingface.co/datasets/Rutav/MimicDroidDataset/tree/main">
 <span class="icon">
 <i class="fas fa-database"></i>
 </span>
